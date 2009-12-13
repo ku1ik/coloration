@@ -1,0 +1,225 @@
+attribute-value.known.txp
+comment
+comment.block
+constant
+constant.character, constant.numeric
+constant.character, constant.other
+constant.character.escape
+constant.character.escaped, string source - string.unquoted.embedded, string string source
+constant.character.escape, string source
+constant.language
+constant.numeric
+constant.numeric.ruby
+constant.other
+constant.other.placeholder
+constant.other.symbol
+constant.other.symbol.escape
+constant, support.constant
+declaration.doctype
+declaration.doctype.DTD
+declaration.sgml.html declaration.doctype, declaration.sgml.html declaration.doctype entity, declaration.sgml.html declaration.doctype string, declaration.xml-processing, declaration.xml-processing entity, declaration.xml-processing string
+declaration.tag
+declaration.tag, declaration.tag entity, meta.tag, meta.tag entity
+declaration.tag.inline, declaration.tag.inline entity, source entity.name.tag, source entity.other.attribute-name, meta.tag.inline, meta.tag.inline entity
+declaration.xml-processing
+entity
+entity.name
+entity.name.class
+entity.name.class, support.class.js
+entity.name.function
+entity.name.function entity.name.type.class, support.function support.type.class
+entity.name.function.js, object.property.function.prototype.js, support.class.js, entity.name.type.instance.js
+entity.name.function, keyword.operator, keyword.other.name-of-parameter
+entity.name.function.macro
+entity.name.function, storage.type.function.js
+entity.name.function, support.function
+entity.name.function, support.function.any-method
+entity.name.preprocessor
+entity.name.section
+entity.name.tag
+entity.name.tag.condition
+entity.name.tag.namespace
+entity.name.tag.namespace, entity.other.attribute-name.namespace
+entity.name.tag.single
+entity.name.tag.txp
+entity.name.type
+entity.name.type.class, support.class, support.type.class
+entity.name.type, support.type
+entity.other.attribute-name
+entity.other.inherited-class
+invalid
+invalid.deprecated
+invalid.deprecated.trailing-whitespace
+invalid.illegal
+invalid.illegal.attribute-value.unrecognized
+invalid.trailing-whitespace
+keyword
+keyword.control
+keyword.control.import
+keyword.control.js
+keyword.operator
+keyword.operator.js
+keyword.operator.plugin
+keyword.other
+keyword.other.important.css
+keyword.other.unit.css
+keyword.other.unit.css, constant.other.rgb-value.css, constant.numeric.css
+keyword.preprocessor
+keyword.preprocessor directive
+keyword, storage
+keyword, storage.type.function.php
+keyword, support.keyword
+keyword.type.variant
+markup
+markup.bold
+markup.bold.textile
+markup.changed
+markup comment
+markup.deleted
+markup.heading
+markup.heading, markup.heading entity
+markup.inserted
+markup.italic
+markup.list
+markup.list.numbered.textile
+markup.list.unnumbered.textile
+markup.quote
+markup.raw
+markup.underline
+markup.underline.link
+meta
+meta.brace.curly.js, meta.brace.round.js, meta.brace.square.js, punctuation.definition.parameters.begin.js, punctuation.definition.parameters.end.js, punctuation.terminator.statement.js
+meta.cast
+meta.constructor.argument.css
+meta.diff
+meta.diff.index, meta.diff.header
+meta.diff, meta.diff.header
+meta.diff, meta.diff.header, meta.separator
+meta.diff.range
+meta.function-call.py
+meta.function.js, storage.type.function.js, storage.type.js
+meta.line.entry.logfile, meta.line.exit.logfile
+meta.line.error.logfile
+meta.preprocessor
+meta.preprocessor.at-rule keyword.control.at-rule
+meta.preprocessor.c
+meta.preprocessor.c keyword
+meta.property-group support.constant.property-value.css, meta.property-value support.constant.property-value.css
+meta.property-value support.constant.named-color.css, meta.property-value constant
+meta.scope.changed-files.svn, markup.inserted.svn, markup.changed.svn, markup.deleted.svn
+meta.section
+meta.section entity.name.section, declaration.section entity.name.section
+meta.section meta.section
+meta.section meta.section meta.section
+meta.selector.css entity.name.tag
+meta.selector.css entity.other.attribute-name.class
+meta.selector.css entity.other.attribute-name.id
+meta.selector.css, entity.other.attribute-name.pseudo-class.css, entity.name.tag.wildcard.css, entity.other.attribute-name.id.css, entity.other.attribute-name.class.css
+meta.selector.css entity.other.attribute-name.tag.pseudo-class
+meta.separator
+meta.sgml.html meta.doctype, meta.sgml.html meta.doctype entity, meta.sgml.html meta.doctype string, meta.xml-processing, meta.xml-processing entity, meta.xml-processing string
+meta.tag, declaration.tag
+meta.tag, declaration.tag, meta.doctype
+meta.tag.inline.any.html,  meta.tag.block.any.html
+meta.tag, meta.tag entity
+meta.tag.preprocessor.xml
+meta.tag.sgml.doctype
+meta.tag.sgml.doctype, meta.tag.sgml.doctype entity, meta.tag.sgml.doctype string, meta.tag.preprocessor.xml, meta.tag.preprocessor.xml entity, meta.tag.preprocessor.xml string
+meta.tag.single
+object.property.function.prototype.js
+other.preprocessor
+other.preprocessor.c
+other.preprocessor.c entity
+punctuation
+punctuation.definition.comment, punctuation.section.comment
+punctuation.definition.tag.html
+source
+source comment.block
+source entity.name.tag, source entity.other.attribute-name, meta.tag.inline, meta.tag.inline entity
+source.js
+source.ocaml constant.numeric.floating-point
+source.ocaml keyword.operator.symbol
+source.ocaml keyword.operator.symbol.infix
+source.ocaml keyword.operator.symbol.infix.floating-point
+source.ocaml keyword.operator.symbol.prefix
+source.ocaml keyword.operator.symbol.prefix.floating-point
+source.php
+source.plist string.unquoted, source.plist keyword.operator
+source.ruby
+source.ruby entity.name
+source.ruby.rails.embedded.html
+source.ruby.rails.methods.html
+source string source
+source string source punctuation.section.embedded
+storage
+storage.modifier
+storage, support.type
+storage.type
+storage.type.method
+string
+string constant
+string.constant
+string constant.character.escape
+string constant.other.placeholder
+string.constant.prefix
+string.interpolated
+string.interpolated constant.character.escape
+string.literal
+string, meta.verbatim
+string.other.tag.plugin
+string.quoted.docinfo
+string.quoted.docinfo.doctype.DTD
+string.quoted.double.html, string.quoted.single.html
+string.quoted.double.js, string.quoted.single.js
+string.quoted source
+string.regexp
+string.regexp.character-class
+string.regexp constant.character.escaped, string.regexp source.ruby.embedded, string.regexp string.regexp.arbitrary-repitition
+string.regexp constant.character.escape, string.regexp source.ruby.embedded, string.regexp string.regexp.arbitrary-repitition
+string.regexp.group
+string source
+string source, text source
+string - string source, string source string, meta.scope.heredoc
+string.unquoted.embedded, text source, string.unquoted
+string variable
+support
+support.class.prototype.js
+support.class.ruby
+support.class, support.type
+support.class, support.type, entity.name
+support.constant
+support.constant.dom.js, support.function.js, support.constant.js
+support.constant.js
+support.function
+support.function.actioncontroller.specials.rails
+support.function.activerecord.rails
+support.function.dom.js
+support.function.event-handler.js
+support.function.js
+support.other.variable
+support.type.property-name.css
+support.type, support.class
+support.variable
+text
+text.html.ruby
+text.html.ruby source
+text.html.txp
+text.html.txp attribute.name
+text.html.txp entity.name.tag.plugin.single.txp  attribute.with-value.txp
+text.html.txp string.quoted.double.html.strict
+text.html.txp string.unquoted.txp.htmlcomment.txp
+text.latex meta.environment
+text.latex meta.environment meta.environment
+text.latex support.function
+text source
+text source, string.unquoted
+text source string.unquoted, text source text source
+txp.container.tag
+variable
+variable.language
+variable.language.js
+variable.language, variable.other
+variable.other
+variable.parameter
+variable.parameter.function.js, meta.delimiter.method.period.js
+variable, support.variable
