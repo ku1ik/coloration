@@ -24,13 +24,10 @@ module Coloration
     
     def format_item(name, style)
       raise RuntimeError.new("Style for #{name} is missing!") if style.nil?
-#       p name
-#       p style
       "#{name}=#{format_style(style)}"
     end
     
     def format_style(style)
-#       return if style.nil?
       s = ""
       s << " color:#{style.foreground.html}" if style.foreground
       s << " bgColor:#{style.background.html}" if style.background
@@ -40,7 +37,6 @@ module Coloration
         s << "u" if style.underline
         s << "i" if style.italic
       end
-#       s.size > 0 ? s : nil
       escape(s)
     end
     
@@ -49,7 +45,6 @@ module Coloration
     end
     
     def build
-      #add_property "console.font", "Monospaced"
       ui = {
         "scheme.name"             => @name,
         "view.fgColor"            => @ui[:foreground],
@@ -59,8 +54,7 @@ module Coloration
         "view.eolMarkerColor"     => @ui[:invisibles],
         "view.lineHighlightColor" => @ui[:line_highlight],
       }
-#       p ui
-#       p @ui
+
       ui.keys.each do |key|
         add_line(format_ui(key, ui[key]))
       end
@@ -68,23 +62,25 @@ module Coloration
       items = {
         "view.style.comment1"     => @items[:comment], # #foo
         "view.style.literal1"     => @items[:string], # "foo"
-        "view.style.label"        => @items["constant.other.symbol"] || @items["constant.other"] || @items["constant"], # :foo
+        "view.style.label"        => @items["constant.other.symbol"], # :foo
         "view.style.digit"        => @items["constant.numeric"], # 123
-        "view.style.keyword1"     => @items["keyword.control"] || @items["keyword"], # class, def, if, end
+        "view.style.keyword1"     => @items["keyword.control"], # class, def, if, end
         "view.style.keyword2"     => @items["support.function"], # require, include
         "view.style.keyword3"     => @items["constant.language"], # true, false, nil
-        "view.style.keyword4"     => @items["variable"] || @items["variable.other"], # @foo
+        "view.style.keyword4"     => @items["variable.other"], # @foo
         "view.style.operator"     => @items["keyword.operator"], # = < + -
         "view.style.function"     => @items["entity.name.function"], # def foo
         "view.style.literal3"     => @items["string.regexp"], # /jola/
 #         "view.style.invalid"      => @items["invalid"], # errors etc
         #"view.style.literal4" => :constant # MyClass, USER_SPACE
-        "view.style.markup"       => @items["entity.name.tag"] || @items["meta.tag"] # <div>
+        "view.style.markup"       => @items["meta.tag"] || @items["entity.name.tag"] # <div>
         #TODO: gutter etc
       }
       
+      default_style = Style.new
+      default_style.foreground = @ui[:foreground]
       items.keys.each do |key|
-        add_line(format_item(key, items[key]))
+        add_line(format_item(key, items[key] || default_style))
       end
     end
   end

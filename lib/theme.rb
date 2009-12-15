@@ -11,36 +11,6 @@ module Coloration
       end
     end
     
-#     def method_missing(name, *args)
-#       if name.to_s.end_with?("=") && args.size == 1
-#         @properties[name.to_s[0..-2].to_sym] = args.first
-#       elsif args.size == 0
-#         @properties[name.to_sym]
-#       else
-#         super
-#       end
-#     end
-    
-#     def format_name(name)
-#       name.to_s
-#     end
-#     
-#     def format_string(s)
-#       s
-#     end
-#     
-#     def format_value(value)
-#       if value.is_a?(Hash)
-#         format_style(value)
-#       else
-#         format_string(value)
-#       end
-#     end
-#     
-#     def format_style(style)
-#       raise RuntimeError.new("You must implement format_style method!")
-#     end
-#     
     def format_comment(text); end
     
     def build
@@ -63,7 +33,6 @@ module Coloration
       add_comment "Generated from #{@original_theme.class.editor_name} theme with Coloration (http://github.com/sickill/coloration)\n"
       build
       @lines.compact.join("\n")
-#       @properties.inspect
     end
   end
 end
