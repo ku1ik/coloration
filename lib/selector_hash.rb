@@ -1,6 +1,12 @@
 module Coloration
 
   class SelectorHash < Hash
+    def initialize(h={})
+      h.keys.each do |key|
+        self[key] = h[key]
+      end
+    end
+    
 #     def find_key(key)
 #       to_check = []
 #       elems = key.split(".")
@@ -21,6 +27,7 @@ module Coloration
 #     end
 
     def [](key)
+      super(key.to_s)
 #       key = find_key(key) if key.is_a?(String)
 #       @hash[key]
     end

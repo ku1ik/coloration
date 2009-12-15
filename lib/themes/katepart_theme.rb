@@ -32,7 +32,7 @@ module Coloration
     end
     
     def build
-      p @properties
+#       p @properties
       add_comment "Put following into katesyntaxhighlightingrc"
       add_line "[Default Item Styles - Schema #{name}]"
       tokens = {
