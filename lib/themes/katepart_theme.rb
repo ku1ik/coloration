@@ -9,21 +9,19 @@ module Coloration
     end
     
     def format_style(style)
-#       p style
+      style ||= @default_style
       # normal,selected,bold,italic,strike,underline,bg,bg_selected,---
       s = []
       s << style.foreground.html.gsub('#', '')
       s << nil
-      s << (style.bold ? "1" : nil)
-      s << (style.italic ? "1" : nil)
-      s << (style.strike ? "1" : nil)
-      s << (style.underline ? "1" : nil)
+      s << style.bold.to_i
+      s << style.italic.to_i
+      s << style.strike.to_i
+      s << style.underline.to_i
       s << (style.background ? style.background.html.gsub('#', '') : nil)
       s << nil
       s << "---"
-      a = s.join(",")
-#       p a
-      a
+      s.join(",")
     end
     
     def format_item(name, style)
@@ -40,8 +38,8 @@ module Coloration
       
       add_line "[Default Item Styles - Schema #{name}]"
       
-      default_style = Style.new
-      default_style.foreground = @ui[:foreground]
+      @default_style = Style.new
+      @default_style.foreground = @ui[:foreground]
       
       items = {
         "Alert"          => @items["invalid"], #
@@ -54,21 +52,36 @@ module Coloration
         "Floating Point" => @items["constant.numeric"],
         "Function"       => @items["entity.name.function"],
         "Keyword"        => @items["keyword"],
-        "Normal"         => default_style,
+        "Normal"         => @default_style,
         "Others"         => nil, #
         "Region Marker"  => nil, #
         "String"         => @items["string"]
       }
 
       items.keys.each do |key|
-        add_line(format_item(key, items[key] || default_style))
+        add_line(format_item(key, items[key] || @default_style))
       end
       
       add_line ""
       
       add_line "[Highlighting Ruby - Schema #{name}]"
-      add_line("Ruby:Symbol=7," + format_style(@items["constant.other.symbol.ruby"]))
-      add_line("Ruby:Pseudo variable=3," + format_style(@items["constant.language"]))
+      add_line("Ruby:Access Control=0," + format_style(@items["keyword"]))
+      add_line("Ruby:Command=0," + format_style(@items["string.interpolated"]))
+      add_line("Ruby:Constant Value=0," + format_style(@items["constant.other"]))
+      add_line("Ruby:Default globals=0," + format_style(@items["variable.other"]))
+      add_line("Ruby:Definition=0," + format_style(@items["entity.name.function"]))
+      add_line("Ruby:Delimiter=0," + format_style(@items["keyword.other"]))
+      add_line("Ruby:Global Constant=0," + format_style(@items["constant.other"]))
+      add_line("Ruby:Global Variable=0," + format_style(@items["variable.other"]))
+      add_line("Ruby:Kernel methods=0," + format_style(@items["support.function"]))
+      add_line("Ruby:Message=0," + format_style(@default_style))
+      add_line("Ruby:Operator=0," + format_style(@items["keyword.operator"]))
+      add_line("Ruby:Pseudo variable=0," + format_style(@items["constant.language"]))
+      add_line("Ruby:Raw String=0," + format_style(@items["string.quoted.single"]))
+#       add_line("Ruby:Region Marker=7," + format_style(@items[""]))
+      add_line("Ruby:Regular Expression=0," + format_style(@items["string.regexp.ruby"]))
+      add_line("Ruby:Symbol=0," + format_style(@items["constant.other.symbol.ruby"]))
+      
       
       add_comment "-------------------------------------\n"
       add_comment "Put following into kateschemarc\n"
