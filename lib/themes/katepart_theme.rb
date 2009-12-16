@@ -64,6 +64,12 @@ module Coloration
         add_line(format_item(key, items[key] || default_style))
       end
       
+      add_line ""
+      
+      add_line "[Highlighting Ruby - Schema #{name}]"
+      add_line("Ruby:Symbol=7," + format_style(@items["constant.other.symbol.ruby"]))
+      add_line("Ruby:Pseudo variable=3," + format_style(@items["constant.language"]))
+      
       add_comment "-------------------------------------\n"
       add_comment "Put following into kateschemarc\n"
 
