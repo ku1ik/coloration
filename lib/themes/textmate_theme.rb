@@ -21,7 +21,7 @@ module Coloration
       # set ui properties
       theme.ui = SelectorHash.new(settings.delete_at(0)["settings"])
       theme.ui["line_highlight"] = theme.ui.delete("lineHighlight")
-      bg = Color::RGB.from_html(theme.ui["background"])
+      bg = Color::RGB.from_html(theme.ui["background"][0..6])
       theme.ui.keys.each do |key|
         if (col = theme.ui[key]).size > 7 # we have color with alpha channel
           alpha = (100 * ((col[-2..-1]).to_i(16) / 255.0)).to_i
@@ -32,6 +32,7 @@ module Coloration
         end
         theme.ui[key] = color
       end
+      theme.ui["background"] = bg
       # set items
       theme.items = SelectorHash.new
       settings.each do |rule|

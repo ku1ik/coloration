@@ -7,11 +7,16 @@ module Coloration
       end
     end
 
-    def [](key)
+    def [](key, deep=true)
       return nil if key.blank?
       key = key.to_s
 #       puts "trying #{key}"
-      super(key) || self[key.split(".")[0..-2].join(".")]
+      value = super(key)
+      if value
+        value
+      elsif deep
+        self[key.split(".")[0..-2].join(".")]
+      end
     end
   end
 
