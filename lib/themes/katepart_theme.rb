@@ -103,7 +103,8 @@ module Coloration
       add_line "Ruby/Rails/RHTML:Attribute=0," + format_style(@items["entity.other.attribute-name"])
       
       
-      add_comment "-------------------------------------\n"
+      add_comment ""
+
       add_comment "Put following into kateschemarc\n"
 
       add_line "[#{name}]"
