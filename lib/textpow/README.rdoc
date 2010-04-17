@@ -1,0 +1,13 @@
+= Textpow
+
+This is a fixed version of the Textpow library for the 1.9 tree of the Ruby programming language. If you find any bugs, please let me know and I'll get them fixed up as soon as I can.
+
+== Install
+
+Textpow requires the plist library, that no longer works on 1.9 due to some syntax differences from 1.8. You can find a fixed version at the following location:
+
+* {plist}[http://github.com/spox/plist]
+
+= Etc.
+
+For textpow information, see the README.txt file for original author information

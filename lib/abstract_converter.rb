@@ -14,12 +14,12 @@ module Coloration
         end
       end
 
-      def write(dst)
-#        add_comment "#{self.name} theme for #{self.class.editor_name}"
-#        add_comment "Generated from #{@original_theme.class.editor_name} theme with Coloration (http://github.com/sickill/coloration)\n"
-        print
-#        files.each do |filename, content|
-#        end
+      def write
+        files.each do |filename, content|
+          File.open(filename.gsub(/[^A-Za-z0-9._\s-]/, "-"), "w") do |f|
+            f.write content
+          end
+        end
       end
     end
   end
