@@ -47,14 +47,14 @@ module Coloration
           "CursorLine" => Style.new(:bg => @ui["lineHighlight"]),
           "CursorColumn" => Style.new(:bg => @ui["lineHighlight"]),
           "LineNr" => Style.new(:fg => @items["comment"].foreground, :bg => @ui["background"]),
-          "VertSplit" => Style.new(:fg => @ui["lineHighlight"], :bg => @ui["lineHighlight"]),
-          "MatchParen" => Style.new(:fg => @ui["background"], :bg => @ui["foreground"]),
+          "VertSplit" => Style.new(:fg => @ui["selection"], :bg => @ui["selection"]),
+          "MatchParen" => @items["keyword"],
           "StatusLine" => Style.new(:fg => @ui["foreground"], :bg => @ui["selection"]),
           "StatusLineNC" => Style.new(:fg => @ui["background"], :bg => @ui["selection"]),
           "Pmenu" => "entity.name",
           "PmenuSel" => Style.new(:bg => @ui["selection"]),
-          "IncSearch" => Style.new(:inverse => true),                      
-          "Search" => Style.new(:inverse => true),
+          "IncSearch" => Style.new(:underline => true, :bg => @ui["lineHighlight"]),
+          "Search" => Style.new(:underline => true, :bg => @ui["lineHighlight"]),
           "Directory" => "constant.other.symbol",
         }
 
@@ -167,25 +167,12 @@ module Coloration
           "cssValueLength" => "constant.numeric.css",
           "cssCommonAttr" => "support.constant.property-value.css",
           "cssBraces" => "punctuation.section.property-list.css",
-          # "cssFontProp" => "support.type.property-name.css",
-          # "cssBoxProp" => "support.type.property-name.css",
-          # "cssColorProp" => "support.type.property-name.css",
-          # "cssTextProp" => "support.type.property-name.css",
-          # "cssFontAttr" => "support.constant.font-name.css",
-          # "cssColorAttr" => "support.constant.property-value.css",
-          # "cssRenderProp" => "support.constant.property-value.css",
-          # "cssTextAttr" => "support.constant.property-value.css",
         }
 
         items_mapping.keys.each do |key|
           add_line(format_item(key, items_mapping[key]))
         end
 
-        #default_style = Style.new
-        #default_style.foreground = @ui[:foreground]
-        #items_mapping.keys.each do |key|
-          #add_line(format_item(key, items_mapping[key] || default_style))
-        #end
         { "#{name}.vim" => @lines.join("\n") }
       end
     end
