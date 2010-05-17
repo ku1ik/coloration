@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require File.dirname(__FILE__) + "/../lib/coloration"
+require "coloration"
 
 if ARGV.size > 1
   converter = Coloration::Converters::Textmate2NetbeansConverter.new
