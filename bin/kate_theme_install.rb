@@ -12,13 +12,8 @@ schema_file_content = File.read(schema_file_name)
 syntax_file_content = File.read(syntax_file_name)
 
 if schema_file_content.include?(schema.split("\n")[0])
-  puts "zawiera"
+  # replace
 else
-  puts "nie zawiera"
+  # append
   schema_file_content << schema
 end
-
-# p schema
-# p "********"
-# p syntax
-

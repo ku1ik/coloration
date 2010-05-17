@@ -2,7 +2,7 @@ module Coloration
 
   class Style
     attr_accessor :foreground, :background, :bold, :italic, :underline, :strike, :inverse
-    
+
     def initialize(obj=nil, bg=nil)
       if obj
         case obj
@@ -13,7 +13,7 @@ module Coloration
         end
       end
     end
-    
+
     def initialize_from_hash(h, bg=nil)
       h.keys.each do |key|
         value = h[key]
@@ -29,11 +29,11 @@ module Coloration
         send("#{key}=", value)
       end
     end
-    
+
     def blank?
       foreground.nil? && background.nil?
     end
   end
-  
+
 end
 
