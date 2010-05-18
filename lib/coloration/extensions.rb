@@ -43,4 +43,3 @@ class Color::RGBA < Color::RGB
     end
   end
 end
-

@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
   s.summary = %q{Color scheme converters for vim, textmate, kate/kwrite, jedit}
   s.executables = Dir["bin/*"].map { |f| File.basename(f) }
   s.files = Dir["bin/*"] + Dir["lib/**/*.rb"] + ["README.md"]
-  s.add_dependency 'textpow'#, '>= 1.0'
-  s.add_dependency 'color-tools'#, '>= 0.5'
+  s.add_dependency 'textpow', '>= 0.10.1'
+  s.add_dependency 'color-tools', '>= 1.3.0'
+  s.add_dependency 'plist', '>= 3.1.0'
 end

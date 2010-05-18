@@ -36,4 +36,3 @@ module Coloration
   end
 
 end
-

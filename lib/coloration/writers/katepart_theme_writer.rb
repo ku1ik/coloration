@@ -141,9 +141,7 @@ module Coloration
   #         "Color Template Not Editable Placeholder" => :,
           "Color Word Wrap Marker"      => @ui[:invisibles]
         }
-  #       Font=Monospace,9,-1,5,50,0,0,0,0,0
         ui_mapping.keys.each do |key|
-  #         add_line(format_token(key, self.send(tokens[key])))
           add_line "#{key}=#{hex2rgb(ui_mapping[key])}"
         end
 

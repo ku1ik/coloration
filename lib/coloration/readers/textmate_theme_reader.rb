@@ -1,5 +1,4 @@
 require 'plist'
-$: << "lib/textpow/lib"
 require 'textpow'
 
 module Coloration
