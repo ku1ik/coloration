@@ -5,9 +5,9 @@ module Coloration
   module Readers
     module TextMateThemeReader
 
-      def read(file_name)
+      def parse_input
         # parse TM theme
-        tm_theme = Plist.parse_xml(File.read(file_name).gsub("ustring", "string"))
+        tm_theme = Plist.parse_xml(input.gsub("ustring", "string"))
         self.name = tm_theme["name"]
         settings = tm_theme["settings"]
         # set ui properties

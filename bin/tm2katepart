@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require "coloration"
+
+Coloration::Converters::Textmate2KatePartConverter.process_cmd_line

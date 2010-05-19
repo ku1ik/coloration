@@ -42,15 +42,15 @@ module Coloration
         "\# #{text}"
       end
 
-      def get_files
+      def build_result
         ui_mapping = {
           "scheme.name"             => @name,
-          "view.fgColor"            => @ui[:foreground],
-          "view.bgColor"            => @ui[:background],
-          "view.caretColor"         => @ui[:caret],
-          "view.selectionColor"     => @ui[:selection],
-          "view.eolMarkerColor"     => @ui[:invisibles],
-          "view.lineHighlightColor" => @ui[:line_highlight],
+          "view.fgColor"            => @ui["foreground"],
+          "view.bgColor"            => @ui["background"],
+          "view.caretColor"         => @ui["caret"],
+          "view.selectionColor"     => @ui["selection"],
+          "view.eolMarkerColor"     => @ui["invisibles"],
+          "view.lineHighlightColor" => @ui["lineHighlight"],
         }
 
         ui_mapping.keys.each do |key|
@@ -58,8 +58,8 @@ module Coloration
         end
 
         items_mapping = {
-          "view.style.comment1"     => @items[:comment], # #foo
-          "view.style.literal1"     => @items[:string], # "foo"
+          "view.style.comment1"     => @items["comment"], # #foo
+          "view.style.literal1"     => @items["string"], # "foo"
           "view.style.label"        => @items["constant.other.symbol"], # :foo
           "view.style.digit"        => @items["constant.numeric"], # 123
           "view.style.keyword1"     => @items["keyword.control"], # class, def, if, end
@@ -76,11 +76,12 @@ module Coloration
         }
 
         default_style = Style.new
-        default_style.foreground = @ui[:foreground]
+        default_style.foreground = @ui["foreground"]
         items_mapping.keys.each do |key|
           add_line(format_item(key, items_mapping[key] || default_style))
         end
-        { "#{name}.jeditScheme" => @lines.join("\n") }
+
+        self.result = @lines.join("\n")
       end
     end
   end

@@ -30,7 +30,7 @@ module Coloration
         s
       end
 
-      def get_files
+      def build_result
         add_line "set background=dark"
         add_line "highlight clear"
         add_line
@@ -173,7 +173,7 @@ module Coloration
           add_line(format_item(key, items_mapping[key]))
         end
 
-        { "#{name}.vim" => @lines.join("\n") }
+        self.result = @lines.join("\n")
       end
     end
   end

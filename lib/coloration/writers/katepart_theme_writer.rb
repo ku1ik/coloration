@@ -6,13 +6,8 @@ module Coloration
         add_line("# #{c}")
       end
 
-      def add_line(line)
-        @lines << line
-      end
-
-      def add_file(file_name)
-        @lines = []
-        (@files ||= {})[file_name] = @lines
+      def add_line(line="")
+        (@lines ||= []) << line
       end
 
       def format_style(style)
@@ -40,26 +35,27 @@ module Coloration
         "# #{text}"
       end
 
-      def get_files
-        add_file "katesyntaxhighlightingrc"
+      def build_result
+        add_line "-" * 20 + " Put following in katesyntaxhighlightingrc"
+        add_line
 
         add_line "[Default Item Styles - Schema #{name}]"
 
         @default_style = Style.new
-        @default_style.foreground = @ui[:foreground]
+        @default_style.foreground = @ui["foreground"]
 
         items_mapping = {
           "Alert"          => @items["invalid"],
           "Base-N Integer" => @items["constant.numeric"],
           "Character"      => @items["keyword.operator"],
           "Comment"        => @items["comment"],
-          "Data Type"      => @items["entity.name.type", false] || @items["entity.name.class"],
+          "Data Type"      => @items["entity.name.type"] || @items["entity.name.class"],
           "Decimal/Value"  => @items["constant.numeric"],
           "Error"          => @items["invalid"],
           "Floating Point" => @items["constant.numeric"],
           "Function"       => @items["entity.name.function"],
           "Keyword"        => @items["keyword"],
-          "Normal"         => @default_style,
+          "Normal"         => nil,
           "Others"         => nil,
           "Region Marker"  => nil,
           "String"         => @items["string"]
@@ -69,7 +65,7 @@ module Coloration
           add_line(format_item(key, items_mapping[key] || @default_style))
         end
 
-        add_line ""
+        add_line
 
         add_line "[Highlighting Ruby - Schema #{name}]"
         add_line "Ruby:Access Control=0," + format_style(@items["storage.modifier"])
@@ -93,12 +89,12 @@ module Coloration
         add_line "Ruby:Regular Expression=0," + format_style(@items["string.regexp.ruby"])
         add_line "Ruby:Symbol=0," + format_style(@items["constant.other.symbol.ruby"])
 
-        add_line ""
+        add_line
 
         add_line "[Highlighting JavaScript - Schema #{name}]"
         add_line "JavaScript:Objects=0," + format_style(@items["variable.language"])
 
-        add_line ""
+        add_line
 
         add_line "[Highlighting Ruby/Rails/RHTML - Schema #{name}]"
         add_line "Ruby/Rails/RHTML:Message=0," + format_style(@default_style)
@@ -109,21 +105,23 @@ module Coloration
         add_line "Ruby/Rails/RHTML:Kernel methods=0," + format_style(@items["support.function"])
         add_line "Ruby/Rails/RHTML:Attribute=0," + format_style(@items["entity.other.attribute-name"])
 
-        add_line ""
+        add_line
 
         add_line "[Highlighting XML - Schema #{name}]"
         add_line "XML:Value=0," + format_style(@items["string"])
         add_line "XML:Element=0," + format_style(@items["meta.tag"] || @items["entity.name.tag"])
         add_line "XML:Attribute=0," + format_style(@items["entity.other.attribute-name"])
 
-        add_file "kateschemarc"
+        add_line
+        add_line "-" * 20 + " Put following in kateschemarc"
+        add_line
 
         add_line "[#{name}]"
 
         ui_mapping = {
-          "Color Background"            => @ui[:background],
-          "Color Highlighted Bracket"   => @ui[:background],
-          "Color Highlighted Line"      => @ui[:line_highlight],
+          "Color Background"            => @ui["background"],
+          "Color Highlighted Bracket"   => @ui["background"],
+          "Color Highlighted Line"      => @ui["lineHighlight"],
   #         "Color Icon Bar"              => @ui[:background],
   #         "Color Line Number" => :,
   #         "Color MarkType1" => :,
@@ -133,19 +131,19 @@ module Coloration
   #         "Color MarkType5" => :,
   #         "Color MarkType6" => :,
   #         "Color MarkType7" => :,
-          "Color Selection"             => @ui[:selection],
-          "Color Tab Marker"            => @ui[:invisibles],
+          "Color Selection"             => @ui["selection"],
+          "Color Tab Marker"            => @ui["invisibles"],
   #         "Color Template Background" => :,
   #         "Color Template Editable Placeholder" => :,
   #         "Color Template Focused Editable Placeholder" => :,
   #         "Color Template Not Editable Placeholder" => :,
-          "Color Word Wrap Marker"      => @ui[:invisibles]
+          "Color Word Wrap Marker"      => @ui["invisibles"]
         }
         ui_mapping.keys.each do |key|
           add_line "#{key}=#{hex2rgb(ui_mapping[key])}"
         end
 
-        @files.each { |k, v| @files[k] = v.join("\n") + "\n" }
+        self.result = @lines.join("\n")
       end
 
       def hex2rgb(col)

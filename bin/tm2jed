@@ -2,10 +2,4 @@
 
 require "coloration"
 
-if ARGV.size > 0
-  converter = Coloration::Converters::Textmate2JEditConverter.new
-  converter.read(ARGV[0])
-  converter.print
-else
-  puts "#{__FILE__} <textmate theme>"
-end
+Coloration::Converters::Textmate2JEditConverter.process_cmd_line

@@ -1,9 +1,11 @@
 require 'color'
 
+require "coloration/extensions.rb"
+require "coloration//style.rb"
+require "coloration/abstract_converter.rb"
+require "coloration/color_rgba.rb"
+
 dir = File.dirname(__FILE__)
-require "#{dir}/extensions.rb"
-require "#{dir}/style.rb"
-require "#{dir}/abstract_converter.rb"
-Dir["#{dir}/readers/*.rb"].each { |f| require f }
-Dir["#{dir}/writers/*.rb"].each { |f| require f }
-Dir["#{dir}/converters/*.rb"].each { |f| require f }
+Dir["#{dir}/coloration/readers/*.rb"].each { |f| require f }
+Dir["#{dir}/coloration/writers/*.rb"].each { |f| require f }
+Dir["#{dir}/coloration/converters/*.rb"].each { |f| require f }
