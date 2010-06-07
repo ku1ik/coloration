@@ -31,6 +31,10 @@ module Coloration
       end
 
       def build_result
+        add_line "\" Vim color file"
+        add_line "\" #{comment_text}"
+        add_line
+
         add_line "set background=dark"
         add_line "highlight clear"
         add_line
@@ -46,7 +50,7 @@ module Coloration
           "Visual" => Style.new(:bg => @ui["selection"]),
           "CursorLine" => Style.new(:bg => @ui["lineHighlight"]),
           "CursorColumn" => Style.new(:bg => @ui["lineHighlight"]),
-          "LineNr" => Style.new(:fg => @items["comment"].foreground, :bg => @ui["selection"].mix_with(@ui["background"], 20)),
+          "LineNr" => Style.new(:fg => @ui["foreground"].mix_with(@ui["background"], 50), :bg => @ui["background"]),
           "VertSplit" => Style.new(:fg => @ui["selection"], :bg => @ui["selection"]),
           "MatchParen" => @items["keyword"],
           "StatusLine" => Style.new(:fg => @ui["foreground"], :bg => @ui["selection"], :bold => true),
@@ -56,6 +60,7 @@ module Coloration
           "IncSearch" => Style.new(:bg => @items["variable"].foreground.mix_with(@ui["background"], 33)),
           "Search" => Style.new(:bg => @items["variable"].foreground.mix_with(@ui["background"], 33)),
           "Directory" => "constant.other.symbol",
+          "Folded" => Style.new(:fg => @items["comment"].foreground, :bg => @ui["background"]),
         }
 
         ui_mapping.keys.each do |key|
