@@ -1,7 +1,7 @@
 require 'color'
 
 require "coloration/extensions.rb"
-require "coloration//style.rb"
+require "coloration/style.rb"
 require "coloration/abstract_converter.rb"
 require "coloration/color_rgba.rb"
 
