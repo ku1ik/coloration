@@ -2,47 +2,10 @@ module Coloration
   module Writers
     module JEditThemeWriter
 
-      def add_line(line)
-        (@lines ||= []) << line
-      end
-
-      def escape(value)
-        value.gsub(':', '\:').gsub('#', '\#').strip
-      end
-
-      def format_ui(name, value)
-        case value
-        when Color::RGB
-          value = value.html
-        else
-          value = value.to_s
-        end
-        "#{name}=#{escape(value)}"
-      end
-
-      def format_item(name, style)
-        raise RuntimeError.new("Style for #{name} is missing!") if style.nil?
-        "#{name}=#{format_style(style)}"
-      end
-
-      def format_style(style)
-        s = ""
-        s << " color:#{style.foreground.html}" if style.foreground
-        s << " bgColor:#{style.background.html}" if style.background
-        if s.size > 0
-          s << " style:"
-          s << "b" if style.bold
-          s << "u" if style.underline
-          s << "i" if style.italic
-        end
-        escape(s)
-      end
-
-      def format_comment(text)
-        "\# #{text}"
-      end
-
       def build_result
+        add_line(format_comment(comment_text))
+        add_line
+
         ui_mapping = {
           "scheme.name"             => @name,
           "view.fgColor"            => @ui["foreground"],
@@ -83,6 +46,49 @@ module Coloration
 
         self.result = @lines.join("\n")
       end
+
+      protected
+
+      def add_line(line="")
+        (@lines ||= []) << line
+      end
+
+      def escape(value)
+        value.gsub(':', '\:').gsub('#', '\#').strip
+      end
+
+      def format_ui(name, value)
+        case value
+        when Color::RGB
+          value = value.html
+        else
+          value = value.to_s
+        end
+        "#{name}=#{escape(value)}"
+      end
+
+      def format_item(name, style)
+        raise RuntimeError.new("Style for #{name} is missing!") if style.nil?
+        "#{name}=#{format_style(style)}"
+      end
+
+      def format_style(style)
+        s = ""
+        s << " color:#{style.foreground.html}" if style.foreground
+        s << " bgColor:#{style.background.html}" if style.background
+        if s.size > 0
+          s << " style:"
+          s << "b" if style.bold
+          s << "u" if style.underline
+          s << "i" if style.italic
+        end
+        escape(s)
+      end
+
+      def format_comment(text)
+        "\# #{text}"
+      end
+
     end
   end
 end

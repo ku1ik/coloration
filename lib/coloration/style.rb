@@ -15,8 +15,7 @@ module Coloration
     end
 
     def initialize_from_hash(h, bg=nil)
-      h.keys.each do |key|
-        value = h[key]
+      h.each do |key, value|
         if value.is_a?(String)
           value = Color::RGBA.from_html(value, bg)
         end

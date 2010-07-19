@@ -6,20 +6,18 @@ module Coloration
     module TextMateThemeReader
 
       def parse_input
-        # parse TM theme
         tm_theme = Plist.parse_xml(input.gsub("ustring", "string"))
         self.name = tm_theme["name"]
         settings = tm_theme["settings"]
-        # set ui properties
+
         self.ui = settings.delete_at(0)["settings"]
         bg = Color::RGB.from_html(ui["background"][0..6])
-        ui.keys.each do |key|
-          ui[key] = Color::RGBA.from_html(ui[key], bg)
+        ui.each do |key, value|
+          ui[key] = Color::RGBA.from_html(value, bg)
         end
         ui["background"] = bg
 
-        # set items
-        self.items = {}
+        items = {}
         settings.each do |rule|
           selectors = rule["scope"]
           style = rule["settings"]
@@ -41,26 +39,26 @@ module Coloration
             end
           end
         end
-        self.items = ItemsProxy.new(items)
+        self.items = ItemsLookup.new(items)
       end
     end
 
-    class ItemsProxy
+    class ItemsLookup
       def initialize(items)
         @items = items
         @score_manager = Textpow::ScoreManager.new
       end
 
       def [](key)
-        best = nil
+        best_selector = nil
         best_score = 0
-        @items.keys.each do |s|
-          score = @score_manager.score(s, key)
+        @items.keys.each do |selector|
+          score = @score_manager.score(selector, key)
           if score > best_score
-            best_score, best = score, s
+            best_score, best_selector = score, selector
           end
         end
-        best && @items[best]
+        best_selector && @items[best_selector]
       end
     end
   end

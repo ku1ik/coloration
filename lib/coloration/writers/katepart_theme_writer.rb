@@ -2,41 +2,9 @@ module Coloration
   module Writers
     module KatePartThemeWriter
 
-      def add_comment(c)
-        add_line("# #{c}")
-      end
-
-      def add_line(line="")
-        (@lines ||= []) << line
-      end
-
-      def format_style(style)
-        style ||= @default_style
-        # normal,selected,bold,italic,strike,underline,bg,bg_selected,---
-        s = []
-        s << style.foreground.html.gsub('#', '')
-        s << style.foreground.html.gsub('#', '')
-        s << style.bold.to_i
-        s << style.italic.to_i
-        s << style.strike.to_i
-        s << style.underline.to_i
-        s << (style.background ? style.background.html.gsub('#', '') : nil)
-        s << nil
-        s << "---"
-        s.join(",")
-      end
-
-      def format_item(name, style)
-        raise RuntimeError.new("Style for #{name} is missing!") if style.nil?
-        "#{name}=#{format_style(style)}"
-      end
-
-      def format_comment(text)
-        "# #{text}"
-      end
-
       def build_result
-        add_line "-" * 20 + " Put following in katesyntaxhighlightingrc"
+        add_comment comment_text
+        add_comment "-" * 20 + " Put following in katesyntaxhighlightingrc " + "-" * 20
         add_line
 
         add_line "[Default Item Styles - Schema #{name}]"
@@ -113,7 +81,7 @@ module Coloration
         add_line "XML:Attribute=0," + format_style(@items["entity.other.attribute-name"])
 
         add_line
-        add_line "-" * 20 + " Put following in kateschemarc"
+        add_comment "-" * 20 + " Put following in kateschemarc " + "-" * 20
         add_line
 
         add_line "[#{name}]"
@@ -144,6 +112,41 @@ module Coloration
         end
 
         self.result = @lines.join("\n")
+      end
+
+      protected
+
+      def add_comment(c)
+        add_line(format_comment(c))
+      end
+
+      def add_line(line="")
+        (@lines ||= []) << line
+      end
+
+      def format_style(style)
+        style ||= @default_style
+        # normal,selected,bold,italic,strike,underline,bg,bg_selected,---
+        s = []
+        s << style.foreground.html.gsub('#', '')
+        s << style.foreground.html.gsub('#', '')
+        s << style.bold.to_i
+        s << style.italic.to_i
+        s << style.strike.to_i
+        s << style.underline.to_i
+        s << (style.background ? style.background.html.gsub('#', '') : nil)
+        s << nil
+        s << "---"
+        s.join(",")
+      end
+
+      def format_item(name, style)
+        raise RuntimeError.new("Style for #{name} is missing!") if style.nil?
+        "#{name}=#{format_style(style)}"
+      end
+
+      def format_comment(text)
+        "# #{text}"
       end
 
       def hex2rgb(col)

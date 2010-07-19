@@ -2,34 +2,6 @@ module Coloration
   module Writers
     module VimThemeWriter
 
-      def add_line(line="")
-        (@lines ||= []) << line
-      end
-
-      def format_item(name, style_or_item_name)
-        raise RuntimeError.new("Style for #{name} is missing!") if style_or_item_name.nil?
-        if style_or_item_name == :inverse
-          "hi #{name} gui=inverse"
-        else
-          if style_or_item_name.is_a?(Style)
-            style = style_or_item_name
-          else
-            style = @items[style_or_item_name]
-          end
-          "hi #{name} #{format_style(style)}"
-        end
-      end
-
-      def format_style(style)
-        style ||= Style.new
-        s = ""
-        s << " guifg=" << (style.foreground.try(:html) || "NONE")
-        s << " guibg=" << (style.background.try(:html) || "NONE")
-        gui = [style.inverse && "inverse", style.bold && "bold", style.underline && "underline", style.italic && "italic"].compact
-        s << " gui=" << (gui.empty? ? "NONE" : gui.join(","))
-        s
-      end
-
       def build_result
         add_line "\" Vim color file"
         add_line "\" #{comment_text}"
@@ -180,6 +152,37 @@ module Coloration
 
         self.result = @lines.join("\n")
       end
+
+      protected
+
+      def add_line(line="")
+        (@lines ||= []) << line
+      end
+
+      def format_item(name, style_or_item_name)
+        raise RuntimeError.new("Style for #{name} is missing!") if style_or_item_name.nil?
+        if style_or_item_name == :inverse
+          "hi #{name} gui=inverse"
+        else
+          if style_or_item_name.is_a?(Style)
+            style = style_or_item_name
+          else
+            style = @items[style_or_item_name]
+          end
+          "hi #{name} #{format_style(style)}"
+        end
+      end
+
+      def format_style(style)
+        style ||= Style.new
+        s = ""
+        s << " guifg=" << (style.foreground.try(:html) || "NONE")
+        s << " guibg=" << (style.background.try(:html) || "NONE")
+        gui = [style.inverse && "inverse", style.bold && "bold", style.underline && "underline", style.italic && "italic"].compact
+        s << " gui=" << (gui.empty? ? "NONE" : gui.join(","))
+        s
+      end
+
     end
   end
 end

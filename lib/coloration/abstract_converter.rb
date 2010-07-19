@@ -27,7 +27,7 @@ module Coloration
 
       protected
       def comment_text
-        "Converted from #{self.class.in_theme_type} theme #{name} using Coloration (http://github.com/sickill/coloration)"
+        "Converted from #{self.class.in_theme_type} theme #{name} using Coloration v#{VERSION} (http://github.com/sickill/coloration)"
       end
     end
   end
