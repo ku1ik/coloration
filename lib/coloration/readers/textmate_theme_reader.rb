@@ -4,9 +4,11 @@ require 'textpow'
 module Coloration
   module Readers
     module TextMateThemeReader
+      class InvalidThemeError < RuntimeError; end
 
       def parse_input
         tm_theme = Plist.parse_xml(input.gsub("ustring", "string"))
+        raise InvalidThemeError if tm_theme.nil?
         self.name = tm_theme["name"]
         settings = tm_theme["settings"]
 
