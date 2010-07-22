@@ -17,6 +17,7 @@ module Coloration
         add_line "let g:colors_name = \"#{@name}\""
         add_line
 
+        search_style = @items["variable"] || @items["entity"] || @items["keyword"]
         ui_mapping = {
           "Cursor" => Style.new(:bg => @ui["caret"]),
           "Visual" => Style.new(:bg => @ui["selection"]),
@@ -29,10 +30,10 @@ module Coloration
           "StatusLineNC" => Style.new(:fg => @ui["foreground"], :bg => @ui["selection"]),
           "Pmenu" => "entity.name",
           "PmenuSel" => Style.new(:bg => @ui["selection"]),
-          "IncSearch" => Style.new(:bg => @items["variable"].foreground.mix_with(@ui["background"], 33)),
-          "Search" => Style.new(:bg => @items["variable"].foreground.mix_with(@ui["background"], 33)),
+          "IncSearch" => Style.new(:bg => search_style.foreground.mix_with(@ui["background"], 33)),
+          "Search" => Style.new(:bg => search_style.foreground.mix_with(@ui["background"], 33)),
           "Directory" => "constant.other.symbol",
-          "Folded" => Style.new(:fg => @items["comment"].foreground, :bg => @ui["background"]),
+          "Folded" => Style.new(:fg => @items["comment"].try(:foreground), :bg => @ui["background"]),
         }
 
         ui_mapping.keys.each do |key|
@@ -146,8 +147,10 @@ module Coloration
           "cssBraces" => "punctuation.section.property-list.css",
         }
 
+        default_style = Style.new
+        default_style.foreground = @ui["foreground"]
         items_mapping.keys.each do |key|
-          add_line(format_item(key, items_mapping[key]))
+          add_line(format_item(key, items_mapping[key] || default_style))
         end
 
         self.result = @lines.join("\n")
