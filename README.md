@@ -19,6 +19,8 @@ It gives you _tm2vim_, _tm2jedit_ and _tm2katepart_ binaries to do the conversio
 ## Contact
 
 If you found a bug or want to look at the source code you should go to [githubs](http://github.com/sickill/coloration).
+Also if you tried to convert a theme and coloration failed or result is not quite good, please report an issue 
+at [issue tracker](http://github.com/sickill/coloration/issues).
 
 ## Author
 
