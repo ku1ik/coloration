@@ -17,17 +17,20 @@ module Coloration
         add_line "let g:colors_name = \"#{@name}\""
         add_line
 
-        search_style = @items["variable"] || @items["entity"] || @items["keyword"]
+        default_style = Style.new(:fg => @ui["foreground"])
+        search_style = @items["variable"] || @items["entity"] || @items["keyword"] || default_style
+        border_color = @ui["background"].lighten_by(81)
+
         ui_mapping = {
           "Cursor" => Style.new(:bg => @ui["caret"]),
           "Visual" => Style.new(:bg => @ui["selection"]),
           "CursorLine" => Style.new(:bg => @ui["lineHighlight"]),
           "CursorColumn" => Style.new(:bg => @ui["lineHighlight"]),
           "LineNr" => Style.new(:fg => @ui["foreground"].mix_with(@ui["background"], 50), :bg => @ui["background"]),
-          "VertSplit" => Style.new(:fg => @ui["selection"], :bg => @ui["selection"]),
+          "VertSplit" => Style.new(:fg => border_color, :bg => border_color),
           "MatchParen" => @items["keyword"],
-          "StatusLine" => Style.new(:fg => @ui["foreground"], :bg => @ui["selection"], :bold => true),
-          "StatusLineNC" => Style.new(:fg => @ui["foreground"], :bg => @ui["selection"]),
+          "StatusLine" => Style.new(:fg => @ui["foreground"], :bg => border_color, :bold => true),
+          "StatusLineNC" => Style.new(:fg => @ui["foreground"], :bg => border_color),
           "Pmenu" => "entity.name",
           "PmenuSel" => Style.new(:bg => @ui["selection"]),
           "IncSearch" => Style.new(:bg => search_style.foreground.mix_with(@ui["background"], 33)),
@@ -37,7 +40,7 @@ module Coloration
         }
 
         ui_mapping.keys.each do |key|
-          add_line(format_item(key, ui_mapping[key]))
+          add_line(format_item(key, ui_mapping[key] || default_style))
         end
 
         add_line
@@ -75,7 +78,7 @@ module Coloration
           "SpecialKey" => Style.new(:fg => @ui["invisibles"], :bg => @ui["lineHighlight"]),
           "Statement" => "keyword.control",
           "StorageClass" => "storage.type",
-          "String" => "string",
+          "String" => "string,string.quoted",
           #"Structure" => [],
           "Tag" => "entity.name.tag",
           "Title" => Style.new(:fg => @ui["foreground"], :bold => true),
@@ -89,8 +92,8 @@ module Coloration
           "rubyFunction" => "entity.name.function.ruby",
           "rubyInterpolationDelimiter" => "",
           "rubySymbol" => "constant.other.symbol.ruby",
-          "rubyConstant" => "support",
-          "rubyStringDelimiter" => "string",
+          "rubyConstant" => "support.class",
+          "rubyStringDelimiter" => "string,string.quoted",
           "rubyBlockParameter" => "variable.parameter",
           "rubyInstanceVariable" => "variable.language",
           "rubyInclude" => "keyword.other.special-method.ruby",
@@ -147,8 +150,6 @@ module Coloration
           "cssBraces" => "punctuation.section.property-list.css",
         }
 
-        default_style = Style.new
-        default_style.foreground = @ui["foreground"]
         items_mapping.keys.each do |key|
           add_line(format_item(key, items_mapping[key] || default_style))
         end

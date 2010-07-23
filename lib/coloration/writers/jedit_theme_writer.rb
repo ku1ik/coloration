@@ -22,7 +22,7 @@ module Coloration
 
         items_mapping = {
           "view.style.comment1"     => @items["comment"], # #foo
-          "view.style.literal1"     => @items["string"], # "foo"
+          "view.style.literal1"     => @items["string,string.quoted"], # "foo"
           "view.style.label"        => @items["constant.other.symbol"], # :foo
           "view.style.digit"        => @items["constant.numeric"], # 123
           "view.style.keyword1"     => @items["keyword.control"], # class, def, if, end

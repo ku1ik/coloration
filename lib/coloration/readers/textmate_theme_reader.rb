@@ -51,16 +51,21 @@ module Coloration
         @score_manager = Textpow::ScoreManager.new
       end
 
-      def [](key)
-        best_selector = nil
-        best_score = 0
-        @items.keys.each do |selector|
-          score = @score_manager.score(selector, key)
-          if score > best_score
-            best_score, best_selector = score, selector
+      def [](keys)
+        keys.split(",").each do |key|
+          best_selector = nil
+          best_score = 0
+          @items.keys.each do |selector|
+            score = @score_manager.score(selector, key)
+            if score > best_score
+              best_score, best_selector = score, selector
+            end
+          end
+          if best_selector
+            return @items[best_selector]
           end
         end
-        best_selector && @items[best_selector]
+        nil
       end
     end
   end

@@ -26,7 +26,7 @@ module Coloration
           "Normal"         => nil,
           "Others"         => nil,
           "Region Marker"  => nil,
-          "String"         => @items["string"]
+          "String"         => @items["string,string.quoted"]
         }
 
         items_mapping.keys.each do |key|
@@ -68,7 +68,7 @@ module Coloration
         add_line "Ruby/Rails/RHTML:Message=0," + format_style(@default_style)
         add_line "Ruby/Rails/RHTML:Raw String=0," + format_style(@items["string.quoted.single"])
         add_line "Ruby/Rails/RHTML:Symbol=0," + format_style(@items["constant.other.symbol.ruby"])
-        add_line "Ruby/Rails/RHTML:Value=0," + format_style(@items["string"])
+        add_line "Ruby/Rails/RHTML:Value=0," + format_style(@items["string,string.quoted"])
         add_line "Ruby/Rails/RHTML:Element=0," + format_style(@items["meta.tag"] || @items["entity.name.tag"])
         add_line "Ruby/Rails/RHTML:Kernel methods=0," + format_style(@items["support.function"])
         add_line "Ruby/Rails/RHTML:Attribute=0," + format_style(@items["entity.other.attribute-name"])
@@ -76,7 +76,7 @@ module Coloration
         add_line
 
         add_line "[Highlighting XML - Schema #{name}]"
-        add_line "XML:Value=0," + format_style(@items["string"])
+        add_line "XML:Value=0," + format_style(@items["string,string.quoted"])
         add_line "XML:Element=0," + format_style(@items["meta.tag"] || @items["entity.name.tag"])
         add_line "XML:Attribute=0," + format_style(@items["entity.other.attribute-name"])
 
