@@ -1,7 +1,7 @@
 module Coloration
 
   class Style
-    attr_accessor :foreground, :background, :bold, :italic, :underline, :strike, :inverse
+    attr_accessor :foreground, :background, :bold, :italic, :underline, :strike, :inverse, :comment
 
     def initialize(obj=nil, bg=nil)
       if obj
@@ -16,14 +16,14 @@ module Coloration
 
     def initialize_from_hash(h, bg=nil)
       h.each do |key, value|
-        if value.is_a?(String)
-          value = Color::RGBA.from_html(value, bg)
-        end
         if key == :fg
           key = :foreground
         end
         if key == :bg
           key = :background
+        end
+        if ["foreground", "background"].include?(key.to_s) && value.is_a?(String)
+          value = Color::RGBA.from_html(value, bg)
         end
         send("#{key}=", value)
       end
