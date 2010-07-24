@@ -19,7 +19,7 @@ module Coloration
 
         default_style = Style.new(:fg => @ui["foreground"])
         search_style = @items["variable"] || @items["entity"] || @items["keyword"] || default_style
-        border_color = @ui["background"].lighten_by(81)
+        border_color = @ui["background"].mix_with(@ui["foreground"], 81)
 
         ui_mapping = {
           "Cursor" => Style.new(:bg => @ui["caret"]),
