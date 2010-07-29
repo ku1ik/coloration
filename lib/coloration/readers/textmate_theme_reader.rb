@@ -7,7 +7,11 @@ module Coloration
       class InvalidThemeError < RuntimeError; end
 
       def parse_input
-        tm_theme = Plist.parse_xml(input.gsub("ustring", "string"))
+        begin
+          tm_theme = Plist.parse_xml(input.gsub("ustring", "string"))
+        rescue
+          raise InvalidThemeError
+        end
         raise InvalidThemeError if tm_theme.nil?
         self.name = tm_theme["name"]
         settings = tm_theme["settings"]
