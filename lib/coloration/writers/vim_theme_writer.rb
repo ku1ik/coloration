@@ -82,7 +82,7 @@ module Coloration
           #"Structure" => [],
           "Tag" => "entity.name.tag",
           "Title" => Style.new(:fg => @ui["foreground"], :bold => true),
-          "Todo" => @items["comment"].clone.tap { |c| c.inverse = true; c.bold = true },
+          "Todo" => (@items["comment"] || default_style).clone.tap { |c| c.inverse = true; c.bold = true },
           "Type" => "entity.name.type",
           #"Typedef" => [],
           "Underlined" => Style.new(:underline => true),
