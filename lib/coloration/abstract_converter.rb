@@ -6,11 +6,15 @@ module Coloration
 
       def self.process_cmd_line
         if ARGV.size > 0
-          converter = self.new
-          converter.feed(File.read(ARGV[0]))
-          out_filename = ARGV[1] || ARGV[0].gsub(/\.#{@in_theme_ext}$/, ".#{@out_theme_ext}")
-          converter.convert!
-          File.open(out_filename, "w") { |f| f.write(converter.result) }
+          begin
+            converter = self.new
+            converter.feed(File.read(ARGV[0]))
+            out_filename = ARGV[1] || ARGV[0].gsub(/\.#{@in_theme_ext}$/, ".#{@out_theme_ext}")
+            converter.convert!
+            File.open(out_filename, "w") { |f| f.write(converter.result) }
+          rescue Coloration::Readers::TextMateThemeReader::InvalidThemeError
+            STDERR.puts "Err: given file doesn't look like xml plist file containing Textmate theme"
+          end
         else
           puts "#{File.basename($0)} <in #{@in_theme_type} theme> [out #{@out_theme_type} theme]"
         end
