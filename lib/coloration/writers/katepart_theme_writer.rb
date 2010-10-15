@@ -128,8 +128,8 @@ module Coloration
         style ||= @default_style
         # normal,selected,bold,italic,strike,underline,bg,bg_selected,---
         s = []
-        s << style.foreground.html.gsub('#', '')
-        s << style.foreground.html.gsub('#', '')
+        s << (style.foreground || @default_style.foreground).html.gsub('#', '')
+        s << (style.foreground || @default_style.foreground).html.gsub('#', '')
         s << style.bold.to_i
         s << style.italic.to_i
         s << style.strike.to_i
