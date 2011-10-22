@@ -24,15 +24,16 @@ module Coloration
 
         default_style = Style.new(:fg => @ui["foreground"])
         search_style = @items["variable"] || @items["entity"] || @items["keyword"] || default_style
-        border_color = @ui["background"].mix_with(@ui["foreground"], 81)
+        border_color = @ui["background"].mix_with(@ui["foreground"], 71)
+        bg_line_color = @ui["background"].mix_with(@ui["foreground"], 90)
 
         ui_mapping = {
           "Cursor" => Style.new(:bg => @ui["caret"]),
           "Visual" => Style.new(:bg => @ui["selection"]),
-          "CursorLine" => Style.new(:bg => @ui["lineHighlight"]),
-          "CursorColumn" => Style.new(:bg => @ui["lineHighlight"]),
-          "ColorColumn" => Style.new(:bg => @ui["lineHighlight"]),
-          "LineNr" => Style.new(:fg => @ui["foreground"].mix_with(@ui["background"], 50), :bg => @ui["lineHighlight"]),
+          "CursorLine" => Style.new(:bg => bg_line_color),
+          "CursorColumn" => Style.new(:bg => bg_line_color),
+          "ColorColumn" => Style.new(:bg => bg_line_color),
+          "LineNr" => Style.new(:fg => @ui["foreground"].mix_with(@ui["background"], 50), :bg => bg_line_color),
           "VertSplit" => Style.new(:fg => border_color, :bg => border_color),
           "MatchParen" => @items["keyword"],
           "StatusLine" => Style.new(:fg => @ui["foreground"], :bg => border_color, :bold => true),
@@ -72,7 +73,7 @@ module Coloration
           "Keyword" => "keyword",
           "Label" => "string.other",
           #"Macro" => [],
-          "NonText" => Style.new(:fg => @ui["invisibles"], :bg => @ui["lineHighlight"]),
+          "NonText" => Style.new(:fg => @ui["invisibles"], :bg => @ui["background"].mix_with(@ui["foreground"], 95)),
           "Number" => "constant.numeric",
           "Operator" => "keyword.operator",
           #"PreCondit" => [],
@@ -81,7 +82,7 @@ module Coloration
           "Special" => Style.new(:fg => @ui["foreground"]),
           #"SpecialChar" => [],
           #"SpecialComment" => [],
-          "SpecialKey" => Style.new(:fg => @ui["invisibles"], :bg => @ui["lineHighlight"]),
+          "SpecialKey" => Style.new(:fg => @ui["invisibles"], :bg => bg_line_color),
           "Statement" => "keyword.control",
           "StorageClass" => "storage.type",
           "String" => "string,string.quoted",
