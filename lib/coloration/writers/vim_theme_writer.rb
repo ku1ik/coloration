@@ -190,16 +190,16 @@ module Coloration
           ctermfg = rgb_to_xterm256(fg)
           guifg = fg.html
         else
-          ctermfg = 'none'
-          guifg = 'none'
+          ctermfg = 'NONE'
+          guifg = 'NONE'
         end
 
         if bg = style.background
           ctermbg = rgb_to_xterm256(bg)
           guibg = bg.html
         else
-          ctermbg = 'none'
-          guibg = 'none'
+          ctermbg = 'NONE'
+          guibg = 'NONE'
         end
 
         gui_attrs = [
@@ -211,8 +211,8 @@ module Coloration
 
         cterm_attrs = gui_attrs.reject { |a| a == 'italic' }
 
-        gui = gui_attrs.empty? ? 'none' : gui_attrs.join(',')
-        cterm = cterm_attrs.empty? ? 'none' : cterm_attrs.join(',')
+        gui = gui_attrs.empty? ? 'NONE' : gui_attrs.join(',')
+        cterm = cterm_attrs.empty? ? 'NONE' : cterm_attrs.join(',')
 
         "ctermfg=#{ctermfg} ctermbg=#{ctermbg} cterm=#{cterm} " +
           "guifg=#{guifg} guibg=#{guibg} gui=#{gui}"
