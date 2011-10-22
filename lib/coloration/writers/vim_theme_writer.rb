@@ -1,6 +1,11 @@
 module Coloration
   module Writers
     module VimThemeWriter
+      XTERM_COLORS = [ 0x00, 0x5F, 0x87, 0xAF, 0xD7, 0xFF ]
+      XTERM_GREYS  = [ 0x08, 0x12, 0x1C, 0x26, 0x30, 0x3A,
+                       0x44, 0x4E, 0x58, 0x62, 0x6C, 0x76,
+                       0x80, 0x8A, 0x94, 0x9E, 0xA8, 0xB2,
+                       0xBC, 0xC6, 0xD0, 0xDA, 0xE4, 0xEE ]
 
       def build_result
         add_line "\" Vim color file"
@@ -26,7 +31,8 @@ module Coloration
           "Visual" => Style.new(:bg => @ui["selection"]),
           "CursorLine" => Style.new(:bg => @ui["lineHighlight"]),
           "CursorColumn" => Style.new(:bg => @ui["lineHighlight"]),
-          "LineNr" => Style.new(:fg => @ui["foreground"].mix_with(@ui["background"], 50), :bg => @ui["background"]),
+          "ColorColumn" => Style.new(:bg => @ui["lineHighlight"]),
+          "LineNr" => Style.new(:fg => @ui["foreground"].mix_with(@ui["background"], 50), :bg => @ui["lineHighlight"]),
           "VertSplit" => Style.new(:fg => border_color, :bg => border_color),
           "MatchParen" => @items["keyword"],
           "StatusLine" => Style.new(:fg => @ui["foreground"], :bg => border_color, :bold => true),
@@ -179,14 +185,81 @@ module Coloration
 
       def format_style(style)
         style ||= Style.new
-        s = ""
-        s << " guifg=" << (style.foreground.try(:html) || "NONE")
-        s << " guibg=" << (style.background.try(:html) || "NONE")
-        gui = [style.inverse && "inverse", style.bold && "bold", style.underline && "underline", style.italic && "italic"].compact
-        s << " gui=" << (gui.empty? ? "NONE" : gui.join(","))
-        s
+
+        if fg = style.foreground
+          ctermfg = rgb_to_xterm256(fg)
+          guifg = fg.html
+        else
+          ctermfg = 'none'
+          guifg = 'none'
+        end
+
+        if bg = style.background
+          ctermbg = rgb_to_xterm256(bg)
+          guibg = bg.html
+        else
+          ctermbg = 'none'
+          guibg = 'none'
+        end
+
+        gui_attrs = [
+          style.inverse && 'inverse',
+          style.bold && 'bold',
+          style.underline && 'underline',
+          style.italic && 'italic'
+        ].compact
+
+        cterm_attrs = gui_attrs.reject { |a| a == 'italic' }
+
+        gui = gui_attrs.empty? ? 'none' : gui_attrs.join(',')
+        cterm = cterm_attrs.empty? ? 'none' : cterm_attrs.join(',')
+
+        "ctermfg=#{ctermfg} ctermbg=#{ctermbg} cterm=#{cterm} " +
+          "guifg=#{guifg} guibg=#{guibg} gui=#{gui}"
       end
 
+      def rgb_to_xterm256(c)
+        a_r = (c.r * 255.0).to_i
+        a_g = (c.g * 255.0).to_i
+        a_b = (c.b * 255.0).to_i
+
+        if a_r == 0 && a_g == 0 && a_b == 0
+          return 0
+        end
+
+        if a_r == 255 && a_g == 255 && a_b == 255
+          return 15
+        end
+
+        greys_colors = XTERM_GREYS + XTERM_COLORS
+        len = XTERM_COLORS.size
+
+        r = get_nearest_xterm_color(a_r, greys_colors)
+        g = get_nearest_xterm_color(a_g, greys_colors)
+        b = get_nearest_xterm_color(a_b, greys_colors)
+
+        if r == g && g == b && (i = XTERM_GREYS.index(r))
+          n = len * len * len + i
+        else
+          r = get_nearest_xterm_color(a_r, XTERM_COLORS)
+          g = get_nearest_xterm_color(a_g, XTERM_COLORS)
+          b = get_nearest_xterm_color(a_b, XTERM_COLORS)
+
+          n = XTERM_COLORS.index(r) * len * len +
+              XTERM_COLORS.index(g) * len +
+              XTERM_COLORS.index(b)
+        end
+
+        16 + n
+      end
+
+      def get_nearest_xterm_color(v, colors)
+        0.upto(colors.size - 2) do |i|
+          return colors[i] if v <= (colors[i] + colors[i+1]) / 2
+        end
+
+        colors.last
+      end
     end
   end
 end
