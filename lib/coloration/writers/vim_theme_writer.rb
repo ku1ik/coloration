@@ -34,7 +34,7 @@ module Coloration
           "ColorColumn" => Style.new(:bg => bg_line_color),
           "LineNr" => Style.new(:fg => @ui["foreground"].mix_with(@ui["background"], 50), :bg => bg_line_color),
           "VertSplit" => Style.new(:fg => border_color, :bg => border_color),
-          "MatchParen" => @items["keyword"],
+          "MatchParen" => Style.new(:fg => @items["keyword"].foreground, :underline => true),
           "StatusLine" => Style.new(:fg => @ui["foreground"], :bg => border_color, :bold => true),
           "StatusLineNC" => Style.new(:fg => @ui["foreground"], :bg => border_color),
           "Pmenu" => "entity.name",
