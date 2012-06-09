@@ -27,7 +27,7 @@ module Coloration
         bg_line_color = @ui["background"].mix_with(@ui["foreground"], 90)
 
         ui_mapping = {
-          "Cursor" => Style.new(:bg => @ui["caret"]),
+          "Cursor" => Style.new(:fg => @ui['background'], :bg => @ui["caret"]),
           "Visual" => Style.new(:bg => @ui["selection"]),
           "CursorLine" => Style.new(:bg => bg_line_color),
           "CursorColumn" => Style.new(:bg => bg_line_color),
