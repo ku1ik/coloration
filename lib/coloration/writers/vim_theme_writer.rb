@@ -23,7 +23,6 @@ module Coloration
         add_line
 
         default_style = Style.new(:fg => @ui["foreground"])
-        search_style = @items["variable"] || @items["entity"] || @items["keyword"] || default_style
         border_color = @ui["background"].mix_with(@ui["foreground"], 71)
         bg_line_color = @ui["background"].mix_with(@ui["foreground"], 90)
 
@@ -40,8 +39,8 @@ module Coloration
           "StatusLineNC" => Style.new(:fg => @ui["foreground"], :bg => border_color),
           "Pmenu" => "entity.name",
           "PmenuSel" => Style.new(:bg => @ui["selection"]),
-          "IncSearch" => Style.new(:bg => search_style.foreground.mix_with(@ui["background"], 33)),
-          "Search" => Style.new(:bg => search_style.foreground.mix_with(@ui["background"], 33)),
+          "IncSearch" => Style.new(:bg => @items['string'].foreground, :fg => @ui['background']),
+          "Search" => Style.new(:underline => true),
           "Directory" => "constant.other.symbol",
           "Folded" => Style.new(:fg => @items["comment"].try(:foreground), :bg => @ui["background"]),
         }
