@@ -51,6 +51,19 @@ module Coloration
 
         add_line
 
+        bg_brightness = @ui["background"].brightness
+        if bg_brightness >= 0.5
+          # from Tango palette, lighter
+          red   = Color::RGB.from_html '#ef2929'
+          green = Color::RGB.from_html '#8ae234'
+          blue  = Color::RGB.from_html '#729fcf'
+        else
+          # from Tango palette, darker
+          red   = Color::RGB.from_html '#a40000'
+          green = Color::RGB.from_html '#4e9a06'
+          blue  = Color::RGB.from_html '#204a87'
+        end
+
         items_mapping = {
           # general colors for all languages
           "Normal" => Style.new(:fg => @ui["foreground"], :bg => @ui["background"]),
@@ -62,6 +75,10 @@ module Coloration
           #"Debug" => [],
           "Define" => "keyword",
           #"Delimiter" => "meta.separator",
+          "DiffAdd" => Style.new(:bg => green.mix_with(@ui['background'], 80), :fg => @ui['foreground'], :bold => true),
+          "DiffDelete" => Style.new(:fg => red.mix_with(@ui['background'], 80)),
+          "DiffChange" => Style.new(:bg => blue.mix_with(@ui['background'], 50), :fg => @ui['foreground']),
+          "DiffText" => Style.new(:bg => blue.mix_with(@ui['background'], 100), :fg => @ui['foreground'], :bold => true),
           "ErrorMsg" => "invalid",
           "WarningMsg" => "invalid",
           #"Exception" => [],
