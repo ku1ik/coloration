@@ -19,7 +19,9 @@ module Coloration
         self.ui = settings.delete_at(0)["settings"]
         bg = Color::RGB.from_html(ui["background"][0..6])
         ui.each do |key, value|
-          ui[key] = Color::RGBA.from_html(value, bg)
+          if value.start_with?("#")
+            ui[key] = Color::RGBA.from_html(value, bg)
+          end
         end
         ui["background"] = bg
 
