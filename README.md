@@ -9,7 +9,7 @@ result for given target.
 ## Installation && Usage
 
 You can use Coloration in two ways: online or on your local machine. Online version is available 
-at [coloration.sickill.net](http://coloration.sickill.net/). If you like to install coloration on your own machine to 
+at [coloration.ku1ik.com](http://coloration.ku1ik.com/). If you like to install coloration on your own machine to 
 do some batch conversion or for some other reason just run:
 
     gem install coloration
@@ -24,4 +24,4 @@ at [issue tracker](http://github.com/sickill/coloration/issues).
 
 ## Author
 
-Coloration was created by Marcin Kulik ([sickill.net](http://sickill.net/))
+Coloration was created by Marcin Kulik ([ku1ik.com](http://ku1ik.com/))
