@@ -5,7 +5,6 @@ Gem::Specification.new do |s|
   s.name = %q{coloration}
   s.version = "#{Coloration::VERSION}"
   s.platform = Gem::Platform::RUBY
-  s.required_ruby_version = Gem::Requirement.new("~> 1.9")
   s.date = %q{2013-03-13}
   s.authors = ["Marcin Kulik"]
   s.email = %q{marcin.kulik@gmail.com}
