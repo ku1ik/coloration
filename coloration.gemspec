@@ -19,6 +19,5 @@ Gem::Specification.new do |s|
   s.files = Dir["bin/*"] + Dir["lib/**/*.rb"] + ["README.md"]
 
   s.add_dependency 'textpow19',   '>= 0.11'
-  s.add_dependency 'color-tools', '>= 1.3.0'
   s.add_dependency 'plist',       '>= 3.1.0'
 end
