@@ -1,0 +1,21 @@
+PATH
+  remote: .
+  specs:
+    coloration (0.3.3)
+      color-tools
+      plist
+      textpow19
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    color-tools (1.3.0)
+    plist (3.1.0)
+    textpow19 (0.11.0)
+      plist (>= 3.0.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  coloration!
