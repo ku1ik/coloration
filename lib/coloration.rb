@@ -1,4 +1,4 @@
-require 'color'
+require 'coloration/color/color'
 
 require "coloration/version.rb"
 require "coloration/extensions.rb"
