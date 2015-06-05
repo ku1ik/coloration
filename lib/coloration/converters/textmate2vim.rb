@@ -1,12 +1,34 @@
 module Coloration
+
   module Converters
+
     class Textmate2VimConverter < AbstractConverter
-      @in_theme_type = "Textmate"
-      @in_theme_ext = "tmTheme"
-      @out_theme_type = "Vim"
-      @out_theme_ext = "vim"
+
       include Readers::TextMateThemeReader
       include Writers::VimThemeWriter
-    end
-  end
-end
+
+      # @return [String]
+      def in_theme_type
+        'Textmate'
+      end
+
+      # @return [String]
+      def in_theme_ext
+        'tmTheme'
+      end
+
+      # @return [String]
+      def out_theme_type
+        'Vim'
+      end
+
+      # @return [String]
+      def out_theme_ext
+        'vim'
+      end
+
+    end # Textmate2VimConverter
+
+  end # Converters
+
+end # Colorationnd
