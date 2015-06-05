@@ -9,7 +9,7 @@
 # $Id: css.rb,v 1.1 2005/08/05 23:07:20 austin Exp $
 #++
 
-require 'color'
+require 'coloration/color'
 
   # This namespace contains some CSS colour names.
 module Color::CSS
