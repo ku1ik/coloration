@@ -6,6 +6,8 @@ module Coloration
 
     describe JEditThemeWriter do
 
+      let(:described) { Coloration::Writers::JEditThemeWriter }
+
 
 
     end # JEditThemeWriter

@@ -6,7 +6,7 @@ module Coloration
 
     describe Textmate2KatePartConverter do
 
-
+      let(:described) { Coloration::Converters::Textmate2KatePartConverter }
 
     end # Textmate2KatePartConverter
 

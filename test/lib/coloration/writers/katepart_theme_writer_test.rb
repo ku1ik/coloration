@@ -6,6 +6,8 @@ module Coloration
 
     describe KatePartThemeWriter do
 
+      let(:described) { Coloration::Writers::KatePartThemeWriter }
+
 
 
     end # KatePartThemeWriter

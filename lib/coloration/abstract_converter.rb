@@ -2,7 +2,10 @@ module Coloration
   module Converters
     class AbstractConverter
       attr_accessor :name, :ui, :items, :input, :result
-      class << self; attr_reader :in_theme_type; end
+
+      class << self
+        attr_reader :in_theme_type
+      end
 
       def self.process_cmd_line
         if ARGV.size > 0
@@ -30,9 +33,13 @@ module Coloration
       end
 
       protected
+
       def comment_text
         "Converted from #{self.class.in_theme_type} theme #{name} using Coloration v#{VERSION} (http://github.com/sickill/coloration)"
       end
+
+      private
+
     end
   end
 end

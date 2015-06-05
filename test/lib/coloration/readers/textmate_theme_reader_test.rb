@@ -6,7 +6,7 @@ module Coloration
 
     describe TextMateThemeReader do
 
-
+      let(:described) { Coloration::Readers::TextMateThemeReader }
 
     end # TextMateThemeReader
 

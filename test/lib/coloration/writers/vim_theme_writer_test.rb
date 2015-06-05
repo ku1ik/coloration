@@ -6,6 +6,8 @@ module Coloration
 
     describe VimThemeWriter do
 
+      let(:described) { Coloration::Writers::VimThemeWriter }
+
 
 
     end # VimThemeWriter

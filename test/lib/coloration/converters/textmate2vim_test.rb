@@ -6,7 +6,7 @@ module Coloration
 
     describe Textmate2VimConverter do
 
-
+      let(:described) { Coloration::Converters::Textmate2VimConverter }
 
     end # Textmate2VimConverter
 

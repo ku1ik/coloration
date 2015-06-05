@@ -6,6 +6,8 @@ module Coloration
 
     describe Textmate2JEditConverter do
 
+      let(:described) { Coloration::Converters::Textmate2JEditConverter }
+
 
 
     end # Textmate2JEditConverter
