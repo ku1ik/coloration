@@ -3,7 +3,7 @@ module Coloration
     module KatePartThemeWriter
 
       def build_result
-        add_comment comment_text
+        add_comment comment_message
         add_comment "-" * 20 + " Put following in katesyntaxhighlightingrc " + "-" * 20
         add_line
 

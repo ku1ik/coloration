@@ -9,7 +9,7 @@ module Coloration
 
       def build_result
         add_line "\" Vim color file"
-        add_line "\" #{comment_text}"
+        add_line "\" #{comment_message}"
         add_line
 
         add_line "set background=dark"

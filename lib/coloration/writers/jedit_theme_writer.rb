@@ -3,7 +3,7 @@ module Coloration
     module JEditThemeWriter
 
       def build_result
-        add_line(format_comment(comment_text))
+        add_line(format_comment(comment_message))
         add_line
 
         ui_mapping = {
