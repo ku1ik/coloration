@@ -6,6 +6,7 @@ require "coloration/style.rb"
 require "coloration/converters/abstract_converter.rb"
 require "coloration/color_rgba.rb"
 
+require "coloration/support/items_lookup.rb"
 require "coloration/readers/textmate_theme_reader.rb"
 
 require "coloration/writers/jedit_theme_writer.rb"
