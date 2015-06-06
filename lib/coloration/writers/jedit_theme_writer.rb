@@ -4,6 +4,8 @@ module Coloration
 
     module JEditThemeWriter
 
+      include Coloration::Writers::AbstractWriter
+
       def build_result
         add_line(format_comment(comment_message))
         add_line
@@ -50,10 +52,6 @@ module Coloration
       end
 
       protected
-
-      def add_line(line="")
-        (@lines ||= []) << line
-      end
 
       def escape(value)
         value.gsub(':', '\:').gsub('#', '\#').strip

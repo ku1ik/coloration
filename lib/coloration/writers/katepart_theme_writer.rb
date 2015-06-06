@@ -4,6 +4,8 @@ module Coloration
 
     module KatePartThemeWriter
 
+      include Coloration::Writers::AbstractWriter
+
       def build_result
         add_comment comment_message
         add_comment "-" * 20 + " Put following in katesyntaxhighlightingrc " + "-" * 20
@@ -120,10 +122,6 @@ module Coloration
 
       def add_comment(c)
         add_line(format_comment(c))
-      end
-
-      def add_line(line="")
-        (@lines ||= []) << line
       end
 
       def format_style(style)

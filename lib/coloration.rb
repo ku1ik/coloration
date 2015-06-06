@@ -9,6 +9,7 @@ require "coloration/color_rgba.rb"
 require "coloration/support/items_lookup.rb"
 require "coloration/readers/textmate_theme_reader.rb"
 
+require "coloration/writers/abstract_writer.rb"
 require "coloration/writers/jedit_theme_writer.rb"
 require "coloration/writers/katepart_theme_writer.rb"
 require "coloration/writers/vim_theme_writer.rb"

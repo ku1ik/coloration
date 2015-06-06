@@ -4,6 +4,8 @@ module Coloration
 
     module VimThemeWriter
 
+      include Coloration::Writers::AbstractWriter
+
       XTERM_COLORS = [ 0x00, 0x5F, 0x87, 0xAF, 0xD7, 0xFF ]
       XTERM_GREYS  = [ 0x08, 0x12, 0x1C, 0x26, 0x30, 0x3A,
                        0x44, 0x4E, 0x58, 0x62, 0x6C, 0x76,
@@ -184,10 +186,6 @@ module Coloration
       end
 
       protected
-
-      def add_line(line="")
-        (@lines ||= []) << line
-      end
 
       def format_item(name, style_or_item_name)
         raise RuntimeError.new("Style for #{name} is missing!") if style_or_item_name.nil?
