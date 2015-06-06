@@ -140,11 +140,6 @@ module Coloration
         s.join(",")
       end
 
-      def format_item(name, style)
-        raise RuntimeError.new("Style for #{name} is missing!") if style.nil?
-        "#{name}=#{format_style(style)}"
-      end
-
       def format_comment(text)
         "# #{text}"
       end

@@ -188,7 +188,8 @@ module Coloration
       protected
 
       def format_item(name, style_or_item_name)
-        raise RuntimeError.new("Style for #{name} is missing!") if style_or_item_name.nil?
+        raise RuntimeError, "Style for #{name} is missing!" if style_or_item_name.nil?
+
         if style_or_item_name == :inverse
           "hi #{name} gui=inverse"
         else

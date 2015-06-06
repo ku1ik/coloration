@@ -67,11 +67,6 @@ module Coloration
         "#{name}=#{escape(value)}"
       end
 
-      def format_item(name, style)
-        raise RuntimeError.new("Style for #{name} is missing!") if style.nil?
-        "#{name}=#{format_style(style)}"
-      end
-
       def format_style(style)
         s = ""
         s << " color:#{style.foreground.html}" if style.foreground
