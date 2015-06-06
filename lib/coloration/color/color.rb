@@ -8,18 +8,15 @@ module Color
 end
 
 require 'coloration/color/rgb'
+require 'coloration/color/color_rgba.rb'
 require 'coloration/color/cmyk'
 require 'coloration/color/grayscale'
 require 'coloration/color/hsl'
 require 'coloration/color/yiq'
 require 'coloration/color/rgb/metallic'
-
-  # We load EVERYTHING if we're being run under ZenTest.
-if defined? $ZENTEST and $ZENTEST
-  require 'coloration/color/css'
-  require 'coloration/color/palette/gimp'
-  require 'coloration/color/palette/monocontrast'
-end
+require 'coloration/color/css'
+require 'coloration/color/palette/gimp'
+require 'coloration/color/palette/monocontrast'
 
 module Color
   def self.const_missing(name) #:nodoc:
