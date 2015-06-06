@@ -4,9 +4,9 @@ module Coloration
 
   module Readers
 
-    describe ItemLookup do
+    describe ItemsLookup do
 
-      let(:described) { Coloration::Readers::ItemLookup }
+      let(:described) { Coloration::Readers::ItemsLookup }
 
     end # ItemLookup
 
