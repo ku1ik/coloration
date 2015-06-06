@@ -1,6 +1,9 @@
 module Coloration
+
   module Writers
+
     module VimThemeWriter
+
       XTERM_COLORS = [ 0x00, 0x5F, 0x87, 0xAF, 0xD7, 0xFF ]
       XTERM_GREYS  = [ 0x08, 0x12, 0x1C, 0x26, 0x30, 0x3A,
                        0x44, 0x4E, 0x58, 0x62, 0x6C, 0x76,
@@ -277,6 +280,9 @@ module Coloration
 
         colors.last
       end
-    end
-  end
-end
+
+    end # VimThemeWriter
+
+  end # Writers
+
+end # Coloration

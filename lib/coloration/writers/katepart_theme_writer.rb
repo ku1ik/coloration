@@ -1,5 +1,7 @@
 module Coloration
+
   module Writers
+
     module KatePartThemeWriter
 
       def build_result
@@ -153,6 +155,8 @@ module Coloration
         "#{(col.r*255).to_i},#{(col.g*255).to_i},#{(col.b*255).to_i}"
       end
 
-    end
-  end
-end
+    end # KatePartThemeWriter
+
+  end # Writers
+
+end # Coloration

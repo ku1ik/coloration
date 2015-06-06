@@ -1,5 +1,7 @@
 module Coloration
+
   module Writers
+
     module JEditThemeWriter
 
       def build_result
@@ -89,6 +91,8 @@ module Coloration
         "\# #{text}"
       end
 
-    end
-  end
-end
+    end # JEditThemeWriter
+
+  end # Writers
+
+end # Coloration

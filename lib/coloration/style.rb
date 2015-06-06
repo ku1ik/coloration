@@ -34,6 +34,6 @@ module Coloration
       foreground.nil? && background.nil?
     end
 
-  end
+  end # Style
 
-end
+end # Coloration
