@@ -14,6 +14,7 @@ module Coloration
         keys.split(",").each do |key|
           best_selector = nil
           best_score = 0
+
           @items.keys.each do |selector|
             score = score_manager.score(selector, key)
             if score > best_score
@@ -23,6 +24,7 @@ module Coloration
 
           return @items[best_selector] if best_selector
         end
+
         nil
       end
 

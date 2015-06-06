@@ -32,10 +32,10 @@ module Coloration
           "view.style.operator"     => @items["keyword.operator"], # = < + -
           "view.style.function"     => @items["entity.name.function"], # def foo
           "view.style.literal3"     => @items["string.regexp"], # /jola/
-  #         "view.style.invalid"      => @items["invalid"], # errors etc
-          #"view.style.literal4" => :constant # MyClass, USER_SPACE
+          # "view.style.invalid" => @items["invalid"], # errors etc
+          # "view.style.literal4" => :constant # MyClass, USER_SPACE
           "view.style.markup"       => @items["meta.tag"] || @items["entity.name.tag"] # <div>
-          #TODO: gutter etc
+          # TODO: gutter etc
         }
 
         default_style = Style.new
