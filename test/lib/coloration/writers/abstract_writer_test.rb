@@ -13,7 +13,7 @@ module Coloration
     describe AbstractWriter do
 
       let(:described) { Coloration::Writers::AbstractWriter }
-      let(:instance) { Coloration::Writers::TestClass.new }
+      let(:instance)  { Coloration::Writers::TestClass.new }
 
       describe '#add_line' do
         let(:line) { 'some parsed line' }
