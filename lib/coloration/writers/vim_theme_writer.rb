@@ -1,6 +1,11 @@
 module Coloration
+
   module Writers
+
     module VimThemeWriter
+
+      include Coloration::Writers::AbstractWriter
+
       XTERM_COLORS = [ 0x00, 0x5F, 0x87, 0xAF, 0xD7, 0xFF ]
       XTERM_GREYS  = [ 0x08, 0x12, 0x1C, 0x26, 0x30, 0x3A,
                        0x44, 0x4E, 0x58, 0x62, 0x6C, 0x76,
@@ -9,7 +14,7 @@ module Coloration
 
       def build_result
         add_line "\" Vim color file"
-        add_line "\" #{comment_text}"
+        add_line "\" #{comment_message}"
         add_line
 
         add_line "set background=dark"
@@ -66,111 +71,111 @@ module Coloration
 
         items_mapping = {
           # general colors for all languages
-          "Normal" => Style.new(:fg => @ui["foreground"], :bg => @ui["background"]),
-          "Boolean" => "constant.language",
-          "Character" => "constant.character",
-          "Comment" => "comment",
+          "Normal"      => Style.new(:fg => @ui["foreground"], :bg => @ui["background"]),
+          "Boolean"     => "constant.language",
+          "Character"   => "constant.character",
+          "Comment"     => "comment",
           "Conditional" => "keyword.control",
-          "Constant" => "constant",
-          #"Debug" => [],
-          "Define" => "keyword",
-          #"Delimiter" => "meta.separator",
-          "DiffAdd" => Style.new(:bg => green.mix_with(@ui['background'], 80), :fg => @ui['foreground'], :bold => true),
-          "DiffDelete" => Style.new(:fg => red.mix_with(@ui['background'], 80)),
-          "DiffChange" => Style.new(:bg => blue.mix_with(@ui['background'], 50), :fg => @ui['foreground']),
-          "DiffText" => Style.new(:bg => blue.mix_with(@ui['background'], 100), :fg => @ui['foreground'], :bold => true),
-          "ErrorMsg" => "invalid",
-          "WarningMsg" => "invalid",
-          #"Exception" => [],
-          "Float" => "constant.numeric",
-          "Function" => "entity.name.function",
-          "Identifier" => "storage.type",
-          #"Include" => [],
-          "Keyword" => "keyword",
-          "Label" => "string.other",
-          #"Macro" => [],
-          "NonText" => Style.new(:fg => @ui["invisibles"], :bg => @ui["background"].mix_with(@ui["foreground"], 95)),
-          "Number" => "constant.numeric",
-          "Operator" => "keyword.operator",
-          #"PreCondit" => [],
-          "PreProc" => "keyword.other",
-          #"Repeat" => [],
-          "Special" => Style.new(:fg => @ui["foreground"]),
-          #"SpecialChar" => [],
-          #"SpecialComment" => [],
-          "SpecialKey" => Style.new(:fg => @ui["invisibles"], :bg => bg_line_color),
-          "Statement" => "keyword.control",
+          "Constant"    => "constant",
+          # "Debug" => [],
+          "Define"      => "keyword",
+          # "Delimiter" => "meta.separator",
+          "DiffAdd"     => Style.new(:bg => green.mix_with(@ui['background'], 80), :fg => @ui['foreground'], :bold => true),
+          "DiffDelete"  => Style.new(:fg => red.mix_with(@ui['background'], 80)),
+          "DiffChange"  => Style.new(:bg => blue.mix_with(@ui['background'], 50), :fg => @ui['foreground']),
+          "DiffText"    => Style.new(:bg => blue.mix_with(@ui['background'], 100), :fg => @ui['foreground'], :bold => true),
+          "ErrorMsg"    => "invalid",
+          "WarningMsg"  => "invalid",
+          # "Exception" => [],
+          "Float"       => "constant.numeric",
+          "Function"    => "entity.name.function",
+          "Identifier"  => "storage.type",
+          # "Include" => [],
+          "Keyword"     => "keyword",
+          "Label"       => "string.other",
+          # "Macro" => [],
+          "NonText"     => Style.new(:fg => @ui["invisibles"], :bg => @ui["background"].mix_with(@ui["foreground"], 95)),
+          "Number"      => "constant.numeric",
+          "Operator"    => "keyword.operator",
+          # "PreCondit" => [],
+          "PreProc"     => "keyword.other",
+          # "Repeat" => [],
+          "Special"     => Style.new(:fg => @ui["foreground"]),
+          # "SpecialChar" => [],
+          # "SpecialComment" => [],
+          "SpecialKey"   => Style.new(:fg => @ui["invisibles"], :bg => bg_line_color),
+          "Statement"    => "keyword.control",
           "StorageClass" => "storage.type",
-          "String" => "string,string.quoted",
-          #"Structure" => [],
-          "Tag" => "entity.name.tag",
-          "Title" => Style.new(:fg => @ui["foreground"], :bold => true),
-          "Todo" => (@items["comment"] || default_style).clone.tap { |c| c.inverse = true; c.bold = true },
-          "Type" => "entity.name.type",
-          #"Typedef" => [],
-          "Underlined" => Style.new(:underline => true),
+          "String"       => "string,string.quoted",
+          # "Structure" => [],
+          "Tag"          => "entity.name.tag",
+          "Title"        => Style.new(:fg => @ui["foreground"], :bold => true),
+          "Todo"         => (@items["comment"] || default_style).clone.tap { |c| c.inverse = true; c.bold = true },
+          "Type"         => "entity.name.type",
+          # "Typedef" => [],
+          "Underlined"   => Style.new(:underline => true),
 
           # ruby
-          "rubyClass" => "keyword.controll.class.ruby",
-          "rubyFunction" => "entity.name.function.ruby",
+          "rubyClass"                  => "keyword.controll.class.ruby",
+          "rubyFunction"               => "entity.name.function.ruby",
           "rubyInterpolationDelimiter" => "",
-          "rubySymbol" => "constant.other.symbol.ruby",
-          "rubyConstant" => "support.class",
-          "rubyStringDelimiter" => "string,string.quoted",
-          "rubyBlockParameter" => "variable.parameter",
-          "rubyInstanceVariable" => "variable.language",
-          "rubyInclude" => "keyword.other.special-method.ruby",
-          "rubyGlobalVariable" => "variable.other",
-          "rubyRegexp" => "string.regexp",
-          "rubyRegexpDelimiter" => "string.regexp",
-          "rubyEscape" => "constant.character.escape",
-          "rubyControl" => "keyword.control",
-          "rubyClassVariable" => "variable",
-          "rubyOperator" => "keyword.operator",
-          "rubyException" => "keyword.other.special-method.ruby",
-          "rubyPseudoVariable" => "variable.language.ruby",
+          "rubySymbol"                 => "constant.other.symbol.ruby",
+          "rubyConstant"               => "support.class",
+          "rubyStringDelimiter"        => "string,string.quoted",
+          "rubyBlockParameter"         => "variable.parameter",
+          "rubyInstanceVariable"       => "variable.language",
+          "rubyInclude"                => "keyword.other.special-method.ruby",
+          "rubyGlobalVariable"         => "variable.other",
+          "rubyRegexp"                 => "string.regexp",
+          "rubyRegexpDelimiter"        => "string.regexp",
+          "rubyEscape"                 => "constant.character.escape",
+          "rubyControl"                => "keyword.control",
+          "rubyClassVariable"          => "variable",
+          "rubyOperator"               => "keyword.operator",
+          "rubyException"              => "keyword.other.special-method.ruby",
+          "rubyPseudoVariable"         => "variable.language.ruby",
 
           # rails
-          "rubyRailsUserClass" => "support.class.ruby",
+          "rubyRailsUserClass"           => "support.class.ruby",
           "rubyRailsARAssociationMethod" => "support.function.activerecord.rails",
-          "rubyRailsARMethod" => "support.function.activerecord.rails",
-          "rubyRailsRenderMethod" => "support.function",
-          "rubyRailsMethod" => "support.function",
+          "rubyRailsARMethod"            => "support.function.activerecord.rails",
+          "rubyRailsRenderMethod"        => "support.function",
+          "rubyRailsMethod"              => "support.function",
 
           # eruby
-          "erubyDelimiter" => "punctuation.section.embedded.ruby",
-          "erubyComment" => "comment",
+          "erubyDelimiter"   => "punctuation.section.embedded.ruby",
+          "erubyComment"     => "comment",
           "erubyRailsMethod" => "support.function",
-          #"erubyExpression" => "text.html.ruby source",
-          #"erubyDelimiter" => "",
+          # "erubyExpression" => "text.html.ruby source",
+          # "erubyDelimiter" => "",
 
           # html
-          "htmlTag" => "meta.tag entity",
-          "htmlEndTag" => "meta.tag entity",
-          "htmlTagName" => "meta.tag entity",
-          "htmlArg" => "meta.tag entity",
+          "htmlTag"         => "meta.tag entity",
+          "htmlEndTag"      => "meta.tag entity",
+          "htmlTagName"     => "meta.tag entity",
+          "htmlArg"         => "meta.tag entity",
           "htmlSpecialChar" => "constant.character.entity.html",
 
           # javascript
-          "javaScriptFunction" => "storage.type.function.js",
+          "javaScriptFunction"      => "storage.type.function.js",
           "javaScriptRailsFunction" => "support.function",
-          "javaScriptBraces" => "meta.brace.curly.js",
+          "javaScriptBraces"        => "meta.brace.curly.js",
 
           # yaml
-          "yamlKey" => "entity.name.tag.yaml",
-          "yamlAnchor" => "variable.other.yaml",
-          "yamlAlias" => "variable.other.yaml",
+          "yamlKey"            => "entity.name.tag.yaml",
+          "yamlAnchor"         => "variable.other.yaml",
+          "yamlAlias"          => "variable.other.yaml",
           "yamlDocumentHeader" => "string.unquoted.yaml",
 
           # css
-          "cssURL" => "variable.parameter.misc.css",
-          "cssFunctionName" => "support.function.misc.css",
-          "cssColor" => "constant.other.color.rgb-value.css",
+          "cssURL"           => "variable.parameter.misc.css",
+          "cssFunctionName"  => "support.function.misc.css",
+          "cssColor"         => "constant.other.color.rgb-value.css",
           "cssPseudoClassId" => "entity.other.attribute-name.pseudo-class.css",
-          "cssClassName" => "entity.other.attribute-name.class.css",
-          "cssValueLength" => "constant.numeric.css",
-          "cssCommonAttr" => "support.constant.property-value.css",
-          "cssBraces" => "punctuation.section.property-list.css",
+          "cssClassName"     => "entity.other.attribute-name.class.css",
+          "cssValueLength"   => "constant.numeric.css",
+          "cssCommonAttr"    => "support.constant.property-value.css",
+          "cssBraces"        => "punctuation.section.property-list.css",
         }
 
         items_mapping.keys.each do |key|
@@ -182,12 +187,9 @@ module Coloration
 
       protected
 
-      def add_line(line="")
-        (@lines ||= []) << line
-      end
-
       def format_item(name, style_or_item_name)
-        raise RuntimeError.new("Style for #{name} is missing!") if style_or_item_name.nil?
+        raise RuntimeError, "Style for #{name} is missing!" if style_or_item_name.nil?
+
         if style_or_item_name == :inverse
           "hi #{name} gui=inverse"
         else
@@ -277,6 +279,9 @@ module Coloration
 
         colors.last
       end
-    end
-  end
-end
+
+    end # VimThemeWriter
+
+  end # Writers
+
+end # Coloration

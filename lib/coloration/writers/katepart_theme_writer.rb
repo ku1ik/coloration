@@ -1,9 +1,13 @@
 module Coloration
+
   module Writers
+
     module KatePartThemeWriter
 
+      include Coloration::Writers::AbstractWriter
+
       def build_result
-        add_comment comment_text
+        add_comment comment_message
         add_comment "-" * 20 + " Put following in katesyntaxhighlightingrc " + "-" * 20
         add_line
 
@@ -90,21 +94,21 @@ module Coloration
           "Color Background"            => @ui["background"],
           "Color Highlighted Bracket"   => @ui["background"],
           "Color Highlighted Line"      => @ui["lineHighlight"],
-  #         "Color Icon Bar"              => @ui[:background],
-  #         "Color Line Number" => :,
-  #         "Color MarkType1" => :,
-  #         "Color MarkType2" => :,
-  #         "Color MarkType3" => :,
-  #         "Color MarkType4" => :,
-  #         "Color MarkType5" => :,
-  #         "Color MarkType6" => :,
-  #         "Color MarkType7" => :,
+          # "Color Icon Bar" => @ui[:background],
+          # "Color Line Number" => :,
+          # "Color MarkType1" => :,
+          # "Color MarkType2" => :,
+          # "Color MarkType3" => :,
+          # "Color MarkType4" => :,
+          # "Color MarkType5" => :,
+          # "Color MarkType6" => :,
+          # "Color MarkType7" => :,
           "Color Selection"             => @ui["selection"],
           "Color Tab Marker"            => @ui["invisibles"],
-  #         "Color Template Background" => :,
-  #         "Color Template Editable Placeholder" => :,
-  #         "Color Template Focused Editable Placeholder" => :,
-  #         "Color Template Not Editable Placeholder" => :,
+          # "Color Template Background" => :,
+          # "Color Template Editable Placeholder" => :,
+          # "Color Template Focused Editable Placeholder" => :,
+          # "Color Template Not Editable Placeholder" => :,
           "Color Word Wrap Marker"      => @ui["invisibles"]
         }
         ui_mapping.keys.each do |key|
@@ -118,10 +122,6 @@ module Coloration
 
       def add_comment(c)
         add_line(format_comment(c))
-      end
-
-      def add_line(line="")
-        (@lines ||= []) << line
       end
 
       def format_style(style)
@@ -140,11 +140,6 @@ module Coloration
         s.join(",")
       end
 
-      def format_item(name, style)
-        raise RuntimeError.new("Style for #{name} is missing!") if style.nil?
-        "#{name}=#{format_style(style)}"
-      end
-
       def format_comment(text)
         "# #{text}"
       end
@@ -153,6 +148,8 @@ module Coloration
         "#{(col.r*255).to_i},#{(col.g*255).to_i},#{(col.b*255).to_i}"
       end
 
-    end
-  end
-end
+    end # KatePartThemeWriter
+
+  end # Writers
+
+end # Coloration

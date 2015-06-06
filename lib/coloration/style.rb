@@ -1,6 +1,7 @@
 module Coloration
 
   class Style
+
     attr_accessor :foreground, :background, :bold, :italic, :underline, :strike, :inverse, :comment
 
     def initialize(obj=nil, bg=nil)
@@ -32,6 +33,7 @@ module Coloration
     def blank?
       foreground.nil? && background.nil?
     end
-  end
 
-end
+  end # Style
+
+end # Coloration

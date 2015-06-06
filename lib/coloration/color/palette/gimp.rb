@@ -9,7 +9,7 @@
 # $Id: gimp.rb,v 1.3 2005/08/08 02:44:17 austin Exp $
 #++
 
-require 'color/palette'
+require 'coloration/color/palette'
 
   # A class that can read a GIMP (GNU Image Manipulation Program) palette
   # file and provide a Hash-like interface to the contents. GIMP colour

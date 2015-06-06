@@ -9,7 +9,7 @@
 # $Id: monocontrast.rb,v 1.3 2005/08/08 02:44:17 austin Exp $
 #++
 
-require 'color/palette'
+require 'coloration/color/palette'
 
   # Generates a monochromatic constrasting colour palette for background and
   # foreground. What does this mean?
@@ -24,7 +24,7 @@ require 'color/palette'
   # foreground against the background.
 class Color::Palette::MonoContrast
     # Hash of CSS background colour values.
-    # 
+    #
     # This is always 11 values:
     #
     # 0::       The starting colour.
@@ -32,7 +32,7 @@ class Color::Palette::MonoContrast
     # -1..-5::  Darker colours.
   attr_reader :background
     # Hash of CSS foreground colour values.
-    # 
+    #
     # This is always 11 values:
     #
     # 0::       The starting colour.
@@ -59,7 +59,7 @@ class Color::Palette::MonoContrast
     else
       @minimum_brightness_diff = bd
     end
-      
+
     regenerate(@background[0], @foreground[0])
   end
 

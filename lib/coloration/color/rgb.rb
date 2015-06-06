@@ -311,4 +311,4 @@ class Color::RGB
   end
 end
 
-require 'color/rgb-colors'
+require 'coloration/color/rgb-colors'

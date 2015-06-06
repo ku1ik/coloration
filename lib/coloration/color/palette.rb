@@ -9,7 +9,7 @@
 # $Id: palette.rb,v 1.2 2005/08/05 23:07:20 austin Exp $
 #++
 
-require 'color'
+require 'coloration/color'
 
 module Color::Palette
 end

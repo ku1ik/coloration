@@ -1,9 +1,13 @@
 module Coloration
+
   module Writers
+
     module JEditThemeWriter
 
+      include Coloration::Writers::AbstractWriter
+
       def build_result
-        add_line(format_comment(comment_text))
+        add_line(format_comment(comment_message))
         add_line
 
         ui_mapping = {
@@ -32,10 +36,10 @@ module Coloration
           "view.style.operator"     => @items["keyword.operator"], # = < + -
           "view.style.function"     => @items["entity.name.function"], # def foo
           "view.style.literal3"     => @items["string.regexp"], # /jola/
-  #         "view.style.invalid"      => @items["invalid"], # errors etc
-          #"view.style.literal4" => :constant # MyClass, USER_SPACE
+          # "view.style.invalid" => @items["invalid"], # errors etc
+          # "view.style.literal4" => :constant # MyClass, USER_SPACE
           "view.style.markup"       => @items["meta.tag"] || @items["entity.name.tag"] # <div>
-          #TODO: gutter etc
+          # TODO: gutter etc
         }
 
         default_style = Style.new
@@ -49,10 +53,6 @@ module Coloration
 
       protected
 
-      def add_line(line="")
-        (@lines ||= []) << line
-      end
-
       def escape(value)
         value.gsub(':', '\:').gsub('#', '\#').strip
       end
@@ -65,11 +65,6 @@ module Coloration
           value = value.to_s
         end
         "#{name}=#{escape(value)}"
-      end
-
-      def format_item(name, style)
-        raise RuntimeError.new("Style for #{name} is missing!") if style.nil?
-        "#{name}=#{format_style(style)}"
       end
 
       def format_style(style)
@@ -89,6 +84,8 @@ module Coloration
         "\# #{text}"
       end
 
-    end
-  end
-end
+    end # JEditThemeWriter
+
+  end # Writers
+
+end # Coloration

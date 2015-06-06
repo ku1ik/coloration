@@ -1,9 +1,11 @@
 require 'plist'
-require 'textpow'
 
 module Coloration
+
   module Readers
+
     module TextMateThemeReader
+
       class InvalidThemeError < RuntimeError; end
 
       def parse_input
@@ -49,31 +51,9 @@ module Coloration
         end
         self.items = ItemsLookup.new(items)
       end
-    end
 
-    class ItemsLookup
-      def initialize(items)
-        @items = items
-        @score_manager = Textpow::ScoreManager.new
-      end
+    end # TextMateThemeReader
 
-      def [](keys)
-        keys.split(",").each do |key|
-          best_selector = nil
-          best_score = 0
-          @items.keys.each do |selector|
-            score = @score_manager.score(selector, key)
-            if score > best_score
-              best_score, best_selector = score, selector
-            end
-          end
-          if best_selector
-            return @items[best_selector]
-          end
-        end
-        nil
-      end
-    end
-  end
+  end # Readers
 
-end
+end # Coloration
