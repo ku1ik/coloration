@@ -242,13 +242,9 @@ module Coloration
         a_g = (c.g * 255.0).to_i
         a_b = (c.b * 255.0).to_i
 
-        if a_r == 0 && a_g == 0 && a_b == 0
-          return 0
-        end
+        return 0 if a_r == 0 && a_g == 0 && a_b == 0
 
-        if a_r == 255 && a_g == 255 && a_b == 255
-          return 15
-        end
+        return 15 if a_r == 255 && a_g == 255 && a_b == 255
 
         greys_colors = XTERM_GREYS + XTERM_COLORS
         len = XTERM_COLORS.size

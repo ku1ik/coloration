@@ -1,14 +1,3 @@
-#--
-# Colour management with Ruby.
-#
-# Copyright 2005 Austin Ziegler
-#   http://rubyforge.org/ruby-pdf/
-#
-#   Licensed under a MIT-style licence.
-#
-# $Id: cmyk.rb,v 1.5 2005/08/08 02:44:17 austin Exp $
-#++
-
   # An CMYK colour object. CMYK (cyan, magenta, yellow, and black) colours
   # are based on additive percentages of ink. A CMYK colour of (0.3, 0, 0.8,
   # 0.3) would be mixed from 30% cyan, 0% magenta, 80% yellow, and 30%

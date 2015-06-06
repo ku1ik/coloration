@@ -1,14 +1,3 @@
-#--
-# Colour management with Ruby.
-#
-# Copyright 2005 Austin Ziegler
-#   http://rubyforge.org/ruby-pdf/
-#
-#   Licensed under a MIT-style licence.
-#
-# $Id: hsl.rb,v 1.2 2005/08/08 02:44:17 austin Exp $
-#++
-
   # An HSL colour object. Internally, the hue (#h), saturation (#s), and
   # luminosity (#l) values are dealt with as fractional values in the range
   # 0..1.

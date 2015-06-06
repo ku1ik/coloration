@@ -1,14 +1,3 @@
-#--
-# Colour management with Ruby.
-#
-# Copyright 2005 Austin Ziegler
-#   http://rubyforge.org/ruby-pdf/
-#
-#   Licensed under a MIT-style licence.
-#
-# $Id: rgb-colors.rb,v 1.1 2005/08/05 23:07:20 austin Exp $
-#++
-
 class Color::RGB
   AliceBlue             = Color::RGB.new(0xf0, 0xf8, 0xff).freeze
   AntiqueWhite          = Color::RGB.new(0xfa, 0xeb, 0xd7).freeze

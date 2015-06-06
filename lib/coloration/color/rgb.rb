@@ -1,15 +1,4 @@
-#--
-# Colour management with Ruby.
-#
-# Copyright 2005 Austin Ziegler
-#   http://rubyforge.org/ruby-pdf/
-#
-#   Licensed under a MIT-style licence.
-#
-# $Id: rgb.rb,v 1.6 2005/08/08 02:44:17 austin Exp $
-#++
-
-  # An RGB colour object.
+# An RGB colour object.
 class Color::RGB
     # The format of a DeviceRGB colour for PDF. In color-tools 2.0 this will
     # be removed from this package and added back as a modification by the

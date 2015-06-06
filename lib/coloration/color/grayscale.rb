@@ -1,16 +1,5 @@
-#--
-# Colour management with Ruby.
-#
-# Copyright 2005 Austin Ziegler
-#   http://rubyforge.org/ruby-pdf/
-#
-#   Licensed under a MIT-style licence.
-#
-# $Id: grayscale.rb,v 1.3 2005/08/08 02:44:17 austin Exp $
-#++
-
-  # A colour object representing shades of grey. Used primarily in PDF
-  # document creation.
+# A colour object representing shades of grey. Used primarily in PDF
+# document creation.
 class Color::GrayScale
     # The format of a DeviceGrey colour for PDF. In color-tools 2.0 this
     # will be removed from this package and added back as a modification by
