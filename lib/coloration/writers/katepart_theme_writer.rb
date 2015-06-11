@@ -122,14 +122,14 @@ module Coloration
 
       protected
 
-      # @param []
+      # @param c []
       # @return [void]
       # @todo
       def add_comment(c)
         add_line(format_comment(c))
       end
 
-      # @param []
+      # @param style []
       # @return [void]
       # @todo
       def format_style(style)
@@ -148,16 +148,14 @@ module Coloration
         s.join(",")
       end
 
-      # @param []
-      # @return [void]
-      # @todo
+      # @param text [String]
+      # @return [String]
       def format_comment(text)
         "# #{text}"
       end
 
-      # @param []
-      # @return [void]
-      # @todo
+      # @param col []
+      # @return [String]
       def hex2rgb(col)
         "#{(col.r*255).to_i},#{(col.g*255).to_i},#{(col.b*255).to_i}"
       end

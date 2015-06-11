@@ -55,16 +55,15 @@ module Coloration
 
       protected
 
-      # @param []
-      # @return [void]
-      # @todo
+      # @param value [String]
+      # @return [String]
       def escape(value)
         value.gsub(':', '\:').gsub('#', '\#').strip
       end
 
-      # @param []
-      # @param []
-      # @return [void]
+      # @param name []
+      # @param value []
+      # @return [String]
       # @todo
       def format_ui(name, value)
         case value
@@ -76,9 +75,8 @@ module Coloration
         "#{name}=#{escape(value)}"
       end
 
-      # @param []
-      # @return [void]
-      # @todo
+      # @param style [Style]
+      # @return [String]
       def format_style(style)
         s = ""
         s << " color:#{style.foreground.html}" if style.foreground

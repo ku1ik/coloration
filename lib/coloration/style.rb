@@ -4,9 +4,9 @@ module Coloration
 
     attr_accessor :foreground, :background, :bold, :italic, :underline, :strike, :inverse, :comment
 
-    # @param []
-    # @param []
-    # @return [void]
+    # @param obj []
+    # @param bg []
+    # @return [Coloration::Style]
     # @todo
     def initialize(obj=nil, bg=nil)
       if obj
@@ -19,8 +19,8 @@ module Coloration
       end
     end
 
-    # @param []
-    # @param []
+    # @param h []
+    # @param bg []
     # @return [void]
     # @todo
     def initialize_from_hash(h, bg=nil)

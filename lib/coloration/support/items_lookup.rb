@@ -6,14 +6,14 @@ module Coloration
 
     class ItemsLookup
 
-      # @params []
-      # @return [void]
+      # @param items []
+      # @return [Coloration::Readers::ItemsLookup]
       # @todo
       def initialize(items)
         @items = items
       end
 
-      # @params []
+      # @param keys []
       # @return [void]
       # @todo
       def [](keys)

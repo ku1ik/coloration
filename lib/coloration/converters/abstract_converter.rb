@@ -16,9 +16,8 @@ module Coloration
         new(ARGV).process
       end
 
-      # @param []
-      # @return [void]
-      # @todo
+      # @param argv [Array<String>]
+      # @return [Coloration::Converters::AbstractConverter]
       def initialize(argv = ARGV)
         @argv = argv
       end
@@ -59,8 +58,7 @@ module Coloration
 
       private
 
-      # @return [void]
-      # @todo
+      # @return [String]
       def in_theme_filename
         argv[0]
       end

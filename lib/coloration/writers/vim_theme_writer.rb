@@ -189,8 +189,8 @@ module Coloration
 
       protected
 
-      # @param []
-      # @param []
+      # @param name []
+      # @param style_or_item_name []
       # @return [void]
       # @todo
       def format_item(name, style_or_item_name)
@@ -208,8 +208,8 @@ module Coloration
         end
       end
 
-      # @param []
-      # @return [void]
+      # @param style []
+      # @return [String]
       # @todo
       def format_style(style)
         style ||= Style.new
@@ -246,8 +246,8 @@ module Coloration
           "guifg=#{guifg} guibg=#{guibg} gui=#{gui}"
       end
 
-      # @param []
-      # @return [void]
+      # @param c []
+      # @return [Fixnum]
       # @todo
       def rgb_to_xterm256(c)
         a_r = (c.r * 255.0).to_i
@@ -280,8 +280,8 @@ module Coloration
         16 + n
       end
 
-      # @param []
-      # @param []
+      # @param v []
+      # @param colors []
       # @return [void]
       # @todo
       def get_nearest_xterm_color(v, colors)
