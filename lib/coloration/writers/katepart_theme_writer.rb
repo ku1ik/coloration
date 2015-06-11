@@ -39,82 +39,82 @@ module Coloration
           add_line(format_item(key, items_mapping[key] || @default_style))
         end
 
-        add_line
+        store
 
-        add_line "[Highlighting Ruby - Schema #{name}]"
-        add_line "Ruby:Access Control=0," + format_style(@items["storage.modifier"])
-        add_line "Ruby:Command=0," + format_style(@items["string.interpolated"])
-        add_line "Ruby:Constant=0," + format_style(@items["constant"])
-        add_line "Ruby:Constant Value=0," + format_style(@items["constant.other"])
-        add_line "Ruby:Default globals=0," + format_style(@items["variable.other"])
-        add_line "Ruby:Definition=0," + format_style(@items["entity.name.function"])
-        add_line "Ruby:Delimiter=0," + format_style(@items["keyword.other"])
-        add_line "Ruby:Global Constant=0," + format_style(@items["constant.other"])
-        add_line "Ruby:Global Variable=0," + format_style(@items["variable.other"])
-        add_line "Ruby:Instance Variable=0," + format_style(@items["variable"])
-        add_line "Ruby:Class Variable=0," + format_style(@items["variable"])
-        add_line "Ruby:Kernel methods=0," + format_style(@items["support.function"])
-        add_line "Ruby:Member=0," + format_style(@items["entity.name.function"])
-        add_line "Ruby:Message=0," + format_style(@default_style)
-        add_line "Ruby:Operator=0," + format_style(@items["keyword.operator"])
-        add_line "Ruby:Pseudo variable=0," + format_style(@items["variable.language"])
-        add_line "Ruby:Raw String=0," + format_style(@items["string.quoted.single"])
-  #       add_line "Ruby:Region Marker=7," + format_style(@items[""])
-        add_line "Ruby:Regular Expression=0," + format_style(@items["string.regexp.ruby"])
-        add_line "Ruby:Symbol=0," + format_style(@items["constant.other.symbol.ruby"])
+        store "[Highlighting Ruby - Schema #{reader.name}]"
+        store 'Ruby:Access Control=0,' + format_style(@items['storage.modifier'])
+        store 'Ruby:Command=0,' + format_style(@items['string.interpolated'])
+        store 'Ruby:Constant=0,' + format_style(@items['constant'])
+        store 'Ruby:Constant Value=0,' + format_style(@items['constant.other'])
+        store 'Ruby:Default globals=0,' + format_style(@items['variable.other'])
+        store 'Ruby:Definition=0,' + format_style(@items['entity.name.function'])
+        store 'Ruby:Delimiter=0,' + format_style(@items['keyword.other'])
+        store 'Ruby:Global Constant=0,' + format_style(@items['constant.other'])
+        store 'Ruby:Global Variable=0,' + format_style(@items['variable.other'])
+        store 'Ruby:Instance Variable=0,' + format_style(@items['variable'])
+        store 'Ruby:Class Variable=0,' + format_style(@items['variable'])
+        store 'Ruby:Kernel methods=0,' + format_style(@items['support.function'])
+        store 'Ruby:Member=0,' + format_style(@items['entity.name.function'])
+        store 'Ruby:Message=0,' + format_style(@default_style)
+        store 'Ruby:Operator=0,' + format_style(@items['keyword.operator'])
+        store 'Ruby:Pseudo variable=0,' + format_style(@items['variable.language'])
+        store 'Ruby:Raw String=0,' + format_style(@items['string.quoted.single'])
+  #       store 'Ruby:Region Marker=7,' + format_style(@items['])
+        store 'Ruby:Regular Expression=0,' + format_style(@items['string.regexp.ruby'])
+        store 'Ruby:Symbol=0,' + format_style(@items['constant.other.symbol.ruby'])
 
-        add_line
+        store
 
-        add_line "[Highlighting JavaScript - Schema #{name}]"
-        add_line "JavaScript:Objects=0," + format_style(@items["variable.language"])
+        store "[Highlighting JavaScript - Schema #{reader.name}]"
+        store 'JavaScript:Objects=0,' + format_style(@items['variable.language'])
 
-        add_line
+        store
 
-        add_line "[Highlighting Ruby/Rails/RHTML - Schema #{name}]"
-        add_line "Ruby/Rails/RHTML:Message=0," + format_style(@default_style)
-        add_line "Ruby/Rails/RHTML:Raw String=0," + format_style(@items["string.quoted.single"])
-        add_line "Ruby/Rails/RHTML:Symbol=0," + format_style(@items["constant.other.symbol.ruby"])
-        add_line "Ruby/Rails/RHTML:Value=0," + format_style(@items["string,string.quoted"])
-        add_line "Ruby/Rails/RHTML:Element=0," + format_style(@items["meta.tag"] || @items["entity.name.tag"])
-        add_line "Ruby/Rails/RHTML:Kernel methods=0," + format_style(@items["support.function"])
-        add_line "Ruby/Rails/RHTML:Attribute=0," + format_style(@items["entity.other.attribute-name"])
+        store "[Highlighting Ruby/Rails/RHTML - Schema #{reader.name}]"
+        store 'Ruby/Rails/RHTML:Message=0,' + format_style(@default_style)
+        store 'Ruby/Rails/RHTML:Raw String=0,' + format_style(@items['string.quoted.single'])
+        store 'Ruby/Rails/RHTML:Symbol=0,' + format_style(@items['constant.other.symbol.ruby'])
+        store 'Ruby/Rails/RHTML:Value=0,' + format_style(@items['string,string.quoted'])
+        store 'Ruby/Rails/RHTML:Element=0,' + format_style(@items['meta.tag'] || @items['entity.name.tag'])
+        store 'Ruby/Rails/RHTML:Kernel methods=0,' + format_style(@items['support.function'])
+        store 'Ruby/Rails/RHTML:Attribute=0,' + format_style(@items['entity.other.attribute-name'])
 
-        add_line
+        store
 
-        add_line "[Highlighting XML - Schema #{name}]"
-        add_line "XML:Value=0," + format_style(@items["string,string.quoted"])
-        add_line "XML:Element=0," + format_style(@items["meta.tag"] || @items["entity.name.tag"])
-        add_line "XML:Attribute=0," + format_style(@items["entity.other.attribute-name"])
+        store "[Highlighting XML - Schema #{reader.name}]"
+        store 'XML:Value=0,' + format_style(@items['string,string.quoted'])
+        store 'XML:Element=0,' + format_style(@items['meta.tag'] || @items['entity.name.tag'])
+        store 'XML:Attribute=0,' + format_style(@items['entity.other.attribute-name'])
 
-        add_line
-        add_comment "-" * 20 + " Put following in kateschemarc " + "-" * 20
-        add_line
+        store
+        add_comment '-' * 20 + ' Put following in kateschemarc ' + '-' * 20
+        store
 
-        add_line "[#{name}]"
+        store "[#{reader.name}]"
 
         ui_mapping = {
-          "Color Background"            => @ui["background"],
-          "Color Highlighted Bracket"   => @ui["background"],
-          "Color Highlighted Line"      => @ui["lineHighlight"],
-          # "Color Icon Bar" => @ui[:background],
-          # "Color Line Number" => :,
-          # "Color MarkType1" => :,
-          # "Color MarkType2" => :,
-          # "Color MarkType3" => :,
-          # "Color MarkType4" => :,
-          # "Color MarkType5" => :,
-          # "Color MarkType6" => :,
-          # "Color MarkType7" => :,
-          "Color Selection"             => @ui["selection"],
-          "Color Tab Marker"            => @ui["invisibles"],
-          # "Color Template Background" => :,
-          # "Color Template Editable Placeholder" => :,
-          # "Color Template Focused Editable Placeholder" => :,
-          # "Color Template Not Editable Placeholder" => :,
-          "Color Word Wrap Marker"      => @ui["invisibles"]
+          'Color Background'            => @ui['background'],
+          'Color Highlighted Bracket'   => @ui['background'],
+          'Color Highlighted Line'      => @ui['lineHighlight'],
+          # 'Color Icon Bar' => @ui[:background],
+          # 'Color Line Number' => :,
+          # 'Color MarkType1' => :,
+          # 'Color MarkType2' => :,
+          # 'Color MarkType3' => :,
+          # 'Color MarkType4' => :,
+          # 'Color MarkType5' => :,
+          # 'Color MarkType6' => :,
+          # 'Color MarkType7' => :,
+          'Color Selection'             => @ui['selection'],
+          'Color Tab Marker'            => @ui['invisibles'],
+          # 'Color Template Background' => :,
+          # 'Color Template Editable Placeholder' => :,
+          # 'Color Template Focused Editable Placeholder' => :,
+          # 'Color Template Not Editable Placeholder' => :,
+          'Color Word Wrap Marker'      => @ui['invisibles']
         }
         ui_mapping.keys.each do |key|
-          add_line "#{key}=#{hex2rgb(ui_mapping[key])}"
+          store "#{key}=#{hex2rgb(ui_mapping[key])}"
         end
 
         self.result = @lines.join("\n")
