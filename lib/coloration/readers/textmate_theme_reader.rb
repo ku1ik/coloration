@@ -8,6 +8,8 @@ module Coloration
 
       class InvalidThemeError < RuntimeError; end
 
+      # @return [void]
+      # @todo
       def parse_input
         begin
           tm_theme = Plist.parse_xml(input.gsub("ustring", "string"))

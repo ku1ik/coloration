@@ -6,6 +6,8 @@ module Coloration
 
       include Coloration::Writers::AbstractWriter
 
+      # @return [void]
+      # @todo
       def build_result
         add_comment comment_message
         add_comment "-" * 20 + " Put following in katesyntaxhighlightingrc " + "-" * 20
@@ -120,10 +122,16 @@ module Coloration
 
       protected
 
+      # @param []
+      # @return [void]
+      # @todo
       def add_comment(c)
         add_line(format_comment(c))
       end
 
+      # @param []
+      # @return [void]
+      # @todo
       def format_style(style)
         style ||= @default_style
         # normal,selected,bold,italic,strike,underline,bg,bg_selected,---
@@ -140,10 +148,16 @@ module Coloration
         s.join(",")
       end
 
+      # @param []
+      # @return [void]
+      # @todo
       def format_comment(text)
         "# #{text}"
       end
 
+      # @param []
+      # @return [void]
+      # @todo
       def hex2rgb(col)
         "#{(col.r*255).to_i},#{(col.g*255).to_i},#{(col.b*255).to_i}"
       end

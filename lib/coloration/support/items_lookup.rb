@@ -6,10 +6,16 @@ module Coloration
 
     class ItemsLookup
 
+      # @params []
+      # @return [void]
+      # @todo
       def initialize(items)
         @items = items
       end
 
+      # @params []
+      # @return [void]
+      # @todo
       def [](keys)
         keys.split(",").each do |key|
           best_selector = nil

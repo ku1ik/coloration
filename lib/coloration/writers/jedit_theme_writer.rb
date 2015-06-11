@@ -6,6 +6,8 @@ module Coloration
 
       include Coloration::Writers::AbstractWriter
 
+      # @return [void]
+      # @todo
       def build_result
         add_line(format_comment(comment_message))
         add_line
@@ -53,10 +55,17 @@ module Coloration
 
       protected
 
+      # @param []
+      # @return [void]
+      # @todo
       def escape(value)
         value.gsub(':', '\:').gsub('#', '\#').strip
       end
 
+      # @param []
+      # @param []
+      # @return [void]
+      # @todo
       def format_ui(name, value)
         case value
         when Color::RGB
@@ -67,6 +76,9 @@ module Coloration
         "#{name}=#{escape(value)}"
       end
 
+      # @param []
+      # @return [void]
+      # @todo
       def format_style(style)
         s = ""
         s << " color:#{style.foreground.html}" if style.foreground
@@ -80,6 +92,8 @@ module Coloration
         escape(s)
       end
 
+      # @param text [String]
+      # @return [String]
       def format_comment(text)
         "\# #{text}"
       end

@@ -4,6 +4,10 @@ module Coloration
 
     attr_accessor :foreground, :background, :bold, :italic, :underline, :strike, :inverse, :comment
 
+    # @param []
+    # @param []
+    # @return [void]
+    # @todo
     def initialize(obj=nil, bg=nil)
       if obj
         case obj
@@ -15,6 +19,10 @@ module Coloration
       end
     end
 
+    # @param []
+    # @param []
+    # @return [void]
+    # @todo
     def initialize_from_hash(h, bg=nil)
       h.each do |key, value|
         key = :foreground if key == :fg
@@ -27,6 +35,7 @@ module Coloration
       end
     end
 
+    # @return [Boolean]
     def blank?
       foreground.nil? && background.nil?
     end

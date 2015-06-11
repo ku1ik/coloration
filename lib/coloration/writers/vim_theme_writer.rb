@@ -12,6 +12,8 @@ module Coloration
                        0x80, 0x8A, 0x94, 0x9E, 0xA8, 0xB2,
                        0xBC, 0xC6, 0xD0, 0xDA, 0xE4, 0xEE ]
 
+      # @return [void]
+      # @todo
       def build_result
         add_line "\" Vim color file"
         add_line "\" #{comment_message}"
@@ -187,6 +189,10 @@ module Coloration
 
       protected
 
+      # @param []
+      # @param []
+      # @return [void]
+      # @todo
       def format_item(name, style_or_item_name)
         raise RuntimeError, "Style for #{name} is missing!" if style_or_item_name.nil?
 
@@ -202,6 +208,9 @@ module Coloration
         end
       end
 
+      # @param []
+      # @return [void]
+      # @todo
       def format_style(style)
         style ||= Style.new
 
@@ -237,6 +246,9 @@ module Coloration
           "guifg=#{guifg} guibg=#{guibg} gui=#{gui}"
       end
 
+      # @param []
+      # @return [void]
+      # @todo
       def rgb_to_xterm256(c)
         a_r = (c.r * 255.0).to_i
         a_g = (c.g * 255.0).to_i
@@ -268,6 +280,10 @@ module Coloration
         16 + n
       end
 
+      # @param []
+      # @param []
+      # @return [void]
+      # @todo
       def get_nearest_xterm_color(v, colors)
         0.upto(colors.size - 2) do |i|
           return colors[i] if v <= (colors[i] + colors[i+1]) / 2
