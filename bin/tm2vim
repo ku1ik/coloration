@@ -3,6 +3,6 @@
 lib_dir = File.dirname(__FILE__) + '/../lib'
 $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 
-require "coloration"
+require 'coloration'
 
 Coloration::Converters::Textmate2VimConverter.process_cmd_line
