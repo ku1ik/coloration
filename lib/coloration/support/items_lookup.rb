@@ -21,18 +21,25 @@ module Coloration
           best_selector = nil
           best_score = 0
 
-          @items.keys.each do |selector|
+          items.keys.each do |selector|
             score = score_manager.score(selector, key)
             if score > best_score
               best_score, best_selector = score, selector
             end
           end
 
-          return @items[best_selector] if best_selector
+          return items[best_selector] if best_selector
         end
 
         nil
       end
+
+      protected
+
+      # @!attribute [r] items
+      # @return [void]
+      # @todo
+      attr_reader :items
 
       private
 
