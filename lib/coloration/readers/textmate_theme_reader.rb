@@ -11,16 +11,8 @@ module Coloration
       # @return [void]
       # @todo
       def parse_input
-        begin
-          tm_theme = Plist.parse_xml(input.gsub("ustring", "string"))
-        rescue
-          raise InvalidThemeError
-        end
-        raise InvalidThemeError if tm_theme.nil?
-        self.name = tm_theme["name"]
-        settings = tm_theme["settings"]
+        raise Coloration::Readers::TextMateThemeReader::InvalidThemeError unless tm_theme?
 
-        self.ui = settings.delete_at(0)["settings"]
         bg = Color::RGB.from_html(ui["background"][0..6])
         ui.each do |key, value|
           if value.start_with?("#")
@@ -53,6 +45,36 @@ module Coloration
         end
         self.items = ItemsLookup.new(items)
       end
+
+      # @return [void]
+      # @todo
+      def name
+        @name ||= tm_theme['name']
+      end
+
+      # @return [void]
+      # @todo
+      def ui
+        @ui ||= settings.delete_at(0)['settings']
+      end
+
+      private
+
+      # @return [void]
+      # @todo
+      def settings
+        tm_theme['settings']
+      end
+
+      # @return [Plist]
+      def tm_theme
+        @tm_theme ||= Plist.parse_xml(input.gsub('ustring', 'string'))
+
+      rescue
+        raise InvalidThemeError
+
+      end
+      alias_method :tm_theme?, :tm_theme
 
     end # TextMateThemeReader
 

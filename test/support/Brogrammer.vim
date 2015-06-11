@@ -1,5 +1,5 @@
 " Vim color file
-" Converted from Textmate theme Brogrammer using Coloration v0.3.3 (http://github.com/sickill/coloration)
+" Converted from Textmate theme Brogrammer using Coloration v0.4.0 (http://github.com/sickill/coloration)
 
 set background=dark
 highlight clear
