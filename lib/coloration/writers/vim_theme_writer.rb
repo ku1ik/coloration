@@ -34,22 +34,22 @@ module Coloration
         bg_line_color = @ui["background"].mix_with(@ui["foreground"], 90)
 
         ui_mapping = {
-          "Cursor" => Style.new(:fg => @ui['background'], :bg => @ui["caret"]),
-          "Visual" => Style.new(:bg => @ui["selection"]),
-          "CursorLine" => Style.new(:bg => bg_line_color),
-          "CursorColumn" => Style.new(:bg => bg_line_color),
-          "ColorColumn" => Style.new(:bg => bg_line_color),
-          "LineNr" => Style.new(:fg => @ui["foreground"].mix_with(@ui["background"], 50), :bg => bg_line_color),
-          "VertSplit" => Style.new(:fg => border_color, :bg => border_color),
-          "MatchParen" => Style.new(:fg => @items["keyword"].foreground, :underline => true),
-          "StatusLine" => Style.new(:fg => @ui["foreground"], :bg => border_color, :bold => true),
-          "StatusLineNC" => Style.new(:fg => @ui["foreground"], :bg => border_color),
-          "Pmenu" => "entity.name",
-          "PmenuSel" => Style.new(:bg => @ui["selection"]),
-          "IncSearch" => Style.new(:bg => @items['string'].foreground, :fg => @ui['background']),
-          "Search" => Style.new(:underline => true),
-          "Directory" => "constant.other.symbol",
-          "Folded" => Style.new(:fg => @items["comment"].try(:foreground), :bg => @ui["background"]),
+          'Cursor'       => Style.new(:fg => ui['background'], :bg => ui['caret']),
+          'Visual'       => Style.new(:bg => ui['selection']),
+          'CursorLine'   => Style.new(:bg => bg_line_color),
+          'CursorColumn' => Style.new(:bg => bg_line_color),
+          'ColorColumn'  => Style.new(:bg => bg_line_color),
+          'LineNr'       => Style.new(:fg => ui['foreground'].mix_with(ui['background'], 50), :bg => bg_line_color),
+          'VertSplit'    => Style.new(:fg => border_color, :bg => border_color),
+          'MatchParen'   => Style.new(:fg => @items['keyword'].foreground, :underline => true),
+          'StatusLine'   => Style.new(:fg => ui['foreground'], :bg => border_color, :bold => true),
+          'StatusLineNC' => Style.new(:fg => ui['foreground'], :bg => border_color),
+          'Pmenu'        => 'entity.name',
+          'PmenuSel'     => Style.new(:bg => ui['selection']),
+          'IncSearch'    => Style.new(:bg => @items['string'].foreground, :fg => ui['background']),
+          'Search'       => Style.new(:underline => true),
+          'Directory'    => 'constant.other.symbol',
+          'Folded'       => Style.new(:fg => @items['comment'].try(:foreground), :bg => ui['background']),
         }
 
         ui_mapping.keys.each do |key|

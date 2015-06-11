@@ -19,20 +19,20 @@ module Coloration
         @default_style.foreground = @ui["foreground"]
 
         items_mapping = {
-          "Alert"          => @items["invalid"],
-          "Base-N Integer" => @items["constant.numeric"],
-          "Character"      => @items["keyword.operator"],
-          "Comment"        => @items["comment"],
-          "Data Type"      => @items["entity.name.type"] || @items["entity.name.class"],
-          "Decimal/Value"  => @items["constant.numeric"],
-          "Error"          => @items["invalid"],
-          "Floating Point" => @items["constant.numeric"],
-          "Function"       => @items["entity.name.function"],
-          "Keyword"        => @items["keyword"],
-          "Normal"         => nil,
-          "Others"         => nil,
-          "Region Marker"  => nil,
-          "String"         => @items["string,string.quoted"]
+          'Alert'          => @items['invalid'],
+          'Base-N Integer' => @items['constant.numeric'],
+          'Character'      => @items['keyword.operator'],
+          'Comment'        => @items['comment'],
+          'Data Type'      => @items['entity.name.type'] || @items['entity.name.class'],
+          'Decimal/Value'  => @items['constant.numeric'],
+          'Error'          => @items['invalid'],
+          'Floating Point' => @items['constant.numeric'],
+          'Function'       => @items['entity.name.function'],
+          'Keyword'        => @items['keyword'],
+          'Normal'         => nil,
+          'Others'         => nil,
+          'Region Marker'  => nil,
+          'String'         => @items['string,string.quoted']
         }
 
         items_mapping.keys.each do |key|
