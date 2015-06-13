@@ -6,8 +6,6 @@ require 'plist'
 require 'textpow'
 
 require 'coloration/support/all'
-
-require 'coloration/color/all'
 require 'coloration/writers/all'
 require 'coloration/readers/all'
 require 'coloration/converters/all'
