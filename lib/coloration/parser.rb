@@ -64,7 +64,7 @@ module Coloration
 
       Coloration.log("Reader: #{@reader.inspect}")
 
-      @_reader ||= Coloration::Readers::TextMateReader.new(read, @reader)
+      @_reader ||= Coloration::Readers::TextMate.new(read, @reader)
     end
 
     # @return [void]

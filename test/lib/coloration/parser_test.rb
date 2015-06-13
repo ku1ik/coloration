@@ -39,7 +39,7 @@ module Coloration
 
           # context 'but has no writer defined' do
           #   before do
-          #     Coloration::Readers::TextMateReader.new('', reader).stubs(:writer)
+          #     Coloration::Readers::TextMate.new('', reader).stubs(:writer)
           #   end
 
           #   it { proc { subject }.must_raise(NoWriterError) }

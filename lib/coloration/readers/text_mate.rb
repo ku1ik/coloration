@@ -2,7 +2,7 @@ module Coloration
 
   module Readers
 
-    class TextMateReader
+    class TextMate
 
       # @!attribute [r] converter
       # @return [void]
@@ -31,12 +31,12 @@ module Coloration
       def parse
         ui.each do |key, value|
           if value.start_with?('#')
-            ui[key] = Color::RGBA.from_html(value, bg)
+            ui[key] = Coloration::Color::RGBA.from_html(value, bg)
           end
         end
         ui['background'] = bg
 
-        @items = ItemsLookup.new(items)
+        @items = Coloration::ItemsLookup.new(items)
       end
 
       # @return [void]
@@ -62,7 +62,7 @@ module Coloration
       # @return [void]
       # @todo
       def bg
-        @_bg ||= Color::RGB.from_html(ui_background)
+        @_bg ||= Coloration::Color::RGB.from_html(ui_background)
       end
 
       def input
@@ -87,7 +87,7 @@ module Coloration
             style[:underline] = true if font_style.include?('underline')
           end
 
-          style = Style.new(style, bg)
+          style = Coloration::Style.new(style, bg)
 
           unless selectors.blank? || style.blank?
             selectors.split(',').each do |selector|

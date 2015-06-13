@@ -5,11 +5,27 @@ require 'time'
 require 'plist'
 require 'textpow'
 
-require 'coloration/support/all'
-require 'coloration/writers/all'
-require 'coloration/readers/all'
-require 'coloration/converters/all'
-require 'coloration/all'
+require 'coloration/support/extensions'
+require 'coloration/support/items_lookup'
+require 'coloration/support/log'
+require 'coloration/support/style'
+require 'coloration/support/color/rgb'
+require 'coloration/support/color/rgba'
+
+require 'coloration/writers/abstract_writer'
+require 'coloration/writers/jedit'
+require 'coloration/writers/kate_part'
+require 'coloration/writers/vim'
+
+require 'coloration/readers/text_mate'
+
+require 'coloration/converters/text_mate/jedit'
+require 'coloration/converters/text_mate/kate_part'
+require 'coloration/converters/text_mate/vim'
+
+require 'coloration/cli_parser'
+require 'coloration/parser'
+require 'coloration/version'
 
 module Coloration
 
