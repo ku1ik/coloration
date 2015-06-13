@@ -9,10 +9,7 @@ module Coloration
       describe JEdit do
 
         let(:described) { Coloration::Converters::TextMate::JEdit }
-        # let(:instance)  { described.new(input, converter) }
         let(:instance)  { described.new }
-        # let(:input)     {}
-        # let(:converter) {}
 
         describe '#from' do
           it { instance.from.must_equal('TextMate') }
