@@ -19,9 +19,8 @@ module Coloration
 
         items.keys.each do |selector|
           score = score_manager.score(selector, key)
-          if score > best_score
-            best_score, best_selector = score, selector
-          end
+
+          best_score, best_selector = score, selector if score > best_score
         end
 
         return items[best_selector] if best_selector
