@@ -17,4 +17,5 @@ module MiniTest
   end
 end
 
+require 'mocha/setup'
 require 'coloration'
