@@ -14,7 +14,7 @@ module Coloration
                     writer:      writer) }
     let(:source)      { this_directory + '/../../support/Brogrammer.tmTheme'}
     let(:destination) { this_directory + '/../../support/Brogrammer.vim' }
-    let(:reader)      { Coloration::Converters::TextMate::Vim }
+    let(:reader)      { Coloration::Converters::TextMate::Vim.new }
     let(:writer)      { Coloration::Writers::Vim }
     let(:expected)    {
       File.read(this_directory + '/../../support/working_Brogrammer.vim')
@@ -35,7 +35,7 @@ module Coloration
 
       context 'when the all the required attributes are given' do
         context 'but the reader does not have a writer' do
-          let(:reader) { Coloration::Converters::TextMate::Vim }
+          let(:reader) { Coloration::Converters::TextMate::Vim.new }
 
           # context 'but has no writer defined' do
           #   before do
@@ -47,7 +47,7 @@ module Coloration
         end
 
         context 'when the reader is handling TextMate files' do
-          let(:reader) { Coloration::Converters::TextMate::Vim }
+          let(:reader) { Coloration::Converters::TextMate::Vim.new }
 
           # it { subject.must_equal(expected) }
         end

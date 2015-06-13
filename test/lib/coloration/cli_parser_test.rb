@@ -34,7 +34,7 @@ module Coloration
         end
 
         context 'when a reader is given but the theme was not parsed' do
-          let(:reader) { Coloration::Converters::TextMate::Vim }
+          let(:reader) { Coloration::Converters::TextMate::Vim.new }
 
           context 'when the theme was not parsed' do
             # it { proc { subject }.must_raise(InvalidThemeError) }
@@ -42,7 +42,7 @@ module Coloration
         end
 
         context 'when the TextMate to JEdit reader is given' do
-          let(:reader) { Coloration::Converters::TextMate::JEdit }
+          let(:reader) { Coloration::Converters::TextMate::JEdit.new }
 
           it {
             skip
@@ -55,13 +55,13 @@ module Coloration
         end
 
         context 'when the TextMate to KatePart reader is given' do
-          let(:reader) { Coloration::Converters::TextMate::KatePart }
+          let(:reader) { Coloration::Converters::TextMate::KatePart.new }
 
           it { skip }
         end
 
         context 'when the TextMate to Vim reader is given' do
-          let(:reader) { Coloration::Converters::TextMate::Vim }
+          let(:reader) { Coloration::Converters::TextMate::Vim.new }
 
           it { skip }
         end
@@ -73,7 +73,7 @@ module Coloration
         end
 
         context 'but a reader is given' do
-          let(:reader) { Coloration::Converters::TextMate::Vim }
+          let(:reader) { Coloration::Converters::TextMate::Vim.new }
 
           it { subject.must_equal('Usage: -e <in TextMate theme> [out Vim theme]') }
         end

@@ -78,7 +78,7 @@ module Coloration
       fail Coloration::NoReaderError,
         'No reader was specified.' unless @reader
 
-      @_reader ||= @reader.new
+      @reader
     end
 
     # @return [String]

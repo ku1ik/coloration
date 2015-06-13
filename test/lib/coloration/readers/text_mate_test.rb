@@ -12,7 +12,7 @@ module Coloration
       let(:described) { Coloration::Readers::TextMate }
       let(:instance)  { described.new(input, converter) }
       let(:input)     { File.read(directory + theme) }
-      let(:converter) { Coloration::Converters::TextMate::Vim }
+      let(:converter) { Coloration::Converters::TextMate::Vim.new }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
