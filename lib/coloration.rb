@@ -30,11 +30,12 @@ require 'coloration/version'
 module Coloration
 
   EXCEPTIONS = %w(
-    NoSourceError
+    InvalidThemeError
+    NoConverterError
     NoDestinationError
     NoReaderError
+    NoSourceError
     NoWriterError
-    InvalidThemeError
   )
   EXCEPTIONS.each { |e| const_set(e, Class.new(StandardError)) }
 
