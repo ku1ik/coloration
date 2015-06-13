@@ -12,28 +12,28 @@ module Coloration
     # @todo
     attr_reader :destination
 
+    # @param converter []
     # @param destination []
-    # @param reader []
     # @param source []
     # @param writer []
     # @return [void]
     # @todo
-    def self.process(destination:, reader:, source:, writer: nil)
-      new(destination: destination,
-          reader:      reader,
+    def self.process(converter:, destination:, source:, writer: nil)
+      new(converter:   converter,
+          destination: destination,
           source:      source,
           writer:      writer).process
     end
 
+    # @param converter []
     # @param destination []
-    # @param reader []
     # @param source []
     # @param writer []
     # @return [void]
     # @todo
-    def initialize(destination:, reader:, source:, writer: nil)
+    def initialize(converter:, destination:, source:, writer: nil)
+      @converter   = converter
       @destination = destination
-      @reader      = reader
       @source      = source
       @writer      = writer
     end
@@ -43,6 +43,13 @@ module Coloration
     def process
       write
     end
+
+    protected
+
+    # @!attribute [r] converter
+    # @return [void]
+    # @todo
+    attr_reader :converter
 
     private
 
@@ -60,11 +67,11 @@ module Coloration
     # @return [void]
     # @todo
     def reader
-      fail Coloration::NoReaderError, 'No reader was specified.' unless @reader
+      fail Coloration::NoConverterError, 'No converter was specified.' unless converter
 
-      Coloration.log("Reader: #{@reader.inspect}")
+      Coloration.log("Converter: #{converter.inspect}")
 
-      @_reader ||= Coloration::Readers::TextMate.new(read, @reader)
+      @reader ||= Coloration::Readers::TextMate.new(read, converter)
     end
 
     # @return [void]
@@ -74,7 +81,8 @@ module Coloration
 
       Coloration.log("Writer: #{writer.inspect}")
 
-      @_writer ||= writer.translate(input, @reader)
+      # not sure if this should be reader
+      @_writer ||= writer.translate(input, reader)
     end
 
     # @return [void]
@@ -100,7 +108,7 @@ module Coloration
     # @return [void]
     # @todo
     def writer
-      @writer || reader.writer
+      @writer || converter.writer
     end
 
   end # Parser

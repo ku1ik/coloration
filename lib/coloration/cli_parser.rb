@@ -2,21 +2,29 @@ module Coloration
 
   class CLIParser
 
-    # @param reader []
+    extend Forwardable
+
+    def_delegators :converter, :from,
+                               :from_type,
+                               :to,
+                               :to_type,
+                               :writer
+
+    # @param converter []
     # @param argv [Array<String>]
     # @return [void]
     # @todo
-    def self.process(reader, argv = ARGV)
-      new(reader, argv).process
+    def self.process(converter, argv = ARGV)
+      new(converter, argv).process
     end
 
-    # @param reader []
+    # @param converter []
     # @param argv [Array<String>]
     # @return [Coloration::CLIParser]
     # @todo
-    def initialize(reader, argv = ARGV)
-      @reader = reader
-      @argv   = argv
+    def initialize(converter, argv = ARGV)
+      @converter = converter
+      @argv      = argv
     end
 
     # @return [void]
@@ -25,7 +33,7 @@ module Coloration
       return usage unless arguments?
 
       Coloration::Parser.process(destination: destination,
-                                 reader:      reader,
+                                 converter:   converter,
                                  source:      source,
                                  writer:      writer)
 
@@ -33,6 +41,13 @@ module Coloration
       error
 
     end
+
+    protected
+
+    # @!attribute [r] converter
+    # @return [void]
+    # @todo
+    attr_reader :converter
 
     private
 
@@ -63,37 +78,17 @@ module Coloration
       message
     end
 
-    # @return [String]
-    def from
-      reader.from
-    end
-
-    # @return [String]
-    def from_type
-      reader.from_type
-    end
-
     # @return [void]
-    def reader
-      fail Coloration::NoReaderError,
-        'No reader was specified.' unless @reader
+    def converter
+      fail Coloration::NoConverterError,
+        'No converter was specified.' unless @converter || @_converter
 
-      @reader
+      @_converter ||= @converter
     end
 
     # @return [String]
     def source
       argv[0]
-    end
-
-    # @return [String]
-    def to
-      reader.to
-    end
-
-    # @return [String]
-    def to_type
-      reader.to_type
     end
 
     # @return [void]
@@ -106,12 +101,6 @@ module Coloration
       STDOUT.puts message
 
       message
-    end
-
-    # @return [Class]
-    # @todo
-    def writer
-      reader.writer
     end
 
   end # CLIParser

@@ -5,6 +5,11 @@ require 'minitest/hell'
 
 SimpleCov.start do
   command_name 'MiniTest::Spec'
+  add_filter   '/test/'
+  add_group    'converters', 'coloration/converters'
+  add_group    'readers',    'coloration/readers'
+  add_group    'support',    'coloration/support'
+  add_group    'writers',    'coloration/writers'
 end unless ENV['no_simplecov']
 
 module MiniTest
