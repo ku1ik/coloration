@@ -7,14 +7,14 @@ module Coloration
     describe KatePart do
 
       let(:described) { Coloration::Writers::KatePart }
-      let(:instance)  { described.new(input, converter) }
+      let(:instance)  { described.new(input, reader) }
       let(:input)     {}
-      let(:converter) {}
+      let(:reader)    {}
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@input').must_equal(input) }
-        it { instance.instance_variable_get('@converter').must_equal(converter) }
+        it { instance.instance_variable_get('@reader').must_equal(reader) }
       end
 
       describe '.translate' do
