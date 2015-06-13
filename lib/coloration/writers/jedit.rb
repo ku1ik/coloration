@@ -6,13 +6,25 @@ module Coloration
 
       include Coloration::Writers::AbstractWriter
 
-      # @param input []
-      # @param converter []
+      # @!attribute [r] from
       # @return [String]
+      attr_reader :from
+
+      # @!attribute [r] name
+      # @return [String]
+      attr_reader :name
+
+      # @param input [String]
+      # @param converter []
+      # @param from [String]
+      # @param name [String]
+      # @return [Coloration::Writers::JEdit]
       # @todo
-      def initialize(input, converter)
+      def initialize(input, converter, from, name)
         @input     = input
         @converter = converter
+        @from      = from
+        @name      = name
       end
 
       # @return [String]

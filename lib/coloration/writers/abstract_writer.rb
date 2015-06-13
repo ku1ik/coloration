@@ -10,23 +10,24 @@ module Coloration
 
       module ClassMethods
 
-        # @param input []
+        # @param input [String]
         # @param converter []
+        # @param from [String]
+        # @param name [String]
         # @return [String]
         # @todo
-        def translate(input, converter)
-          new(input, converter).translate
+        def translate(input, converter, from, name)
+          new(input, converter, from, name).translate
         end
 
-      end
+      end # ClassMethods
 
       module InstanceMethods
 
         # @return [String]
         def comment_message
-          "Converted from '#{converter.from}' theme " \
-          "'#{converter.name}' using Coloration v#{VERSION} "  \
-          "(http://github.com/sickill/coloration)"
+          "Converted from '#{from}' theme '#{name}' using Coloration "\
+          "v#{VERSION} (http://github.com/sickill/coloration)"
         end
 
         # @param name [String]
@@ -50,14 +51,7 @@ module Coloration
           @lines.join("\n")
         end
 
-        private
-
-        # @!attribute [r] reader
-        # @return [void]
-        # @todo
-        attr_reader :reader
-
-      end
+      end # InstanceMethods
 
       # When this module is included in a class, provide ClassMethods as class
       # methods for the class.
