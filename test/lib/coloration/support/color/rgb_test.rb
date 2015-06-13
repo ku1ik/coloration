@@ -13,11 +13,37 @@ module Coloration
       let(:b)         { 128 }
 
       describe '.from_html' do
-        let(:html_colour) { '#a5d713' }
-
         subject { described.from_html(html_colour) }
 
-        it { skip }
+        context 'with no colour' do
+          let(:html_colour) { '' }
+
+          it { subject.must_be_instance_of(NilClass) }
+        end
+
+        context 'with a short CSS form colour' do
+          let(:html_colour) { '#ad1' }
+
+          it {
+            Coloration::Color::RGB.expects(:new).with(170, 221, 17)
+            subject
+          }
+        end
+
+        context 'with a normal CSS form colour' do
+          let(:html_colour) { '#a5d713' }
+
+          it {
+            Coloration::Color::RGB.expects(:new).with(165, 215, 19)
+            subject
+          }
+        end
+
+        context 'with an invalid colour' do
+          let(:html_colour) { :invalid }
+
+          it { proc { subject }.must_raise(ArgumentError) }
+        end
       end
 
       describe '#initialize' do

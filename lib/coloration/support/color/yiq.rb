@@ -9,7 +9,7 @@ module Coloration
       #
       #   Color::YIQ.new(0.3, 0.2, 0.1)
       def self.from_fraction(y = 0, i = 0, q = 0)
-        color = Color::YIQ.new
+        color = Coloration::Color::YIQ.new
         color.y = y
         color.i = i
         color.q = q
@@ -34,7 +34,7 @@ module Coloration
       # other.
       def ==(other)
         other = other.to_yiq
-        other.kind_of?(Color::YIQ) and
+        other.kind_of?(Coloration::Color::YIQ) and
         ((@y - other.y).abs <= 1e-4) and
         ((@i - other.i).abs <= 1e-4) and
         ((@q - other.q).abs <= 1e-4)

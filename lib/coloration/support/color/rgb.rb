@@ -14,8 +14,12 @@ module Coloration
         #   Color::RGB.from_html("#fed")
         #   Color::RGB.from_html("#cabbed")
         #   Color::RGB.from_html("cabbed")
-        def from_html(html_colour)
-          html_colour = html_colour.gsub(%r{[#;]}, '')
+        def from_html(html_colour = '')
+          raise ArgumentError unless html_colour.is_a?(String)
+
+          return nil if html_colour.nil? || html_colour.empty?
+
+          html_colour = html_colour.to_s.gsub(%r{[#;]}, '')
 
           case html_colour.size
           when 0
@@ -28,7 +32,7 @@ module Coloration
             raise ArgumentError
           end
 
-          Color::RGB.new(*colours)
+          Coloration::Color::RGB.new(*colours)
         end
 
       end
@@ -52,7 +56,7 @@ module Coloration
       # (0.0001) of each other.
       def ==(other)
         other = other.to_rgb
-        other.kind_of?(Color::RGB) and
+        other.kind_of?(Coloration::Color::RGB) and
         ((@r - other.r).abs <= 1e-4) and
         ((@g - other.g).abs <= 1e-4) and
         ((@b - other.b).abs <= 1e-4)
@@ -73,6 +77,7 @@ module Coloration
         y = (@r * 0.299) + (@g *  0.587) + (@b *  0.114)
         i = (@r * 0.596) + (@g * -0.275) + (@b * -0.321)
         q = (@r * 0.212) + (@g * -0.523) + (@b *  0.311)
+
         Coloration::Color::YIQ.from_fraction(y, i, q)
       end
 
