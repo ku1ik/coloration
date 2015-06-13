@@ -44,7 +44,7 @@ module Coloration
         store "[Default Item Styles - Schema #{converter.name}]"
 
         @default_style = Style.new
-        @default_style.foreground = @ui["foreground"]
+        @default_style.foreground = ui["foreground"]
 
         items_mapping = {
           'Alert'          => @items['invalid'],
@@ -121,10 +121,10 @@ module Coloration
         store "[#{converter.name}]"
 
         ui_mapping = {
-          'Color Background'            => @ui['background'],
-          'Color Highlighted Bracket'   => @ui['background'],
-          'Color Highlighted Line'      => @ui['lineHighlight'],
-          # 'Color Icon Bar' => @ui[:background],
+          'Color Background'            => ui['background'],
+          'Color Highlighted Bracket'   => ui['background'],
+          'Color Highlighted Line'      => ui['lineHighlight'],
+          # 'Color Icon Bar' => ui[:background],
           # 'Color Line Number' => :,
           # 'Color MarkType1' => :,
           # 'Color MarkType2' => :,
@@ -133,13 +133,13 @@ module Coloration
           # 'Color MarkType5' => :,
           # 'Color MarkType6' => :,
           # 'Color MarkType7' => :,
-          'Color Selection'             => @ui['selection'],
-          'Color Tab Marker'            => @ui['invisibles'],
+          'Color Selection'             => ui['selection'],
+          'Color Tab Marker'            => ui['invisibles'],
           # 'Color Template Background' => :,
           # 'Color Template Editable Placeholder' => :,
           # 'Color Template Focused Editable Placeholder' => :,
           # 'Color Template Not Editable Placeholder' => :,
-          'Color Word Wrap Marker'      => @ui['invisibles']
+          'Color Word Wrap Marker'      => ui['invisibles']
         }
         ui_mapping.keys.each do |key|
           store "#{key}=#{hex2rgb(ui_mapping[key])}"
@@ -184,7 +184,7 @@ module Coloration
       # @param col []
       # @return [String]
       def hex2rgb(col)
-        "#{(col.r*255).to_i},#{(col.g*255).to_i},#{(col.b*255).to_i}"
+        "#{(col.r * 255).to_i},#{(col.g * 255).to_i},#{(col.b * 255).to_i}"
       end
 
     end # KatePart
