@@ -58,6 +58,24 @@ module Coloration
         ((@b - other.b).abs <= 1e-4)
       end
 
+      # Returns the brightness value for a colour, a number between 0..1.
+      # Based on the Y value of YIQ encoding, representing luminosity, or
+      # perceived brightness.
+      #
+      # This may be modified in a future version of color-tools to use the
+      # luminosity value of HSL.
+      def brightness
+        to_yiq.y
+      end
+
+      # Returns the YIQ (NTSC) colour encoding of the RGB value.
+      def to_yiq
+        y = (@r * 0.299) + (@g *  0.587) + (@b *  0.114)
+        i = (@r * 0.596) + (@g * -0.275) + (@b * -0.321)
+        q = (@r * 0.212) + (@g * -0.523) + (@b *  0.311)
+        Coloration::Color::YIQ.from_fraction(y, i, q)
+      end
+
       # Present the colour as an HTML/CSS colour string.
       def html
         r = (@r * 255).round

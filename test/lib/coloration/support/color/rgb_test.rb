@@ -17,7 +17,7 @@ module Coloration
         it { skip }
       end
 
-    end # RGBA
+    end # RGB
 
   end # Color
 

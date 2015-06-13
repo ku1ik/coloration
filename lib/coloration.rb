@@ -9,6 +9,7 @@ require 'coloration/support/extensions'
 require 'coloration/support/items_lookup'
 require 'coloration/support/log'
 require 'coloration/support/style'
+require 'coloration/support/color/yiq'
 require 'coloration/support/color/rgb'
 require 'coloration/support/color/rgba'
 
