@@ -7,12 +7,12 @@ module Coloration
       include Coloration::Writers::AbstractWriter
 
       # @param input []
-      # @param reader []
+      # @param converter []
       # @return [String]
       # @todo
-      def initialize(input, reader)
-        @input  = input
-        @reader = reader
+      def initialize(input, converter)
+        @input     = input
+        @converter = converter
       end
 
       # @return [String]
@@ -65,10 +65,10 @@ module Coloration
 
       private
 
-      # @!attribute [r] reader
+      # @!attribute [r] converter
       # @return [void]
       # @todo
-      attr_reader :reader
+      attr_reader :converter
 
       # @param value [String]
       # @return [String]

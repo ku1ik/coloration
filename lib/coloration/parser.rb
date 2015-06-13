@@ -67,7 +67,8 @@ module Coloration
     # @return [void]
     # @todo
     def reader
-      fail Coloration::NoConverterError, 'No converter was specified.' unless converter
+      fail Coloration::NoConverterError,
+        'No converter was specified.' unless converter
 
       Coloration.log("Converter: #{converter.inspect}")
 
@@ -81,8 +82,7 @@ module Coloration
 
       Coloration.log("Writer: #{writer.inspect}")
 
-      # not sure if this should be reader
-      @_writer ||= writer.translate(input, reader)
+      @_writer ||= writer.translate(input, converter)
     end
 
     # @return [void]

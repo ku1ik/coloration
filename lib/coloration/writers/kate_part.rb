@@ -7,12 +7,12 @@ module Coloration
       include Coloration::Writers::AbstractWriter
 
       # @param input []
-      # @param reader []
+      # @param converter []
       # @return [void]
       # @todo
-      def initialize(input, reader)
-        @input  = input
-        @reader = reader
+      def initialize(input, converter)
+        @input     = input
+        @converter = converter
       end
 
       # @return [String]
@@ -23,7 +23,7 @@ module Coloration
         add_comment "-" * 20 + " Put following in katesyntaxhighlightingrc " + "-" * 20
         store
 
-        store "[Default Item Styles - Schema #{reader.name}]"
+        store "[Default Item Styles - Schema #{converter.name}]"
 
         @default_style = Style.new
         @default_style.foreground = @ui["foreground"]
@@ -51,7 +51,7 @@ module Coloration
 
         store
 
-        store "[Highlighting Ruby - Schema #{reader.name}]"
+        store "[Highlighting Ruby - Schema #{converter.name}]"
         store 'Ruby:Access Control=0,' + format_style(@items['storage.modifier'])
         store 'Ruby:Command=0,' + format_style(@items['string.interpolated'])
         store 'Ruby:Constant=0,' + format_style(@items['constant'])
@@ -75,12 +75,12 @@ module Coloration
 
         store
 
-        store "[Highlighting JavaScript - Schema #{reader.name}]"
+        store "[Highlighting JavaScript - Schema #{converter.name}]"
         store 'JavaScript:Objects=0,' + format_style(@items['variable.language'])
 
         store
 
-        store "[Highlighting Ruby/Rails/RHTML - Schema #{reader.name}]"
+        store "[Highlighting Ruby/Rails/RHTML - Schema #{converter.name}]"
         store 'Ruby/Rails/RHTML:Message=0,' + format_style(@default_style)
         store 'Ruby/Rails/RHTML:Raw String=0,' + format_style(@items['string.quoted.single'])
         store 'Ruby/Rails/RHTML:Symbol=0,' + format_style(@items['constant.other.symbol.ruby'])
@@ -91,7 +91,7 @@ module Coloration
 
         store
 
-        store "[Highlighting XML - Schema #{reader.name}]"
+        store "[Highlighting XML - Schema #{converter.name}]"
         store 'XML:Value=0,' + format_style(@items['string,string.quoted'])
         store 'XML:Element=0,' + format_style(@items['meta.tag'] || @items['entity.name.tag'])
         store 'XML:Attribute=0,' + format_style(@items['entity.other.attribute-name'])
@@ -100,7 +100,7 @@ module Coloration
         add_comment '-' * 20 + ' Put following in kateschemarc ' + '-' * 20
         store
 
-        store "[#{reader.name}]"
+        store "[#{converter.name}]"
 
         ui_mapping = {
           'Color Background'            => @ui['background'],
@@ -132,10 +132,10 @@ module Coloration
 
       private
 
-      # @!attribute [r] reader
+      # @!attribute [r] converter
       # @return [void]
       # @todo
-      attr_reader :reader
+      attr_reader :converter
 
       # @param comment [String]
       # @return [void]

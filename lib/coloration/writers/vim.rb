@@ -13,12 +13,12 @@ module Coloration
                        0xBC, 0xC6, 0xD0, 0xDA, 0xE4, 0xEE ]
 
       # @param input []
-      # @param reader []
+      # @param converter []
       # @return [void]
       # @todo
-      def initialize(input, reader)
-        @input  = input
-        @reader = reader
+      def initialize(input, converter)
+        @input     = input
+        @converter = converter
       end
 
       # @return [String]
@@ -36,7 +36,7 @@ module Coloration
         store '  syntax reset'
         store 'endif'
         store
-        store "let g:colors_name = \"#{reader.name}\""
+        store "let g:colors_name = \"#{converter.name}\""
         store
 
         default_style = Style.new(:fg => ui['foreground'])
@@ -199,10 +199,10 @@ module Coloration
 
       private
 
-      # @!attribute [r] reader
+      # @!attribute [r] converter
       # @return [void]
       # @todo
-      attr_reader :reader
+      attr_reader :converter
 
       # @param name []
       # @param style_or_item_name []

@@ -6,16 +6,16 @@ module Coloration
 
       extend Forwardable
 
-      def_delegators :reader, :ui, :items
+      def_delegators :converter, :ui, :items
 
       module ClassMethods
 
         # @param input []
-        # @param reader []
+        # @param converter []
         # @return [String]
         # @todo
-        def translate(input, reader)
-          new(input, reader).translate
+        def translate(input, converter)
+          new(input, converter).translate
         end
 
       end
@@ -24,8 +24,8 @@ module Coloration
 
         # @return [String]
         def comment_message
-          "Converted from '#{reader.from}' theme " \
-          "'#{reader.name}' using Coloration v#{VERSION} "  \
+          "Converted from '#{converter.from}' theme " \
+          "'#{converter.name}' using Coloration v#{VERSION} "  \
           "(http://github.com/sickill/coloration)"
         end
 

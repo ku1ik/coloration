@@ -7,8 +7,7 @@ module Coloration
       # @!attribute [r] converter
       # @return [void]
       # @todo
-      attr_reader  :converter
-      alias_method :reader, :converter
+      attr_reader :converter
 
       # @param input []
       # @param converter []
@@ -54,7 +53,7 @@ module Coloration
       # @return [void]
       # @todo
       def writer
-        converter.new.writer
+        converter.writer
       end
 
       private
