@@ -43,7 +43,7 @@ module Coloration
 
         store "[Default Item Styles - Schema #{converter.name}]"
 
-        @default_style = Style.new
+        @default_style = Coloration::Style.new
         @default_style.foreground = ui["foreground"]
 
         items_mapping = {

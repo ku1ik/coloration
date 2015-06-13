@@ -57,28 +57,28 @@ module Coloration
         store "let g:colors_name = \"#{name}\""
         store
 
-        default_style = Style.new(:fg => ui['foreground'])
+        default_style = Coloration::Style.new(:fg => ui['foreground'])
         border_color  = ui['background'].mix_with(ui['foreground'], 71)
         bg_line_color = ui['background'].mix_with(ui['foreground'], 90)
 
         ui_mapping = {
-          # 'Folded'       => Style.new(:fg => @items['comment'].try(:foreground), :bg => ui['background']),
-          # 'IncSearch'    => Style.new(:bg => @items['string'].foreground, :fg => ui['background']),
-          # 'MatchParen'   => Style.new(:fg => @items['keyword'].foreground, :underline => true),
+          # 'Folded'       => Coloration::Style.new(:fg => @items['comment'].try(:foreground), :bg => ui['background']),
+          # 'IncSearch'    => Coloration::Style.new(:bg => @items['string'].foreground, :fg => ui['background']),
+          # 'MatchParen'   => Coloration::Style.new(:fg => @items['keyword'].foreground, :underline => true),
 
-          'ColorColumn'  => Style.new(:bg => bg_line_color),
-          'Cursor'       => Style.new(:fg => ui['background'], :bg => ui['caret']),
-          'CursorColumn' => Style.new(:bg => bg_line_color),
-          'CursorLine'   => Style.new(:bg => bg_line_color),
+          'ColorColumn'  => Coloration::Style.new(:bg => bg_line_color),
+          'Cursor'       => Coloration::Style.new(:fg => ui['background'], :bg => ui['caret']),
+          'CursorColumn' => Coloration::Style.new(:bg => bg_line_color),
+          'CursorLine'   => Coloration::Style.new(:bg => bg_line_color),
           'Directory'    => 'constant.other.symbol',
-          'LineNr'       => Style.new(:fg => ui['foreground'].mix_with(ui['background'], 50), :bg => bg_line_color),
+          'LineNr'       => Coloration::Style.new(:fg => ui['foreground'].mix_with(ui['background'], 50), :bg => bg_line_color),
           'Pmenu'        => 'entity.name',
-          'PmenuSel'     => Style.new(:bg => ui['selection']),
-          'Search'       => Style.new(:underline => true),
-          'StatusLine'   => Style.new(:fg => ui['foreground'], :bg => border_color, :bold => true),
-          'StatusLineNC' => Style.new(:fg => ui['foreground'], :bg => border_color),
-          'VertSplit'    => Style.new(:fg => border_color, :bg => border_color),
-          'Visual'       => Style.new(:bg => ui['selection']),
+          'PmenuSel'     => Coloration::Style.new(:bg => ui['selection']),
+          'Search'       => Coloration::Style.new(:underline => true),
+          'StatusLine'   => Coloration::Style.new(:fg => ui['foreground'], :bg => border_color, :bold => true),
+          'StatusLineNC' => Coloration::Style.new(:fg => ui['foreground'], :bg => border_color),
+          'VertSplit'    => Coloration::Style.new(:fg => border_color, :bg => border_color),
+          'Visual'       => Coloration::Style.new(:bg => ui['selection']),
         }
 
         ui_mapping.keys.each do |key|
@@ -90,14 +90,14 @@ module Coloration
         bg_brightness = ui['background'].brightness
         if bg_brightness >= 0.5
           # from Tango palette, lighter
-          red   = Color::RGB.from_html '#ef2929'
-          green = Color::RGB.from_html '#8ae234'
-          blue  = Color::RGB.from_html '#729fcf'
+          red   = Coloration::Color::RGB.from_html '#ef2929'
+          green = Coloration::Color::RGB.from_html '#8ae234'
+          blue  = Coloration::Color::RGB.from_html '#729fcf'
         else
           # from Tango palette, darker
-          red   = Color::RGB.from_html '#a40000'
-          green = Color::RGB.from_html '#4e9a06'
-          blue  = Color::RGB.from_html '#204a87'
+          red   = Coloration::Color::RGB.from_html '#a40000'
+          green = Coloration::Color::RGB.from_html '#4e9a06'
+          blue  = Coloration::Color::RGB.from_html '#204a87'
         end
 
         items_mapping = {
@@ -123,30 +123,30 @@ module Coloration
           'Conditional'  => 'keyword.control',
           'Constant'     => 'constant',
           'Define'       => 'keyword',
-          'DiffAdd'      => Style.new(:bg => green.mix_with(ui['background'], 80), :fg => ui['foreground'], :bold => true),
-          'DiffChange'   => Style.new(:bg => blue.mix_with(ui['background'], 50), :fg => ui['foreground']),
-          'DiffDelete'   => Style.new(:fg => red.mix_with(ui['background'], 80)),
-          'DiffText'     => Style.new(:bg => blue.mix_with(ui['background'], 100), :fg => ui['foreground'], :bold => true),
+          'DiffAdd'      => Coloration::Style.new(:bg => green.mix_with(ui['background'], 80), :fg => ui['foreground'], :bold => true),
+          'DiffChange'   => Coloration::Style.new(:bg => blue.mix_with(ui['background'], 50), :fg => ui['foreground']),
+          'DiffDelete'   => Coloration::Style.new(:fg => red.mix_with(ui['background'], 80)),
+          'DiffText'     => Coloration::Style.new(:bg => blue.mix_with(ui['background'], 100), :fg => ui['foreground'], :bold => true),
           'ErrorMsg'     => 'invalid',
           'Float'        => 'constant.numeric',
           'Function'     => 'entity.name.function',
           'Identifier'   => 'storage.type',
           'Keyword'      => 'keyword',
           'Label'        => 'string.other',
-          'NonText'      => Style.new(:fg => ui['invisibles'], :bg => ui['background'].mix_with(ui['foreground'], 95)),
-          'Normal'       => Style.new(:fg => ui['foreground'], :bg => ui['background']),
+          'NonText'      => Coloration::Style.new(:fg => ui['invisibles'], :bg => ui['background'].mix_with(ui['foreground'], 95)),
+          'Normal'       => Coloration::Style.new(:fg => ui['foreground'], :bg => ui['background']),
           'Number'       => 'constant.numeric',
           'Operator'     => 'keyword.operator',
           'PreProc'      => 'keyword.other',
-          'Special'      => Style.new(:fg => ui['foreground']),
-          'SpecialKey'   => Style.new(:fg => ui['invisibles'], :bg => bg_line_color),
+          'Special'      => Coloration::Style.new(:fg => ui['foreground']),
+          'SpecialKey'   => Coloration::Style.new(:fg => ui['invisibles'], :bg => bg_line_color),
           'Statement'    => 'keyword.control',
           'StorageClass' => 'storage.type',
           'String'       => 'string,string.quoted',
           'Tag'          => 'entity.name.tag',
-          'Title'        => Style.new(:fg => ui['foreground'], :bold => true),
+          'Title'        => Coloration::Style.new(:fg => ui['foreground'], :bold => true),
           'Type'         => 'entity.name.type',
-          'Underlined'   => Style.new(:underline => true),
+          'Underlined'   => Coloration::Style.new(:underline => true),
           'WarningMsg'   => 'invalid',
 
           # ruby
@@ -231,12 +231,12 @@ module Coloration
       # @return [void]
       # @todo
       def format_item(name, style_or_item_name)
-        fail RuntimeError, "Style for #{name} is missing!" unless style_or_item_name
+        fail RuntimeError, "Coloration::Style for #{name} is missing!" unless style_or_item_name
 
         if style_or_item_name == :inverse
           "hi #{name} gui=inverse"
         else
-          style = if style_or_item_name.is_a?(Style)
+          style = if style_or_item_name.is_a?(Coloration::Style)
             style_or_item_name
           else
             # @items[style_or_item_name]
@@ -249,7 +249,7 @@ module Coloration
       # @return [String]
       # @todo
       def format_style(style)
-        style ||= Style.new
+        style ||= Coloration::Style.new
 
         if fg = style.foreground
           ctermfg = rgb_to_xterm256(fg)

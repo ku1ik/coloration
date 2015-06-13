@@ -72,7 +72,7 @@ module Coloration
           'view.style.markup'   => @items['meta.tag'] || @items['entity.name.tag'] # <div>
         }
 
-        default_style = Style.new
+        default_style = Coloration::Style.new
         default_style.foreground = ui['foreground']
         items_mapping.keys.each do |key|
           store(format_item(key, items_mapping[key] || default_style))
@@ -100,7 +100,7 @@ module Coloration
       # @todo
       def format_ui(name, value)
         case value
-        when Color::RGB
+        when Coloration::Color::RGB
           value = value.html
         else
           value = value.to_s
