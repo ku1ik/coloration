@@ -2,31 +2,27 @@ require 'test_helper'
 
 module Coloration
 
-  module Readers
+  describe ItemsLookup do
 
-    describe ItemsLookup do
+    let(:described) { Coloration::ItemsLookup }
+    let(:instance)  { described.new(items) }
+    let(:items)     {}
 
-      let(:described) { Coloration::Readers::ItemsLookup }
-      let(:instance)  { described.new(items) }
-      let(:items)     {}
+    describe '#initialize' do
+      subject { instance }
 
-      describe '#initialize' do
-        subject { instance }
+      it { subject.must_be_instance_of(described) }
+      it { subject.instance_variable_get('@items').must_equal(items) }
+    end
 
-        it { subject.must_be_instance_of(described) }
-        it { subject.instance_variable_get('@items').must_equal(items) }
-      end
+    describe '#[]' do
+      let(:keys) {}
 
-      describe '#[]' do
-        let(:keys) {}
+      subject { instance.[](keys) }
 
-        subject { instance.[](keys) }
+      it { skip }
+    end
 
-        it { skip }
-      end
-
-    end # ItemLookup
-
-  end # Readers
+  end # ItemLookup
 
 end # Coloration

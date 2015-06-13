@@ -1,53 +1,49 @@
 module Coloration
 
-  module Readers
+  class ItemsLookup
 
-    class ItemsLookup
+    # @param items []
+    # @return [Coloration::Readers::ItemsLookup]
+    # @todo
+    def initialize(items)
+      @items = items
+    end
 
-      # @param items []
-      # @return [Coloration::Readers::ItemsLookup]
-      # @todo
-      def initialize(items)
-        @items = items
-      end
+    # @param keys []
+    # @return [void]
+    # @todo
+    def [](keys)
+      keys.split(',').each do |key|
+        best_selector = nil
+        best_score = 0
 
-      # @param keys []
-      # @return [void]
-      # @todo
-      def [](keys)
-        keys.split(',').each do |key|
-          best_selector = nil
-          best_score = 0
-
-          items.keys.each do |selector|
-            score = score_manager.score(selector, key)
-            if score > best_score
-              best_score, best_selector = score, selector
-            end
+        items.keys.each do |selector|
+          score = score_manager.score(selector, key)
+          if score > best_score
+            best_score, best_selector = score, selector
           end
-
-          return items[best_selector] if best_selector
         end
 
-        nil
+        return items[best_selector] if best_selector
       end
 
-      protected
+      nil
+    end
 
-      # @!attribute [r] items
-      # @return [void]
-      # @todo
-      attr_reader :items
+    protected
 
-      private
+    # @!attribute [r] items
+    # @return [void]
+    # @todo
+    attr_reader :items
 
-      # @return [Textpow::ScoreManager]
-      def score_manager
-        @score_manager ||= Textpow::ScoreManager.new
-      end
+    private
 
-    end # ItemsLookup
+    # @return [Textpow::ScoreManager]
+    def score_manager
+      @score_manager ||= Textpow::ScoreManager.new
+    end
 
-  end # Readers
+  end # ItemsLookup
 
 end # Coloration
