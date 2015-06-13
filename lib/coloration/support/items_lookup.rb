@@ -15,7 +15,7 @@ module Coloration
       # @return [void]
       # @todo
       def [](keys)
-        keys.split(",").each do |key|
+        keys.split(',').each do |key|
           best_selector = nil
           best_score = 0
 
