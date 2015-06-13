@@ -14,17 +14,23 @@ module Coloration
       # @return [String]
       attr_reader :name
 
+      # @!attribute [r] ui
+      # @return [String]
+      attr_reader :ui
+
       # @param input [String]
       # @param converter []
       # @param from [String]
       # @param name [String]
+      # @param ui []
       # @return [Coloration::Writers::JEdit]
       # @todo
-      def initialize(input, converter, from, name)
+      def initialize(input, converter, from, name, ui)
         @input     = input
         @converter = converter
         @from      = from
         @name      = name
+        @ui        = ui
       end
 
       # @return [String]

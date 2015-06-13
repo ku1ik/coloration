@@ -14,10 +14,11 @@ module Coloration
         # @param converter []
         # @param from [String]
         # @param name [String]
+        # @param ui []
         # @return [String]
         # @todo
-        def translate(input, converter, from, name)
-          new(input, converter, from, name).translate
+        def translate(input, converter, from, name, ui)
+          new(input, converter, from, name, ui).translate
         end
 
       end # ClassMethods
