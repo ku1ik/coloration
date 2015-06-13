@@ -3,7 +3,7 @@
 ## About
 
 __Coloration__ is editor/IDE color scheme converter. Right now it allows you to
- convert your favourite Textmate color scheme (in XML plist format) to Vim,
+ convert your favourite TextMate color scheme (in XML plist format) to Vim,
  JEdit and KDevelop/Kate/Kwrite color scheme. It tries to do its best to
  generate the most accurate result for given target.
 

@@ -1,5 +1,3 @@
-require 'textpow'
-
 module Coloration
 
   module Readers

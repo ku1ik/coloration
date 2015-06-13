@@ -5,4 +5,5 @@ $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 
 require 'coloration'
 
-Coloration::Converters::Textmate2KatePartConverter.process_cmd_line
+argv = ARGV.dup
+Coloration::CLIParser.process(Coloration::Converters::TextMate::KatePart, argv)

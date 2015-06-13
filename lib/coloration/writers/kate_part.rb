@@ -2,18 +2,28 @@ module Coloration
 
   module Writers
 
-    module KatePartThemeWriter
+    class KatePart
 
       include Coloration::Writers::AbstractWriter
 
+      # @param input []
+      # @param reader []
       # @return [void]
       # @todo
-      def build_result
+      def initialize(input, reader)
+        @input  = input
+        @reader = reader
+      end
+
+      # @return [String]
+      def translate
+        Coloration.log('Writers::KatePart#translate')
+
         add_comment comment_message
         add_comment "-" * 20 + " Put following in katesyntaxhighlightingrc " + "-" * 20
-        add_line
+        store
 
-        add_line "[Default Item Styles - Schema #{name}]"
+        store "[Default Item Styles - Schema #{reader.name}]"
 
         @default_style = Style.new
         @default_style.foreground = @ui["foreground"]
@@ -36,7 +46,7 @@ module Coloration
         }
 
         items_mapping.keys.each do |key|
-          add_line(format_item(key, items_mapping[key] || @default_style))
+          store(format_item(key, items_mapping[key] || @default_style))
         end
 
         store
@@ -117,16 +127,21 @@ module Coloration
           store "#{key}=#{hex2rgb(ui_mapping[key])}"
         end
 
-        self.result = @lines.join("\n")
+        retrieve
       end
 
-      protected
+      private
 
-      # @param c []
+      # @!attribute [r] reader
       # @return [void]
       # @todo
-      def add_comment(c)
-        add_line(format_comment(c))
+      attr_reader :reader
+
+      # @param comment [String]
+      # @return [void]
+      # @todo
+      def add_comment(comment)
+        store("# #{comment}")
       end
 
       # @param style []
@@ -144,14 +159,8 @@ module Coloration
         s << style.underline.to_i
         s << (style.background ? style.background.html.gsub('#', '') : nil)
         s << nil
-        s << "---"
-        s.join(",")
-      end
-
-      # @param text [String]
-      # @return [String]
-      def format_comment(text)
-        "# #{text}"
+        s << '---'
+        s.join(',')
       end
 
       # @param col []
@@ -160,7 +169,7 @@ module Coloration
         "#{(col.r*255).to_i},#{(col.g*255).to_i},#{(col.b*255).to_i}"
       end
 
-    end # KatePartThemeWriter
+    end # KatePart
 
   end # Writers
 

@@ -136,12 +136,12 @@ class Color::CMYK
     self
   end
 
-    # Converts to RGB then YIQ.
+  # Converts to RGB then YIQ.
   def to_yiq
     to_rgb.to_yiq
   end
 
-    # Converts to RGB then HSL.
+  # Converts to RGB then HSL.
   def to_hsl
     to_rgb.to_hsl
   end

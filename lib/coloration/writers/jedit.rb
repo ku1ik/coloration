@@ -2,15 +2,25 @@ module Coloration
 
   module Writers
 
-    module JEditThemeWriter
+    class JEdit
 
       include Coloration::Writers::AbstractWriter
 
-      # @return [void]
+      # @param input []
+      # @param reader []
+      # @return [String]
       # @todo
-      def build_result
-        add_line(format_comment(comment_message))
-        add_line
+      def initialize(input, reader)
+        @input  = input
+        @reader = reader
+      end
+
+      # @return [String]
+      def translate
+        Coloration.log('Writers::JEdit#translate')
+
+        store("\# #{comment_message}")
+        store
 
         ui_mapping = {
           'scheme.name'             => @name,
@@ -23,7 +33,7 @@ module Coloration
         }
 
         ui_mapping.keys.each do |key|
-          add_line(format_ui(key, ui_mapping[key]))
+          store(format_ui(key, ui_mapping[key]))
         end
 
         items_mapping = {
@@ -47,13 +57,18 @@ module Coloration
         default_style = Style.new
         default_style.foreground = @ui['foreground']
         items_mapping.keys.each do |key|
-          add_line(format_item(key, items_mapping[key] || default_style))
+          store(format_item(key, items_mapping[key] || default_style))
         end
 
-        self.result = @lines.join("\n")
+        retrieve
       end
 
-      protected
+      private
+
+      # @!attribute [r] reader
+      # @return [void]
+      # @todo
+      attr_reader :reader
 
       # @param value [String]
       # @return [String]
@@ -91,13 +106,7 @@ module Coloration
         escape(s)
       end
 
-      # @param text [String]
-      # @return [String]
-      def format_comment(text)
-        "\# #{text}"
-      end
-
-    end # JEditThemeWriter
+    end # JEdit
 
   end # Writers
 

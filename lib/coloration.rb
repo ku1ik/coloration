@@ -1,34 +1,27 @@
 require 'forwardable'
+require 'logger'
+require 'time'
 
-require 'coloration/color/color'
+require 'plist'
+require 'textpow'
 
-require 'coloration/version.rb'
-require 'coloration/support/extensions.rb'
-require 'coloration/support/style.rb'
-require 'coloration/converters/abstract_converter.rb'
+require 'coloration/support/all'
 
-require 'coloration/support/items_lookup.rb'
-require 'coloration/readers/textmate_theme_reader.rb'
+require 'coloration/color/all'
+require 'coloration/writers/all'
+require 'coloration/readers/all'
+require 'coloration/converters/all'
+require 'coloration/all'
 
-require 'coloration/writers/abstract_writer.rb'
-require 'coloration/writers/jedit_theme_writer.rb'
-require 'coloration/writers/katepart_theme_writer.rb'
-require 'coloration/writers/vim_theme_writer.rb'
+module Coloration
 
-require 'coloration/converters/textmate2jedit.rb'
-require 'coloration/converters/textmate2katepart.rb'
-require 'coloration/converters/textmate2vim.rb'
+  EXCEPTIONS = %w(
+    NoSourceError
+    NoDestinationError
+    NoReaderError
+    NoWriterError
+    InvalidThemeError
+  )
+  EXCEPTIONS.each { |e| const_set(e, Class.new(StandardError)) }
 
-require 'coloration/parser'
-
-require "coloration/support/items_lookup.rb"
-require "coloration/readers/textmate_theme_reader.rb"
-
-require "coloration/writers/abstract_writer.rb"
-require "coloration/writers/jedit_theme_writer.rb"
-require "coloration/writers/katepart_theme_writer.rb"
-require "coloration/writers/vim_theme_writer.rb"
-
-require "coloration/converters/textmate2jedit.rb"
-require "coloration/converters/textmate2katepart.rb"
-require "coloration/converters/textmate2vim.rb"
+end
