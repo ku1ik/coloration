@@ -70,15 +70,15 @@ module Coloration
           'ColorColumn'  => Coloration::Style.new(:bg => bg_line_color),
           'LineNr'       => Coloration::Style.new(:fg => ui['foreground'].mix_with(ui['background'], 50), :bg => bg_line_color),
           'VertSplit'    => Coloration::Style.new(:fg => border_color, :bg => border_color),
-          'MatchParen'   => Coloration::Style.new(:fg => items['keyword'].foreground, :underline => true),
+      # 'MatchParen'   => Coloration::Style.new(:fg => items['keyword'].foreground, :underline => true),
           'StatusLine'   => Coloration::Style.new(:fg => ui['foreground'], :bg => border_color, :bold => true),
           'StatusLineNC' => Coloration::Style.new(:fg => ui['foreground'], :bg => border_color),
           'Pmenu'        => 'entity.name',
           'PmenuSel'     => Coloration::Style.new(:bg => ui['selection']),
-          'IncSearch'    => Coloration::Style.new(:bg => items['string'].foreground, :fg => ui['background']),
+      # 'IncSearch'    => Coloration::Style.new(:bg => items['string'].foreground, :fg => ui['background']),
           'Search'       => Coloration::Style.new(:underline => true),
           'Directory'    => 'constant.other.symbol',
-          'Folded'       => Coloration::Style.new(:fg => items['comment'].try(:foreground), :bg => ui['background']),
+      # 'Folded'       => Coloration::Style.new(:fg => items['comment'].try(:foreground), :bg => ui['background']),
         }
 
         ui_mapping.keys.each do |key|
@@ -140,7 +140,7 @@ module Coloration
           # 'Structure'      => [],
           'Tag'          => 'entity.name.tag',
           'Title'        => Coloration::Style.new(:fg => ui['foreground'], :bold => true),
-          'Todo'         => (items['comment'] || default_style).clone.tap { |c| c.inverse = true; c.bold = true },
+      # 'Todo'         => (items['comment'] || default_style).clone.tap { |c| c.inverse = true; c.bold = true },
           'Type'         => 'entity.name.type',
           # 'Typedef'        => [],
           'Underlined'   => Coloration::Style.new(:underline => true),

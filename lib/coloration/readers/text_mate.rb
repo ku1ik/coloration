@@ -38,12 +38,18 @@ module Coloration
       # @return [void]
       # @todo
       def parse
+        tm_theme
+
+        name
+
+        settings
+
         ui.each do |key, value|
           ui[key] = Coloration::Color::RGBA.from_html(value, bg) if value.start_with?('#')
         end
         ui['background'] = bg
 
-        @items ||= Coloration::ItemsLookup.new(rules)
+        @items = Coloration::ItemsLookup.new(rules)
       end
 
       # @return [void]

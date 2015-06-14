@@ -2,9 +2,8 @@ module Coloration
 
   class ItemsLookup
 
-    # @param items []
-    # @return [Coloration::Readers::ItemsLookup]
-    # @todo
+    # @param items [Hash]
+    # @return [Coloration::ItemsLookup]
     def initialize(items)
       @items = items
     end
