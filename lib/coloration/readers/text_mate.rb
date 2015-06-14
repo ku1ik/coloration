@@ -88,11 +88,9 @@ module Coloration
 
           style = Coloration::Style.new(style, bg)
 
-          unless selectors.blank? || style.blank?
-            selectors.split(',').each do |selector|
-              items[selector.strip] = style
-            end
-          end
+          selectors.split(',').each do |selector|
+            items[selector.strip] = style
+          end unless selectors.blank? || style.blank?
         end
       end
 
