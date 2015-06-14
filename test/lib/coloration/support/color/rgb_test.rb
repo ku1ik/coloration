@@ -59,18 +59,26 @@ module Coloration
         let(:other) {}
 
         subject { instance.==(other) }
+
+        it { skip }
       end
 
       describe '#brightness' do
         subject { instance.brightness }
+
+        it { skip }
       end
 
       describe '#to_yiq' do
         subject { instance.to_yiq }
+
+        it { skip }
       end
 
       describe '#html' do
         subject { instance.html }
+
+        it { skip }
       end
 
       describe '#mix_with' do
@@ -78,6 +86,8 @@ module Coloration
         let(:opacity) {}
 
         subject { instance.mix_with(mask, opacity) }
+
+        it { skip }
       end
 
       describe '#r=' do

@@ -16,7 +16,11 @@ module Coloration
     end
 
     describe '.[]' do
-      subject { described.[](_value) }
+      it { described.must_respond_to(:[]) }
+    end
+
+    describe '#[]' do
+      subject { instance.[] }
 
       context 'when the value is more than one' do
         let(:_value) { 5 }

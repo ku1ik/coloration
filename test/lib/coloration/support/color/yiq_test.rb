@@ -14,6 +14,8 @@ module Coloration
 
       describe '.from_fraction' do
         subject { described.from_fraction(y, i, q) }
+
+        it { skip }
       end
 
       describe '#initialize' do
@@ -26,6 +28,11 @@ module Coloration
       end
 
       describe '#==' do
+        let(:other) {}
+
+        subject { instance.==(other) }
+
+        it { skip }
       end
 
       describe '#to_yiq' do
