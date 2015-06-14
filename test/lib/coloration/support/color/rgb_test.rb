@@ -81,69 +81,36 @@ module Coloration
       end
 
       describe '#r=' do
+        let(:rr) { 0.5 }
+
         subject { instance.r=(rr) }
 
-        context 'when > 1' do
-          let(:rr) { 4 }
-
-          # it { subject.must_equal(1.0) }
-        end
-
-        context 'when < 0' do
-          let(:rr) { -3 }
-
-          # it { subject.must_equal(0.0) }
-        end
-
-        context 'when between 0 and 1' do
-          let(:rr) { 0.6 }
-
-          it { subject.must_equal(0.6) }
-        end
+        it {
+          Coloration::Normalize.expects(:[]).with(rr)
+          subject
+        }
       end
 
       describe '#g=' do
+        let(:gg) { 0.4 }
+
         subject { instance.g=(gg) }
 
-        context 'when > 1' do
-          let(:gg) { 6 }
-
-          # it { subject.must_equal(1.0) }
-        end
-
-        context 'when < 0' do
-          let(:gg) { -1 }
-
-          # it { subject.must_equal(0.0) }
-        end
-
-        context 'when between 0 and 1' do
-          let(:gg) { 0.4 }
-
-          it { subject.must_equal(0.4) }
-        end
+        it {
+          Coloration::Normalize.expects(:[]).with(gg)
+          subject
+        }
       end
 
       describe '#b=' do
+        let(:bb) { 0.7 }
+
         subject { instance.b=(bb) }
 
-        context 'when > 1' do
-          let(:bb) { 2 }
-
-          # it { subject.must_equal(1.0) }
-        end
-
-        context 'when < 0' do
-          let(:bb) { -6 }
-
-          # it { subject.must_equal(0.0) }
-        end
-
-        context 'when between 0 and 1' do
-          let(:bb) { 0.2 }
-
-          it { subject.must_equal(0.2) }
-        end
+        it {
+          Coloration::Normalize.expects(:[]).with(bb)
+          subject
+        }
       end
 
     end # RGB

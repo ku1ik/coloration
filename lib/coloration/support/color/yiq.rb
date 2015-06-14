@@ -50,22 +50,16 @@ module Coloration
 
       attr_reader :y, :i, :q
 
-      def y=(yy) #:nodoc:
-        yy = 1.0 if yy > 1
-        yy = 0.0 if yy < 0
-        @y = yy
+      def y=(yy)
+        @y = Coloration::Normalize[yy]
       end
 
-      def i=(ii) #:nodoc:
-        ii = 1.0 if ii > 1
-        ii = 0.0 if ii < 0
-        @i = ii
+      def i=(ii)
+        @i = Coloration::Normalize[ii]
       end
 
-      def q=(qq) #:nodoc:
-        qq = 1.0 if qq > 1
-        qq = 0.0 if qq < 0
-        @q = qq
+      def q=(qq)
+        @q = Coloration::Normalize[qq]
       end
 
     end # YIQ

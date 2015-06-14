@@ -113,26 +113,17 @@ module Coloration
 
       # Normalize red value.
       def r=(rr)
-        rr = 1.0 if rr > 1
-        rr = 0.0 if rr < 0
-
-        @r = rr
+        @r = Coloration::Normalize[rr]
       end
 
       # Normalize green value.
       def g=(gg)
-        gg = 1.0 if gg > 1
-        gg = 0.0 if gg < 0
-
-        @g = gg
+        @g = Coloration::Normalize[gg]
       end
 
       # Normalize blue value.
       def b=(bb)
-        bb = 1.0 if bb > 1
-        bb = 0.0 if bb < 0
-
-        @b = bb
+        @b = Coloration::Normalize[bb]
       end
 
     end # RGB

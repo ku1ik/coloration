@@ -42,69 +42,36 @@ module Coloration
       end
 
       describe '#y=' do
+        let(:yy) { 0.5 }
+
         subject { instance.y=(yy) }
 
-        context 'when > 1' do
-          let(:yy) { 4 }
-
-          # it { subject.must_equal(1.0) }
-        end
-
-        context 'when < 0' do
-          let(:yy) { -3 }
-
-          # it { subject.must_equal(0.0) }
-        end
-
-        context 'when between 0 and 1' do
-          let(:yy) { 0.6 }
-
-          it { subject.must_equal(0.6) }
-        end
+        it {
+          Coloration::Normalize.expects(:[]).with(yy)
+          subject
+        }
       end
 
       describe '#i=' do
+        let(:ii) { 0.4 }
+
         subject { instance.i=(ii) }
 
-        context 'when > 1' do
-          let(:ii) { 6 }
-
-          # it { subject.must_equal(1.0) }
-        end
-
-        context 'when < 0' do
-          let(:ii) { -1 }
-
-          # it { subject.must_equal(0.0) }
-        end
-
-        context 'when between 0 and 1' do
-          let(:ii) { 0.4 }
-
-          it { subject.must_equal(0.4) }
-        end
+        it {
+          Coloration::Normalize.expects(:[]).with(ii)
+          subject
+        }
       end
 
       describe '#q=' do
+        let(:qq) { 0.7 }
+
         subject { instance.q=(qq) }
 
-        context 'when > 1' do
-          let(:qq) { 2 }
-
-          # it { subject.must_equal(1.0) }
-        end
-
-        context 'when < 0' do
-          let(:qq) { -6 }
-
-          # it { subject.must_equal(0.0) }
-        end
-
-        context 'when between 0 and 1' do
-          let(:qq) { 0.2 }
-
-          it { subject.must_equal(0.2) }
-        end
+        it {
+          Coloration::Normalize.expects(:[]).with(qq)
+          subject
+        }
       end
 
     end # YIQ
