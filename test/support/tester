@@ -1,0 +1,35 @@
+#!/bin/bash
+
+set -e
+
+# echo -e "Copying to tmp/..."
+cp working_Brogrammer.vim tmp/
+cp Brogrammer.tmTheme tmp/
+
+# echo -e "Sorting working source..."
+sort tmp/working_Brogrammer.vim > tmp/sorted_working_Brogrammer.vim
+
+# echo -e "Converting..."
+../../bin/tm2vim tmp/Brogrammer.tmTheme tmp/Brogrammer.vim
+
+# echo -e "Sorting new destination..."
+sort tmp/Brogrammer.vim > tmp/sorted_Brogrammer.vim
+
+# echo -e "Diffing..."
+diff -u tmp/sorted_working_Brogrammer.vim tmp/sorted_Brogrammer.vim | colordiff | cat > tmp/difference
+
+# echo -e "Sizing..."
+# echo -e "Source: "
+stat -c%s tmp/sorted_working_Brogrammer.vim
+# echo -e "Destination: "
+stat -c%s tmp/sorted_Brogrammer.vim
+# echo -e "Difference: "
+stat -c%s tmp/difference
+
+# echo -e "Cleaning up tmp/..."
+rm tmp/working_Brogrammer.vim
+rm tmp/Brogrammer.tmTheme
+rm tmp/sorted_working_Brogrammer.vim
+rm tmp/Brogrammer.vim
+rm tmp/sorted_Brogrammer.vim
+rm tmp/difference
