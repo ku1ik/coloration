@@ -4,20 +4,15 @@ module Coloration
 
     module AbstractWriter
 
-      extend Forwardable
-
-      def_delegators :converter, :ui, :items
-
       module ClassMethods
 
         # @param input [String]
         # @param converter []
-        # @param from [String]
         # @param reader []
         # @return [String]
         # @todo
-        def translate(input, converter, from, reader)
-          new(input, converter, from, reader).translate
+        def translate(input, converter, reader)
+          new(input, converter, reader).translate
         end
 
       end # ClassMethods

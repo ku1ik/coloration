@@ -82,7 +82,7 @@ module Coloration
 
       Coloration.log("Writer: #{writer.inspect}")
 
-      @_writer ||= writer.translate(input, converter, converter.from, reader)
+      @_writer ||= writer.translate(input, converter, reader)
     end
 
     # @return [void]

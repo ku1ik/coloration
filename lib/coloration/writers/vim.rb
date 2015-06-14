@@ -4,17 +4,22 @@ module Coloration
 
     class Vim
 
-      extend Forwardable
-
-      def_delegators :reader, :items, :name, :ui
-
-      include Coloration::Writers::AbstractWriter
-
       XTERM_COLORS = [ 0x00, 0x5F, 0x87, 0xAF, 0xD7, 0xFF ]
       XTERM_GREYS  = [ 0x08, 0x12, 0x1C, 0x26, 0x30, 0x3A,
                        0x44, 0x4E, 0x58, 0x62, 0x6C, 0x76,
                        0x80, 0x8A, 0x94, 0x9E, 0xA8, 0xB2,
                        0xBC, 0xC6, 0xD0, 0xDA, 0xE4, 0xEE ]
+
+      extend Forwardable
+
+      def_delegators :reader, :items, :name, :ui
+      def_delegators :converter, :from
+
+      include Coloration::Writers::AbstractWriter
+
+      # @!attribute [r] converter
+      # @return [String]
+      attr_reader :converter
 
       # @!attribute [r] from
       # @return [String]
@@ -26,14 +31,12 @@ module Coloration
 
       # @param input [String]
       # @param converter []
-      # @param from [String]
       # @param reader []
       # @return [Coloration::Writers::Vim]
       # @todo
-      def initialize(input, converter, from, reader)
+      def initialize(input, converter, reader)
         @input     = input
         @converter = converter
-        @from      = from
         @reader    = reader
       end
 

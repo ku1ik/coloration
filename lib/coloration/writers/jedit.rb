@@ -7,8 +7,13 @@ module Coloration
       extend Forwardable
 
       def_delegators :reader, :items, :name, :ui
+      def_delegators :converter, :from
 
       include Coloration::Writers::AbstractWriter
+
+      # @!attribute [r] converter
+      # @return [String]
+      attr_reader :converter
 
       # @!attribute [r] from
       # @return [String]
@@ -20,15 +25,12 @@ module Coloration
 
       # @param input [String]
       # @param converter []
-      # @param from [String]
-      # @param name [String]
-      # @param ui []
+      # @param reader []
       # @return [Coloration::Writers::JEdit]
       # @todo
-      def initialize(input, converter, from, reader)
+      def initialize(input, converter, reader)
         @input     = input
         @converter = converter
-        @from      = from
         @reader    = reader
       end
 
