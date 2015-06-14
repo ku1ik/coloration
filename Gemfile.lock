@@ -14,6 +14,7 @@ GEM
     celluloid (0.16.0)
       timers (~> 4.0.0)
     coderay (1.1.0)
+    colorize (0.7.7)
     docile (1.1.5)
     ffi (1.9.8)
     formatador (0.2.5)
@@ -34,6 +35,7 @@ GEM
     guard-minitest (2.4.4)
       guard-compat (~> 1.2)
       minitest (>= 3.0)
+    hirb (0.7.3)
     hitimes (1.2.2)
     json (1.8.3)
     listen (2.10.0)
@@ -75,6 +77,10 @@ GEM
       docile (~> 1.1.0)
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
+    simplecov-console (0.2.0)
+      colorize
+      hirb
+      simplecov
     simplecov-html (0.10.0)
     slop (3.6.0)
     textpow19 (0.11.0)
@@ -98,4 +104,5 @@ DEPENDENCIES
   rake (= 10.4.2)
   rubocop (= 0.31.0)
   simplecov (= 0.10.0)
+  simplecov-console (= 0.2.0)
   yard (= 0.8.7.6)

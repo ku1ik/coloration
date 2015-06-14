@@ -1,9 +1,11 @@
 require 'simplecov'
+require 'simplecov-console'
 require 'minitest/autorun'
 require 'minitest/pride' unless ENV['NO_COLOR']
 require 'minitest/hell'
 
 SimpleCov.start do
+  formatter SimpleCov::Formatter::Console
   command_name 'MiniTest::Spec'
   add_filter   '/test/'
   add_group    'converters', 'coloration/converters'
