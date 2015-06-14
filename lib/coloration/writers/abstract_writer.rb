@@ -13,12 +13,11 @@ module Coloration
         # @param input [String]
         # @param converter []
         # @param from [String]
-        # @param name [String]
-        # @param ui []
+        # @param reader []
         # @return [String]
         # @todo
-        def translate(input, converter, from, name, ui)
-          new(input, converter, from, name, ui).translate
+        def translate(input, converter, from, reader)
+          new(input, converter, from, reader).translate
         end
 
       end # ClassMethods
