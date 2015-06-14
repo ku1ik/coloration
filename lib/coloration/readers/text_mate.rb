@@ -9,6 +9,11 @@ module Coloration
       # @todo
       attr_reader :converter
 
+      # @!attribute [rw] items
+      # @return [void]
+      # @todo
+      attr_accessor :items
+
       # @param input []
       # @param converter []
       # @return [void]
@@ -23,19 +28,18 @@ module Coloration
       def initialize(input, converter)
         @input     = input
         @converter = converter
+        @items     = nil
       end
 
       # @return [void]
       # @todo
       def parse
         ui.each do |key, value|
-          if value.start_with?('#')
-            ui[key] = Coloration::Color::RGBA.from_html(value, bg)
-          end
+          ui[key] = Coloration::Color::RGBA.from_html(value, bg) if value.start_with?('#')
         end
         ui['background'] = bg
 
-        @items = Coloration::ItemsLookup.new(items)
+        @items ||= Coloration::ItemsLookup.new(rules)
       end
 
       # @return [void]
@@ -72,7 +76,7 @@ module Coloration
 
       # @return [void]
       # @todo
-      def items
+      def rules
         items = {}
         settings.each do |rule|
           selectors = rule['scope']

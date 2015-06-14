@@ -60,9 +60,9 @@ module Coloration
         bg_line_color = ui['background'].mix_with(ui['foreground'], 90)
 
         ui_mapping = {
-          # 'Folded'       => Coloration::Style.new(:fg => @items['comment'].try(:foreground), :bg => ui['background']),
-          # 'IncSearch'    => Coloration::Style.new(:bg => @items['string'].foreground, :fg => ui['background']),
-          # 'MatchParen'   => Coloration::Style.new(:fg => @items['keyword'].foreground, :underline => true),
+          # 'Folded'       => Coloration::Style.new(:fg => items['comment'].try(:foreground), :bg => ui['background']),
+          # 'IncSearch'    => Coloration::Style.new(:bg => items['string'].foreground, :fg => ui['background']),
+          # 'MatchParen'   => Coloration::Style.new(:fg => items['keyword'].foreground, :underline => true),
 
           'ColorColumn'  => Coloration::Style.new(:bg => bg_line_color),
           'Cursor'       => Coloration::Style.new(:fg => ui['background'], :bg => ui['caret']),
@@ -110,7 +110,7 @@ module Coloration
           # 'SpecialChar'    => [],
           # 'SpecialComment' => [],
           # 'Structure'      => [],
-          # 'Todo'           => (@items['comment'] || default_style).clone.tap { |c| c.inverse = true; c.bold = true },
+          # 'Todo'           => (items['comment'] || default_style).clone.tap { |c| c.inverse = true; c.bold = true },
           # 'Typedef'        => [],
 
           # general colors for all languages
@@ -237,7 +237,7 @@ module Coloration
           style = if style_or_item_name.is_a?(Coloration::Style)
             style_or_item_name
           else
-            # @items[style_or_item_name]
+            # items[style_or_item_name]
           end
           "hi #{name} #{format_style(style)}"
         end
