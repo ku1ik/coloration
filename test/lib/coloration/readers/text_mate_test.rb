@@ -71,6 +71,12 @@ module Coloration
         }) }
       end
 
+      describe '#writer' do
+        subject { instance.writer }
+
+        it { converter.expects(:writer); subject }
+      end
+
     end # TextMate
 
   end # Readers

@@ -4,6 +4,10 @@ module Coloration
 
     class TextMate
 
+      extend Forwardable
+
+      def_delegators :converter, :writer
+
       # @!attribute [r] converter
       # @return [void]
       # @todo
@@ -52,12 +56,6 @@ module Coloration
       # @todo
       def ui
         @ui ||= settings.delete_at(0)['settings']
-      end
-
-      # @return [void]
-      # @todo
-      def writer
-        converter.writer
       end
 
       private
