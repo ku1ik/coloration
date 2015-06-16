@@ -13,6 +13,7 @@ require 'coloration/support/style'
 require 'coloration/support/color/yiq'
 require 'coloration/support/color/rgb'
 require 'coloration/support/color/rgba'
+require 'coloration/support/color/xterm256'
 
 require 'coloration/writers/abstract_writer'
 require 'coloration/writers/jedit'

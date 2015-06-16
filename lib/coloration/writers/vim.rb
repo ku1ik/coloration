@@ -4,12 +4,6 @@ module Coloration
 
     class Vim
 
-      XTERM_COLORS = [ 0x00, 0x5F, 0x87, 0xAF, 0xD7, 0xFF ]
-      XTERM_GREYS  = [ 0x08, 0x12, 0x1C, 0x26, 0x30, 0x3A,
-                       0x44, 0x4E, 0x58, 0x62, 0x6C, 0x76,
-                       0x80, 0x8A, 0x94, 0x9E, 0xA8, 0xB2,
-                       0xBC, 0xC6, 0xD0, 0xDA, 0xE4, 0xEE ]
-
       extend Forwardable
 
       def_delegators :reader, :items, :name, :ui
@@ -248,7 +242,7 @@ module Coloration
         style ||= Coloration::Style.new
 
         if fg = style.foreground
-          ctermfg = rgb_to_xterm256(fg)
+          ctermfg = Coloration::Color::XTerm256.rgb_to_xterm256(fg)
           guifg   = fg.html
         else
           ctermfg = 'NONE'
@@ -256,7 +250,7 @@ module Coloration
         end
 
         if bg = style.background
-          ctermbg = rgb_to_xterm256(bg)
+          ctermbg = Coloration::Color::XTerm256.rgb_to_xterm256(bg)
           guibg   = bg.html
         else
           ctermbg = 'NONE'
@@ -277,52 +271,6 @@ module Coloration
 
         "ctermfg=#{ctermfg} ctermbg=#{ctermbg} cterm=#{cterm} " \
         "guifg=#{guifg} guibg=#{guibg} gui=#{gui}"
-      end
-
-      # @param c []
-      # @return [Fixnum]
-      # @todo
-      def rgb_to_xterm256(c)
-        a_r = (c.r * 255.0).to_i
-        a_g = (c.g * 255.0).to_i
-        a_b = (c.b * 255.0).to_i
-
-        return 0 if a_r == 0 && a_g == 0 && a_b == 0
-
-        return 15 if a_r == 255 && a_g == 255 && a_b == 255
-
-        greys_colors = XTERM_GREYS + XTERM_COLORS
-        len = XTERM_COLORS.size
-
-        r = get_nearest_xterm_color(a_r, greys_colors)
-        g = get_nearest_xterm_color(a_g, greys_colors)
-        b = get_nearest_xterm_color(a_b, greys_colors)
-
-        if r == g && g == b && (i = XTERM_GREYS.index(r))
-          n = len * len * len + i
-        else
-          r = get_nearest_xterm_color(a_r, XTERM_COLORS)
-          g = get_nearest_xterm_color(a_g, XTERM_COLORS)
-          b = get_nearest_xterm_color(a_b, XTERM_COLORS)
-
-          n = XTERM_COLORS.index(r) * len * len +
-              XTERM_COLORS.index(g) * len +
-              XTERM_COLORS.index(b)
-        end
-
-        16 + n
-      end
-
-      # @param v []
-      # @param colors []
-      # @return [void]
-      # @todo
-      def get_nearest_xterm_color(v, colors)
-        0.upto(colors.size - 2) do |i|
-          return colors[i] if v <= (colors[i] + colors[i+1]) / 2
-        end
-
-        colors.last
       end
 
     end # Vim
