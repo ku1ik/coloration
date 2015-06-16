@@ -25,6 +25,16 @@ You can use Coloration in two ways: online or on your local machine. The online
 It gives you _tm2vim_, _tm2jedit_ and _tm2katepart_ binaries to do the
  conversion on command line.
 
+## Development
+
+After cloning the source from Github:
+
+    cd coloration/
+    bundle
+    bundle exec guard
+
+This will start guard, which will in turn run Minitest against the source and show test coverage. Happy hacking!
+
 ## Contact
 
 If you found a bug or want to look at the source code you should go to
