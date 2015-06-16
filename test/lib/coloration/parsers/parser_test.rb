@@ -12,12 +12,12 @@ module Coloration
                     converter:   converter,
                     source:      source,
                     writer:      writer) }
-    let(:source)      { this_directory + '/../../support/Brogrammer.tmTheme'}
-    let(:destination) { this_directory + '/../../support/Brogrammer.vim' }
+    let(:source)      { this_directory + '/../../../support/Brogrammer.tmTheme'}
+    let(:destination) { this_directory + '/../../../support/Brogrammer.vim' }
     let(:converter)   { Coloration::Converters::TextMate::Vim.new }
     let(:writer)      { Coloration::Writers::Vim }
     let(:expected)    {
-      File.read(this_directory + '/../../support/working_Brogrammer.vim')
+      File.read(this_directory + '/../../../support/working_Brogrammer.vim')
     }
 
     describe '#initialize' do

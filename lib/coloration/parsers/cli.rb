@@ -1,6 +1,6 @@
 module Coloration
 
-  class CLIParser
+  class CLI
 
     extend Forwardable
 
@@ -20,7 +20,7 @@ module Coloration
 
     # @param converter []
     # @param argv [Array<String>]
-    # @return [Coloration::CLIParser]
+    # @return [Coloration::CLI]
     # @todo
     def initialize(converter, argv = ARGV)
       @converter = converter
@@ -103,6 +103,6 @@ module Coloration
       message
     end
 
-  end # CLIParser
+  end # CLI
 
 end # Coloration

@@ -2,9 +2,9 @@ require 'test_helper'
 
 module Coloration
 
-  describe CLIParser do
+  describe CLI do
 
-    let(:described) { Coloration::CLIParser }
+    let(:described) { Coloration::CLI }
     let(:instance)  { described.new(converter, argv) }
     let(:converter) {}
     let(:argv)      {}
@@ -96,6 +96,6 @@ module Coloration
 
     end
 
-  end # CLIParser
+  end # CLI
 
 end # Coloration

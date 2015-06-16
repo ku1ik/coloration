@@ -25,8 +25,8 @@ require 'coloration/converters/text_mate/jedit'
 require 'coloration/converters/text_mate/kate_part'
 require 'coloration/converters/text_mate/vim'
 
-require 'coloration/cli_parser'
-require 'coloration/parser'
+require 'coloration/parsers/cli'
+require 'coloration/parsers/parser'
 require 'coloration/version'
 
 module Coloration
