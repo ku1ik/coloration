@@ -52,32 +52,7 @@ module Coloration
         store "let g:colors_name = \"#{name}\""
         store
 
-        default_style = Coloration::Style.new(:fg => ui['foreground'])
-        border_color  = ui['background'].mix_with(ui['foreground'], 71)
-        bg_line_color = ui['background'].mix_with(ui['foreground'], 90)
-
-        ui_mapping = {
-          'Cursor'       => Coloration::Style.new(:fg => ui['background'], :bg => ui['caret']),
-          'Visual'       => Coloration::Style.new(:bg => ui['selection']),
-          'CursorLine'   => Coloration::Style.new(:bg => bg_line_color),
-          'CursorColumn' => Coloration::Style.new(:bg => bg_line_color),
-          'ColorColumn'  => Coloration::Style.new(:bg => bg_line_color),
-          'LineNr'       => Coloration::Style.new(:fg => ui['foreground'].mix_with(ui['background'], 50), :bg => bg_line_color),
-          'VertSplit'    => Coloration::Style.new(:fg => border_color, :bg => border_color),
-      # 'MatchParen'   => Coloration::Style.new(:fg => items['keyword'].foreground, :underline => true),
-          'StatusLine'   => Coloration::Style.new(:fg => ui['foreground'], :bg => border_color, :bold => true),
-          'StatusLineNC' => Coloration::Style.new(:fg => ui['foreground'], :bg => border_color),
-          'Pmenu'        => 'entity.name',
-          'PmenuSel'     => Coloration::Style.new(:bg => ui['selection']),
-      # 'IncSearch'    => Coloration::Style.new(:bg => items['string'].foreground, :fg => ui['background']),
-          'Search'       => Coloration::Style.new(:underline => true),
-          'Directory'    => 'constant.other.symbol',
-      # 'Folded'       => Coloration::Style.new(:fg => items['comment'].try(:foreground), :bg => ui['background']),
-        }
-
-        ui_mapping.keys.each do |key|
-          store(format_item(key, ui_mapping[key] || default_style))
-        end
+        store_ui_mapping
 
         store
 
@@ -95,7 +70,8 @@ module Coloration
         end
 
         items_mapping = {
-          'Normal'       => Coloration::Style.new(:fg => ui['foreground'], :bg => ui['background']),
+          'Normal'       => Coloration::Style.new(:fg => ui['foreground'],
+                                                  :bg => ui['background']),
           'Boolean'      => 'constant.language',
           'Character'    => 'constant.character',
           'Comment'      => 'comment',
@@ -104,10 +80,15 @@ module Coloration
           # 'Debug'          => [],
           'Define'       => 'keyword',
           # 'Delimiter'      => 'meta.separator',
-          'DiffAdd'      => Coloration::Style.new(:bg => green.mix_with(ui['background'], 80), :fg => ui['foreground'], :bold => true),
-          'DiffChange'   => Coloration::Style.new(:bg => blue.mix_with(ui['background'], 50), :fg => ui['foreground']),
+          'DiffAdd'      => Coloration::Style.new(:bg => green.mix_with(ui['background'], 80),
+                                                  :fg => ui['foreground'],
+                                                  :bold => true),
+          'DiffChange'   => Coloration::Style.new(:bg => blue.mix_with(ui['background'], 50),
+                                                  :fg => ui['foreground']),
           'DiffDelete'   => Coloration::Style.new(:fg => red.mix_with(ui['background'], 80)),
-          'DiffText'     => Coloration::Style.new(:bg => blue.mix_with(ui['background'], 100), :fg => ui['foreground'], :bold => true),
+          'DiffText'     => Coloration::Style.new(:bg => blue.mix_with(ui['background'], 100),
+                                                  :fg => ui['foreground'],
+                                                  :bold => true),
           'ErrorMsg'     => 'invalid',
           'WarningMsg'   => 'invalid',
           # 'Exception'      => [],
@@ -118,7 +99,8 @@ module Coloration
           'Keyword'      => 'keyword',
           'Label'        => 'string.other',
           # 'Macro'          => [],
-          'NonText'      => Coloration::Style.new(:fg => ui['invisibles'], :bg => ui['background'].mix_with(ui['foreground'], 95)),
+          'NonText'      => Coloration::Style.new(:fg => ui['invisibles'],
+                                                  :bg => ui['background'].mix_with(ui['foreground'], 95)),
           'Number'       => 'constant.numeric',
           'Operator'     => 'keyword.operator',
           # 'PreCondit'      => [],
@@ -127,13 +109,15 @@ module Coloration
           'Special'      => Coloration::Style.new(:fg => ui['foreground']),
           # 'SpecialChar'    => [],
           # 'SpecialComment' => [],
-          'SpecialKey'   => Coloration::Style.new(:fg => ui['invisibles'], :bg => bg_line_color),
+          'SpecialKey'   => Coloration::Style.new(:fg => ui['invisibles'],
+                                                  :bg => bg_line_color),
           'Statement'    => 'keyword.control',
           'StorageClass' => 'storage.type',
           'String'       => 'string,string.quoted',
           # 'Structure'      => [],
           'Tag'          => 'entity.name.tag',
-          'Title'        => Coloration::Style.new(:fg => ui['foreground'], :bold => true),
+          'Title'        => Coloration::Style.new(:fg => ui['foreground'],
+                                                  :bold => true),
       # 'Todo'         => (items['comment'] || default_style).clone.tap { |c| c.inverse = true; c.bold = true },
           'Type'         => 'entity.name.type',
           # 'Typedef'        => [],
@@ -216,6 +200,24 @@ module Coloration
       # @todo
       attr_reader :converter
 
+      # @return [void]
+      # @todo
+      def bg_line_color
+        @bg_line_color ||= ui['background'].mix_with(ui['foreground'], 90)
+      end
+
+      # @return [void]
+      # @todo
+      def border_color
+        @border_color ||= ui['background'].mix_with(ui['foreground'], 71)
+      end
+
+      # @return [void]
+      # @todo
+      def default_value
+        @default_value ||= Coloration::Style.new(:fg => ui['foreground'])
+      end
+
       # @param name []
       # @param style_or_item_name []
       # @return [void]
@@ -271,6 +273,35 @@ module Coloration
 
         "ctermfg=#{ctermfg} ctermbg=#{ctermbg} cterm=#{cterm} " \
         "guifg=#{guifg} guibg=#{guibg} gui=#{gui}"
+      end
+
+      # @return [void]
+      def store_ui_mapping
+        ui_mapping.keys.each do |key|
+          store(format_item(key, ui_mapping[key] || default_style))
+        end
+      end
+
+      # @return [Hash<String => Coloration::Style, String]
+      def ui_mapping
+        {
+          'Cursor'       => Coloration::Style.new(:fg => ui['background'], :bg => ui['caret']),
+          'Visual'       => Coloration::Style.new(:bg => ui['selection']),
+          'CursorLine'   => Coloration::Style.new(:bg => bg_line_color),
+          'CursorColumn' => Coloration::Style.new(:bg => bg_line_color),
+          'ColorColumn'  => Coloration::Style.new(:bg => bg_line_color),
+          'LineNr'       => Coloration::Style.new(:fg => ui['foreground'].mix_with(ui['background'], 50), :bg => bg_line_color),
+          'VertSplit'    => Coloration::Style.new(:fg => border_color, :bg => border_color),
+        # 'MatchParen'   => Coloration::Style.new(:fg => items['keyword'].foreground, :underline => true),
+          'StatusLine'   => Coloration::Style.new(:fg => ui['foreground'], :bg => border_color, :bold => true),
+          'StatusLineNC' => Coloration::Style.new(:fg => ui['foreground'], :bg => border_color),
+          'Pmenu'        => 'entity.name',
+          'PmenuSel'     => Coloration::Style.new(:bg => ui['selection']),
+        # 'IncSearch'    => Coloration::Style.new(:bg => items['string'].foreground, :fg => ui['background']),
+          'Search'       => Coloration::Style.new(:underline => true),
+          'Directory'    => 'constant.other.symbol',
+        # 'Folded'       => Coloration::Style.new(:fg => items['comment'].try(:foreground), :bg => ui['background']),
+        }
       end
 
     end # Vim

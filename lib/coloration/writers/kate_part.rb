@@ -40,6 +40,7 @@ module Coloration
 
         add_comment(comment_message)
         add_comment("-" * 20 + " Put following in katesyntaxhighlightingrc " + "-" * 20)
+
         store
         store("[Default Item Styles - Schema #{converter.name}]")
 
@@ -137,6 +138,7 @@ module Coloration
           # 'Color Template Not Editable Placeholder' => :,
           'Color Word Wrap Marker'      => ui['invisibles']
         }
+
         ui_mapping.keys.each do |key|
           store("#{key}=#{hex2rgb(ui_mapping[key])}")
         end
