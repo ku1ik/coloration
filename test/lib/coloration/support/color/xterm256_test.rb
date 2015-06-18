@@ -7,11 +7,14 @@ module Coloration
     describe XTerm256 do
 
       let(:described) { Coloration::Color::XTerm256 }
-      let(:instance)  { described.new(c) }
-      let(:c)         {}
+      let(:instance)  { described.new(color) }
+      let(:color)     { Coloration::Color::RGB.new(160, 210, 20) }
 
       describe '#initialize' do
         subject { instance }
+
+        it { subject.must_be_instance_of(described) }
+        it { subject.instance_variable_get('@color').must_equal(color) }
       end
 
       describe '.rgb_to_xterm256' do
@@ -19,13 +22,9 @@ module Coloration
       end
 
       describe '#rgb_to_xterm256' do
-        let(:c) {}
+        subject { instance.rgb_to_xterm256 }
 
-        subject { instance.rgb_to_xterm256(c) }
-
-        context 'when the colour has a alpha channel' do
-          it { skip }
-        end
+        it { subject.must_be_instance_of(Fixnum) }
       end
 
     end # Xterm256

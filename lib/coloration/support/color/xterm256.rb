@@ -4,18 +4,18 @@ module Coloration
 
     class XTerm256
 
-      # @param c []
+      # @param color []
       # @return [Fixnum]
       # @todo
-      def self.rgb_to_xterm256(c)
-        new(c).rgb_to_xterm256
+      def self.rgb_to_xterm256(color)
+        new(color).rgb_to_xterm256
       end
 
-      # @param c []
+      # @param color []
       # @return [Coloration::Color::XTerm256]
       # @todo
-      def initialize(c)
-        @c = c
+      def initialize(color)
+        @color = color
       end
 
       # @return [Fixnum]
@@ -27,12 +27,11 @@ module Coloration
                      actual_green == 255 &&
                      actual_blue  == 255
 
-        all = greys + colors
-        len = colors.size
+        r = nearest(actual_red)
+        g = nearest(actual_green)
+        b = nearest(actual_blue)
 
-        r = nearest(actual_red, all)
-        g = nearest(actual_green, all)
-        b = nearest(actual_blue, all)
+        len = colors.size
 
         if r == g && g == b && (i = greys.index(r))
           n = len * len * len + i
@@ -53,25 +52,25 @@ module Coloration
 
       protected
 
-      # @!attribute [r] c
+      # @!attribute [r] color
       # @return [void]
-      attr_reader :c
+      attr_reader :color
 
       private
 
       # @return [Fixnum]
       def actual_red
-        @actual_red ||= (c.r * 255.0).to_i
+        @actual_red ||= (color.r * 255.0).to_i
       end
 
       # @return [Fixnum]
       def actual_green
-        @actual_green ||= (c.g * 255.0).to_i
+        @actual_green ||= (color.g * 255.0).to_i
       end
 
       # @return [Fixnum]
       def actual_blue
-        @actual_blue ||= (c.b * 255.0).to_i
+        @actual_blue ||= (color.b * 255.0).to_i
       end
 
       def all
@@ -95,11 +94,11 @@ module Coloration
       # @return [void]
       # @todo
       def nearest(v)
-        0.upto(colors.size - 2) do |i|
-          return colors[i] if v <= (colors[i] + colors[i+1]) / 2
+        0.upto(all.size - 2) do |i|
+          return all[i] if v <= (all[i] + all[i + 1]) / 2
         end
 
-        colors.last
+        all.last
       end
 
     end # XTerm256
