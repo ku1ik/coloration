@@ -108,9 +108,9 @@ module Coloration
 
         store
         store("[Highlighting XML - Schema #{converter.name}]")
-        store('XML:Value=0,'      + format_style(items['string,string.quoted']))
-        store('XML:Element=0,'    + format_style(items['meta.tag'] || items['entity.name.tag']))
-        store('XML:Attribute=0,'  + format_style(items['entity.other.attribute-name']))
+        store('XML:Value=0,'     + format_style(items['string,string.quoted']))
+        store('XML:Element=0,'   + format_style(items['meta.tag'] || items['entity.name.tag']))
+        store('XML:Attribute=0,' + format_style(items['entity.other.attribute-name']))
 
         store
         add_comment('-' * 20 + ' Put following in kateschemarc ' + '-' * 20)
@@ -118,25 +118,25 @@ module Coloration
         store("[#{converter.name}]")
 
         ui_mapping = {
-          'Color Background'            => ui['background'],
-          'Color Highlighted Bracket'   => ui['background'],
-          'Color Highlighted Line'      => ui['lineHighlight'],
-          # 'Color Icon Bar' => ui[:background],
-          # 'Color Line Number' => :,
-          # 'Color MarkType1' => :,
-          # 'Color MarkType2' => :,
-          # 'Color MarkType3' => :,
-          # 'Color MarkType4' => :,
-          # 'Color MarkType5' => :,
-          # 'Color MarkType6' => :,
-          # 'Color MarkType7' => :,
-          'Color Selection'             => ui['selection'],
-          'Color Tab Marker'            => ui['invisibles'],
-          # 'Color Template Background' => :,
-          # 'Color Template Editable Placeholder' => :,
-          # 'Color Template Focused Editable Placeholder' => :,
-          # 'Color Template Not Editable Placeholder' => :,
-          'Color Word Wrap Marker'      => ui['invisibles']
+          'Color Background'          => ui['background'],
+          'Color Highlighted Bracket' => ui['background'],
+          'Color Highlighted Line'    => ui['lineHighlight'],
+          # 'Color Icon Bar'            => ui[:background],
+          # 'Color Line Number'         => '',
+          # 'Color MarkType1'           => '',
+          # 'Color MarkType2'           => '',
+          # 'Color MarkType3'           => '',
+          # 'Color MarkType4'           => '',
+          # 'Color MarkType5'           => '',
+          # 'Color MarkType6'           => '',
+          # 'Color MarkType7'           => '',
+          'Color Selection'           => ui['selection'],
+          'Color Tab Marker'          => ui['invisibles'],
+          # 'Color Template Background' => '',
+          # 'Color Template Editable Placeholder' => '',
+          # 'Color Template Focused Editable Placeholder' => '',
+          # 'Color Template Not Editable Placeholder' => '',
+          'Color Word Wrap Marker'    => ui['invisibles']
         }
 
         ui_mapping.keys.each do |key|
