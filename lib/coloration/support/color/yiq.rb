@@ -38,7 +38,7 @@ module Coloration
       # @param other []
       # @return [Boolean]
       def ==(other)
-        other.kind_of?(Coloration::Color::YIQ) &&
+        other.is_a?(Coloration::Color::YIQ) &&
         ((@y - other.y).abs <= 1e-4) && ((@i - other.i).abs <= 1e-4) &&
         ((@q - other.q).abs <= 1e-4)
       end

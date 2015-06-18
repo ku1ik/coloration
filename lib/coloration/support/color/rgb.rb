@@ -59,7 +59,7 @@ module Coloration
       # RGB colours are equivalent if all component values are within 1e-4
       # (0.0001) of each other.
       def ==(other)
-        other.kind_of?(Coloration::Color::RGB) &&
+        other.is_a?(Coloration::Color::RGB) &&
           ((@r - other.r).abs <= 1e-4) && ((@g - other.g).abs <= 1e-4) &&
           ((@b - other.b).abs <= 1e-4)
       end
