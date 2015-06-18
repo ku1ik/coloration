@@ -19,17 +19,17 @@ module Coloration
 
           return nil if html_colour.nil? || html_colour.empty?
 
-          html_colour = html_colour.to_s.gsub(%r{[#;]}, '')
+          html_colour = html_colour.to_s.gsub(/[#;]/, '')
 
           colours = case html_colour.size
                     when 0
                       return
 
                     when 3
-                      html_colour.scan(%r{[0-9A-Fa-f]}).map { |el| (el * 2).to_i(16) }
+                      html_colour.scan(/[0-9A-Fa-f]/).map { |el| (el * 2).to_i(16) }
 
                     when 6
-                      html_colour.scan(%r<[0-9A-Fa-f]{2}>).map { |el| el.to_i(16) }
+                      html_colour.scan(/[0-9A-Fa-f]{2}/).map { |el| el.to_i(16) }
 
                     else
                       fail ArgumentError

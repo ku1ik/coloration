@@ -55,19 +55,19 @@ module Coloration
         subject { instance.ui }
 
         it { subject.must_equal({
-          "activeGuide"         => "#ffffff",
-          "background"          => "#1a1a1a",
-          "caret"               => "#ecf0f1",
-          "findHighlight"       => "#e74c3c",
-          "foreground"          => "#ecf0f1",
-          "guide"               => "#222222",
-          "gutter"              => "#2a2a2a",
-          "gutterForeground"    => "#ffffff",
-          "inactiveSelection"   => "#e74c3c",
-          "invisibles"          => "#F3FFB51A",
-          "lineHighlight"       => "#2a2a2a",
-          "selection"           => "#2a2a2a",
-          "selectionForeground" => "#ffffff",
+          'activeGuide'         => '#ffffff',
+          'background'          => '#1a1a1a',
+          'caret'               => '#ecf0f1',
+          'findHighlight'       => '#e74c3c',
+          'foreground'          => '#ecf0f1',
+          'guide'               => '#222222',
+          'gutter'              => '#2a2a2a',
+          'gutterForeground'    => '#ffffff',
+          'inactiveSelection'   => '#e74c3c',
+          'invisibles'          => '#F3FFB51A',
+          'lineHighlight'       => '#2a2a2a',
+          'selection'           => '#2a2a2a',
+          'selectionForeground' => '#ffffff',
         }) }
       end
 

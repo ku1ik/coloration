@@ -45,7 +45,7 @@ module Coloration
       def write(message)
         @dev.write(message)
 
-      rescue StandardError => exception
+      rescue StandardError, exception
         warn("log writing failed. #{exception}")
       end
 
