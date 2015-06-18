@@ -15,22 +15,26 @@ module Coloration
         #   Color::RGB.from_html("#cabbed")
         #   Color::RGB.from_html("cabbed")
         def from_html(html_colour = '')
-          raise ArgumentError unless html_colour.is_a?(String)
+          fail ArgumentError unless html_colour.is_a?(String)
 
           return nil if html_colour.nil? || html_colour.empty?
 
           html_colour = html_colour.to_s.gsub(%r{[#;]}, '')
 
-          case html_colour.size
-          when 0
-            return
-          when 3
-            colours = html_colour.scan(%r{[0-9A-Fa-f]}).map { |el| (el * 2).to_i(16) }
-          when 6
-            colours = html_colour.scan(%r<[0-9A-Fa-f]{2}>).map { |el| el.to_i(16) }
-          else
-            raise ArgumentError
-          end
+          colours = case html_colour.size
+                    when 0
+                      return
+
+                    when 3
+                      html_colour.scan(%r{[0-9A-Fa-f]}).map { |el| (el * 2).to_i(16) }
+
+                    when 6
+                      html_colour.scan(%r<[0-9A-Fa-f]{2}>).map { |el| el.to_i(16) }
+
+                    else
+                      fail ArgumentError
+
+                    end
 
           Coloration::Color::RGB.new(*colours)
         end
@@ -96,15 +100,17 @@ module Coloration
 
       # Mix the mask colour (which must be an RGB object) with the current
       # colour at the stated opacity percentage (0..100).
+      #
+      # @param mask [Coloration::Color::RGB]
+      # @param opacity [Fixnum]
       def mix_with(mask, opacity)
         opacity /= 100.0
-        rgb = self.dup
 
-        rgb.r = (@r * opacity) + (mask.r * (1 - opacity))
-        rgb.g = (@g * opacity) + (mask.g * (1 - opacity))
-        rgb.b = (@b * opacity) + (mask.b * (1 - opacity))
-
-        rgb
+        Coloration::Color::RGB.new(
+          (@r * opacity) + (mask.r * (1 - opacity)),
+          (@g * opacity) + (mask.g * (1 - opacity)),
+          (@b * opacity) + (mask.b * (1 - opacity))
+        )
       end
 
       attr_reader :r, :g, :b
