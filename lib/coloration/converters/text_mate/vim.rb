@@ -4,6 +4,7 @@ module Coloration
 
     module TextMate
 
+      # Provides writer for Vim files.
       class Vim
 
         # @return [String]

@@ -1,3 +1,5 @@
+# Provides enhancements to core Ruby classes.
+# @todo Remove these as soon as possible.
 class Object
   # @return [Boolean]
   def blank?
@@ -12,6 +14,8 @@ class Object
   end
 end
 
+# Provides enhancements to core Ruby classes.
+# @todo Remove these as soon as possible.
 class String
   # @return [Boolean]
   def blank?
@@ -19,6 +23,8 @@ class String
   end
 end
 
+# Provides enhancements to core Ruby classes.
+# @todo Remove these as soon as possible.
 class NilClass
   # @return [Boolean]
   def blank?
@@ -26,6 +32,8 @@ class NilClass
   end
 end
 
+# Provides enhancements to core Ruby classes.
+# @todo Remove these as soon as possible.
 class FalseClass
   # @return [Fixnum]
   def to_i
@@ -33,6 +41,8 @@ class FalseClass
   end
 end
 
+# Provides enhancements to core Ruby classes.
+# @todo Remove these as soon as possible.
 class TrueClass
   # @return [Fixnum]
   def to_i

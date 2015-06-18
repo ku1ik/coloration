@@ -4,6 +4,7 @@ module Coloration
 
     module TextMate
 
+      # Provides writer JEdit files.
       class JEdit
 
         # @return [String]

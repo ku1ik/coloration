@@ -4,6 +4,7 @@ module Coloration
 
     module TextMate
 
+      # Provides writer for KatePart files.
       class KatePart
 
         # @return [String]
