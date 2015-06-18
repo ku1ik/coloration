@@ -26,11 +26,7 @@ module Coloration
     # @todo
     def initialize_from_hash(h, bg = nil)
       h.each do |key, v|
-        key = :foreground if key == :fg
-        key = :background if key == :bg
-
-        if ['foreground', 'background'].include?(key.to_s) && v.is_a?(String)
-
+        if [:fg, :bg].include?(key) && v.is_a?(String)
           v = Color::RGBA.from_html(v, bg)
         end
         send("#{key}=", v)
