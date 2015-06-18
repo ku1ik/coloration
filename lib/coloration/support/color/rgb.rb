@@ -55,11 +55,9 @@ module Coloration
       # RGB colours are equivalent if all component values are within 1e-4
       # (0.0001) of each other.
       def ==(other)
-        other = other.to_rgb
-        other.kind_of?(Coloration::Color::RGB) and
-        ((@r - other.r).abs <= 1e-4) and
-        ((@g - other.g).abs <= 1e-4) and
-        ((@b - other.b).abs <= 1e-4)
+        other.kind_of?(Coloration::Color::RGB) &&
+          ((@r - other.r).abs <= 1e-4) && ((@g - other.g).abs <= 1e-4) &&
+          ((@b - other.b).abs <= 1e-4)
       end
 
       # Returns the brightness value for a colour, a number between 0..1.
@@ -69,16 +67,17 @@ module Coloration
       # This may be modified in a future version of color-tools to use the
       # luminosity value of HSL.
       def brightness
-        to_yiq.y
+        to_yiq.brightness
+      end
+
+      # @return [Coloration::Color::RGB]
+      def to_rgb
+        self
       end
 
       # Returns the YIQ (NTSC) colour encoding of the RGB value.
       def to_yiq
-        y = (@r * 0.299) + (@g *  0.587) + (@b *  0.114)
-        i = (@r * 0.596) + (@g * -0.275) + (@b * -0.321)
-        q = (@r * 0.212) + (@g * -0.523) + (@b *  0.311)
-
-        Coloration::Color::YIQ.from_fraction(y, i, q)
+        Coloration::Color::YIQ.from_rgb(@r, @g, @b)
       end
 
       # Present the colour as an HTML/CSS colour string.
@@ -108,8 +107,7 @@ module Coloration
         rgb
       end
 
-      attr_accessor :r, :g, :b
-      remove_method :r=, :g=, :b= ;
+      attr_reader :r, :g, :b
 
       # Normalize red value.
       def r=(rr)
