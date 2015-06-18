@@ -32,4 +32,7 @@ Style/EmptyLinesAroundClassBody:
   Enabled: false
 
 Style/EmptyLinesAroundModuleBody:
- Enabled: false
+  Enabled: false
+
+Style/SpaceAroundOperators:
+  Enabled: false
