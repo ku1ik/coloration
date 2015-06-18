@@ -6,25 +6,19 @@ module Coloration
 
     describe YIQ do
 
-      let(:described) { Coloration::Color::YIQ }
-      let(:instance)  { described.new(y, i, q) }
-      let(:y)         { 10 }
-      let(:i)         { 20 }
-      let(:q)         { 30 }
-
-      describe '.from_fraction' do
-        subject { described.from_fraction(y, i, q) }
-
-        it { skip }
-      end
+      let(:described)  { Coloration::Color::YIQ }
+      let(:instance)   { described.new(brightness, in_phase, quadrature) }
+      let(:brightness) { 0.1 }
+      let(:in_phase)   { 0.2 }
+      let(:quadrature) { 0.3 }
 
       describe '#initialize' do
         subject { instance }
 
         it { subject.must_be_instance_of(described) }
-        it { subject.instance_variable_get('@y').must_equal(0.1) }
-        it { subject.instance_variable_get('@i').must_equal(0.2) }
-        it { subject.instance_variable_get('@q').must_equal(0.3) }
+        it { subject.instance_variable_get('@y').must_equal(brightness) }
+        it { subject.instance_variable_get('@i').must_equal(in_phase) }
+        it { subject.instance_variable_get('@q').must_equal(quadrature) }
       end
 
       describe '#==' do
@@ -45,40 +39,70 @@ module Coloration
       describe '#brightness' do
         subject { instance.brightness }
 
-        it { subject.must_equal(0.1) }
-      end
-
-      describe '#y=' do
-        let(:yy) { 0.5 }
-
-        subject { instance.y=(yy) }
-
         it {
-          Coloration::Normalize.expects(:[]).with(yy)
+          skip
+          Coloration::Normalize.expects(:[]).with(brightness)
           subject
         }
+        it { instance.must_respond_to(:y) }
       end
 
-      describe '#i=' do
-        let(:ii) { 0.4 }
-
-        subject { instance.i=(ii) }
+      describe '#in_phase' do
+        subject { instance.in_phase }
 
         it {
-          Coloration::Normalize.expects(:[]).with(ii)
+          skip
+          Coloration::Normalize.expects(:[]).with(in_phase)
           subject
         }
+        it { instance.must_respond_to(:i) }
       end
 
-      describe '#q=' do
-        let(:qq) { 0.7 }
-
-        subject { instance.q=(qq) }
+      describe '#quadrature' do
+        subject { instance.quadrature }
 
         it {
-          Coloration::Normalize.expects(:[]).with(qq)
+          skip
+          Coloration::Normalize.expects(:[]).with(quadrature)
           subject
         }
+        it { instance.must_respond_to(:q) }
+      end
+
+      describe '#brightness=' do
+        let(:value) { 0.5 }
+
+        subject { instance.brightness=(value) }
+
+        it {
+          Coloration::Normalize.expects(:[]).with(value)
+          subject
+        }
+        it { instance.must_respond_to(:y=) }
+      end
+
+      describe '#in_phase=' do
+        let(:value) { 0.4 }
+
+        subject { instance.in_phase=(value) }
+
+        it {
+          Coloration::Normalize.expects(:[]).with(value)
+          subject
+        }
+        it { instance.must_respond_to(:i=) }
+      end
+
+      describe '#quadrature=' do
+        let(:value) { 0.7 }
+
+        subject { instance.quadrature=(value) }
+
+        it {
+          Coloration::Normalize.expects(:[]).with(value)
+          subject
+        }
+        it { instance.must_respond_to(:q=) }
       end
 
     end # YIQ
