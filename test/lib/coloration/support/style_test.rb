@@ -21,6 +21,22 @@ module Coloration
       it { skip }
     end
 
+    describe '#blank?' do
+      subject { instance.blank? }
+
+      context 'when both foreground and background are set' do
+        it { skip; subject.must_equal(false) }
+      end
+
+      context 'when either foreground and background are set' do
+        it { skip; subject.must_equal(false) }
+      end
+
+      context 'when neither foreground and background are set' do
+        it { subject.must_equal(true) }
+      end
+    end
+
   end # Style
 
 end # Coloration
