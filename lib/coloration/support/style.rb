@@ -2,8 +2,20 @@ module Coloration
 
   class Style
 
-    attr_accessor :foreground, :background, :bold, :italic, :underline, :strike,
-      :inverse, :comment
+    attr_accessor :foreground
+    alias_method  :fg, :foreground
+    alias_method  :fg=, :foreground=
+
+    attr_accessor :background
+    alias_method  :bg, :background
+    alias_method  :bg=, :background=
+
+    attr_accessor :bold
+    attr_accessor :italic
+    attr_accessor :underline
+    attr_accessor :strike
+    attr_accessor :inverse
+    attr_accessor :comment
 
     # @param obj []
     # @param bg []
