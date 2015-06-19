@@ -25,7 +25,7 @@ module Coloration
       if obj
         case obj
         when String
-          initialize_from_hash({ foreground: obj }, bg)
+          initialize_from_hash({ fg: obj }, bg)
         when Hash
           initialize_from_hash(obj, bg)
         end
@@ -48,6 +48,22 @@ module Coloration
     # @return [Boolean]
     def blank?
       foreground.nil? && background.nil?
+    end
+
+    private
+
+    # @return [Hash<Symbol => NilClass>]
+    def defaults
+      {
+        fg:        nil,
+        bg:        nil,
+        bold:      nil,
+        italic:    nil,
+        underline: nil,
+        strike:    nil,
+        inverse:   nil,
+        comment:   nil,
+      }
     end
 
   end # Style

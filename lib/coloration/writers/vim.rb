@@ -223,17 +223,24 @@ module Coloration
       # @return [void]
       # @todo
       def format_item(name, style_or_item_name)
-        fail RuntimeError, "Coloration::Style for #{name} is missing!" unless style_or_item_name
+        unless style_or_item_name
+          fail RuntimeError, "Coloration::Style for #{name} is missing!"
+        end
 
         if style_or_item_name == :inverse
           "hi #{name} gui=inverse"
+
         else
           style = if style_or_item_name.is_a?(Coloration::Style)
-            style_or_item_name
-          else
-            # items[style_or_item_name]
-          end
+                    style_or_item_name
+
+                  else
+                    # items[style_or_item_name]
+
+                  end
+
           "hi #{name} #{format_style(style)}"
+
         end
       end
 
@@ -246,17 +253,21 @@ module Coloration
         if fg = style.foreground
           ctermfg = Coloration::Color::XTerm256.rgb_to_xterm256(fg)
           guifg   = fg.html
+
         else
           ctermfg = 'NONE'
           guifg   = 'NONE'
+
         end
 
         if bg = style.background
           ctermbg = Coloration::Color::XTerm256.rgb_to_xterm256(bg)
           guibg   = bg.html
+
         else
           ctermbg = 'NONE'
           guibg   = 'NONE'
+
         end
 
         gui_attrs = [
