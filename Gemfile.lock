@@ -64,7 +64,7 @@ GEM
     thor (0.19.1)
     timers (4.0.1)
       hitimes
-    yard (0.8.7.6)
+    yard (0.9.20)
 
 PLATFORMS
   ruby
@@ -77,4 +77,4 @@ DEPENDENCIES
   guard-minitest (= 2.4.4)
   minitest (= 5.7.0)
   simplecov (= 0.10.0)
-  yard (= 0.8.7.6)
+  yard (= 0.9.20)
